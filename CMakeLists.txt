@@ -334,14 +334,16 @@ if(BUILD_TESTING)
     endif()
   else()
     # Prefer GTest installed by OS distro, brew or vcpkg package manager
-    find_package(GTest REQUIRED)
+    # find_package(GTest REQUIRED)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/third_party/googletest)
   endif()
   include_directories(SYSTEM ${GTEST_INCLUDE_DIRS})
   message("GTEST_INCLUDE_DIRS   = ${GTEST_INCLUDE_DIRS}")
   message("GTEST_BOTH_LIBRARIES = ${GTEST_BOTH_LIBRARIES}")
   enable_testing()
   # Benchmark respects the CMAKE_PREFIX_PATH
-  find_package(benchmark CONFIG REQUIRED)
+  # find_package(benchmark CONFIG REQUIRED)
+  add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/third_party/benchmark)
 endif()
 
 include(CMakePackageConfigHelpers)
