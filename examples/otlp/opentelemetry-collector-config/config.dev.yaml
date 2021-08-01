@@ -6,6 +6,9 @@ receivers:
     protocols:
       grpc:
         endpoint: 0.0.0.0:4317
+        tls_settings:
+          cert_file: /opt/server.crt
+          key_file: /opt/server.pem
       http:
         endpoint: "0.0.0.0:55681"
         cors_allowed_origins:

@@ -5,9 +5,9 @@
 #include "opentelemetry/exporters/otlp/otlp_recordable.h"
 #include "opentelemetry/sdk_config.h"
 
-#include <grpcpp/grpcpp.h>
 #include <fstream>
 #include <sstream>  // std::stringstream
+#include <iostream>
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace exporter
@@ -70,7 +70,16 @@ std::unique_ptr<proto::collector::trace::v1::TraceService::Stub> MakeServiceStub
     {
       ssl_opts.pem_root_certs = get_file_contents((options.ssl_credentials_cacert_path).c_str());
     }
-    channel = grpc::CreateChannel(options.endpoint, grpc::SslCredentials(ssl_opts));
+    std::shared_ptr<grpc::ChannelCredentials> creds;
+    if (options.metadata_credentials)
+    {
+      creds = grpc::CompositeChannelCredentials(grpc::SslCredentials(ssl_opts), options.metadata_credentials);
+    }
+    else
+    {
+      creds = grpc::SslCredentials(ssl_opts);
+    }
+    channel = grpc::CreateChannel(options.endpoint, creds);
   }
   else
   {
@@ -111,9 +120,10 @@ sdk::common::ExportResult OtlpGrpcExporter::Export(
 
   grpc::Status status = trace_service_stub_->Export(&context, request, &response);
 
+  std::cout << std::boolalpha << "####: " << context.GetServerInitialMetadata()
+              .find("authorization-token")->second << std::endl;
   if (!status.ok())
   {
-
     OTEL_INTERNAL_LOG_ERROR("[OTLP Exporter] Export() failed: " << status.error_message());
     return sdk::common::ExportResult::kFailure;
   }

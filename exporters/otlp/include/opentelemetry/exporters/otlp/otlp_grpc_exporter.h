@@ -10,6 +10,7 @@
 #include "opentelemetry/exporters/otlp/protobuf_include_suffix.h"
 
 #include "opentelemetry/sdk/trace/exporter.h"
+#include <grpcpp/grpcpp.h>
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace exporter
@@ -31,6 +32,7 @@ struct OtlpGrpcExporterOptions
   // ssl_credentials_cacert_as_string in-memory string representation of .pem file to be used for
   // SSL encryption.
   std::string ssl_credentials_cacert_as_string = "";
+  std::shared_ptr<grpc::CallCredentials> metadata_credentials;
 };
 
 /**
