@@ -2,10 +2,14 @@ include_directories(
   ${CMAKE_BINARY_DIR}/generated/third_party/opentelemetry-proto
   ${CMAKE_SOURCE_DIR}/exporters/otlp/include)
 
+                      
 if(WITH_OTLP_GRPC)
+add_library(custome_auth_library custome_auth/custome_auth.cc)
+target_link_libraries(custome_auth_library ${CMAKE_THREAD_LIBS_INIT}
+                    gRPC::grpc++)
   add_executable(example_otlp_grpc grpc_main.cc)
   target_link_libraries(
-    example_otlp_grpc ${CMAKE_THREAD_LIBS_INIT} common_foo_library
+    example_otlp_grpc ${CMAKE_THREAD_LIBS_INIT} common_foo_library custome_auth_library
     opentelemetry_trace opentelemetry_exporter_otlp_grpc gRPC::grpc++)
 endif()
 

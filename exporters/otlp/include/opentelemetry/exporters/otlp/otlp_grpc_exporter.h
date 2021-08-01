@@ -12,6 +12,7 @@
 #include "opentelemetry/exporters/otlp/protobuf_include_suffix.h"
 
 #include "opentelemetry/sdk/trace/exporter.h"
+#include <grpcpp/grpcpp.h>
 
 #include "opentelemetry/exporters/otlp/otlp_environment.h"
 #include "opentelemetry/exporters/otlp/otlp_grpc_exporter_options.h"
@@ -21,6 +22,23 @@ namespace exporter
 {
 namespace otlp
 {
+/**
+ * Struct to hold OTLP exporter options.
+ */
+struct OtlpGrpcExporterOptions
+{
+  // The endpoint to export to. By default the OpenTelemetry Collector's default endpoint.
+  std::string endpoint = "localhost:4317";
+  // By default when false, uses grpc::InsecureChannelCredentials(); If true,
+  // uses ssl_credentials_cacert_path if non-empty, else uses ssl_credentials_cacert_as_string
+  bool use_ssl_credentials = false;
+  // ssl_credentials_cacert_path specifies path to .pem file to be used for SSL encryption.
+  std::string ssl_credentials_cacert_path = "";
+  // ssl_credentials_cacert_as_string in-memory string representation of .pem file to be used for
+  // SSL encryption.
+  std::string ssl_credentials_cacert_as_string = "";
+  std::shared_ptr<grpc::CallCredentials> metadata_credentials;
+};
 
 /**
  * The OTLP exporter exports span data in OpenTelemetry Protocol (OTLP) format.

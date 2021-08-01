@@ -14,6 +14,7 @@
 #else
 #  include "foo_library/foo_library.h"
 #endif
+#include "custome_auth/custome_auth.h"
 
 namespace trace     = opentelemetry::trace;
 namespace nostd     = opentelemetry::nostd;
@@ -23,6 +24,7 @@ namespace otlp      = opentelemetry::exporter::otlp;
 namespace
 {
 opentelemetry::exporter::otlp::OtlpGrpcExporterOptions opts;
+
 void InitTracer()
 {
   // Create OTLP exporter instance
@@ -45,6 +47,10 @@ int main(int argc, char *argv[])
     {
       opts.use_ssl_credentials         = true;
       opts.ssl_credentials_cacert_path = argv[2];
+      auto call_creds = grpc::MetadataCredentialsFromPlugin(
+      std::unique_ptr<grpc::MetadataCredentialsPlugin>(
+        new TokenAuthenticator("super-secret-ticket")));
+      opts.metadata_credentials = call_creds;
     }
   }
   // Removing this line will leave the default noop TracerProvider in place.

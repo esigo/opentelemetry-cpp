@@ -7,9 +7,9 @@
 #include "opentelemetry/ext/http/common/url_parser.h"
 #include "opentelemetry/sdk_config.h"
 
-#include <grpcpp/grpcpp.h>
 #include <fstream>
 #include <sstream>  // std::stringstream
+#include <iostream>
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace exporter
@@ -61,7 +61,16 @@ std::shared_ptr<grpc::Channel> MakeGrpcChannel(const OtlpGrpcExporterOptions &op
     {
       ssl_opts.pem_root_certs = get_file_contents((options.ssl_credentials_cacert_path).c_str());
     }
-    channel = grpc::CreateChannel(grpc_target, grpc::SslCredentials(ssl_opts));
+    std::shared_ptr<grpc::ChannelCredentials> creds;
+    if (options.metadata_credentials)
+    {
+      creds = grpc::CompositeChannelCredentials(grpc::SslCredentials(ssl_opts), options.metadata_credentials);
+    }
+    else
+    {
+      creds = grpc::SslCredentials(ssl_opts);
+    }
+    channel = grpc::CreateChannel(options.endpoint, creds);
   }
   else
   {
@@ -126,6 +135,8 @@ sdk::common::ExportResult OtlpGrpcExporter::Export(
 
   grpc::Status status = trace_service_stub_->Export(&context, request, &response);
 
+  std::cout << std::boolalpha << "####: " << context.GetServerInitialMetadata()
+              .find("authorization-token")->second << std::endl;
   if (!status.ok())
   {
 
