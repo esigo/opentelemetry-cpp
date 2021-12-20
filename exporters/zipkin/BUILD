@@ -57,8 +57,10 @@ cc_test(
         "zipkin",
     ],
     deps = [
-        ":zipkin_recordable",
         ":zipkin_exporter",
+        ":zipkin_recordable",
+        "@com_github_opentelemetry_proto//:common_proto_cc",
+        "@com_github_opentelemetry_proto//:trace_service_proto_cc",
         "@com_google_googletest//:gtest_main",
     ],
 )
