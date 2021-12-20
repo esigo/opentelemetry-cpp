@@ -48,3 +48,17 @@ cc_test(
         "@com_google_googletest//:gtest_main",
     ],
 )
+
+cc_test(
+    name = "zipkin_exporter_test",
+    srcs = ["test/zipkin_exporter_test.cc"],
+    tags = [
+        "test",
+        "zipkin",
+    ],
+    deps = [
+        ":zipkin_recordable",
+        ":zipkin_exporter",
+        "@com_google_googletest//:gtest_main",
+    ],
+)
