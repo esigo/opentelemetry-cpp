@@ -6,7 +6,6 @@
 #  include "opentelemetry/exporters/zipkin/zipkin_exporter.h"
 #  include <string>
 #  include "opentelemetry/ext/http/server/http_server.h"
-#  include "opentelemetry/proto/collector/trace/v1/trace_service.pb.h"
 #  include "opentelemetry/sdk/trace/batch_span_processor.h"
 #  include "opentelemetry/sdk/trace/tracer_provider.h"
 #  include "opentelemetry/trace/provider.h"
