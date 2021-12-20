@@ -223,7 +223,30 @@ TEST_F(ZipkinExporterTestPeer, ExportJsonIntegrationTest)
   }
 }
 
-#endif
+// Test exporter configuration options
+TEST_F(ZipkinExporterTestPeer, ConfigTest)
+{
+  ZipkinExporterOptions opts;
+  opts.endpoint = "http://localhost:45455/v1/traces";
+  std::unique_ptr<ZipkinExporter> exporter(new ZipkinExporter(opts));
+  EXPECT_EQ(GetOptions(exporter).endpoint, "http://localhost:45455/v1/traces");
+}
+
+#  ifndef NO_GETENV
+// Test exporter configuration options from env
+TEST_F(ZipkinExporterTestPeer, ConfigFromEnv)
+{
+  const std::string endpoint = "http://localhost:9999/v1/traces";
+  setenv("OTEL_EXPORTER_ZIPKIN_ENDPOINT", endpoint.c_str(), 1);
+
+  std::unique_ptr<ZipkinExporter> exporter(new ZipkinExporter());
+  EXPECT_EQ(GetOptions(exporter).endpoint, endpoint);
+
+  unsetenv("OTEL_EXPORTER_ZIPKIN_ENDPOINT");
+}
+
+#  endif  // NO_GETENV
+#endif    // HAVE_CPP_STDLIB
 
 }  // namespace zipkin
 }  // namespace exporter
