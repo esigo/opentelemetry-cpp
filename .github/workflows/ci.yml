@@ -396,8 +396,6 @@ jobs:
     - 
       name: checkout
       uses: actions/checkout@v2
-      with:
-        submodules: 'recursive'
     -
       name: Set up QEMU
       uses: docker/setup-qemu-action@v1
@@ -413,3 +411,4 @@ jobs:
       working-directory:  docker/ubuntuLatest/
       run: |
         docker build --platform arm64 --platform amd64 . --file Dockerfile --tag otel-cpp
+        docker image inspect otel-cpp
