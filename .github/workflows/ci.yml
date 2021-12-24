@@ -393,7 +393,7 @@ jobs:
   image_build:
     runs-on: ubuntu-latest
     steps:
-    - 
+    -
       name: checkout
       uses: actions/checkout@v2
     -
@@ -406,9 +406,9 @@ jobs:
     -
       name: Available platforms
       run: echo ${{ steps.buildx.outputs.platforms }}
-    - 
+    -
       name: Build the Docker image
-      working-directory:  docker/ubuntuLatest/
+      working-directory:  ci/
       run: |
-        docker build --platform arm64 --platform amd64 . --file Dockerfile --tag otel-cpp
+        docker build --platform arm64 --platform amd64 . -f ../docker/ubuntuLatest/Dockerfile --build-arg CORES=8 -t otel-cpp
         docker image inspect otel-cpp
