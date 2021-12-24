@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y build-essential autoconf libtool pkg-co
     cd grpc && git submodule update --init && \
     mkdir -p "third_party/abseil-cpp/build" && cd "third_party/abseil-cpp/build" && \
     cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE .. && \
-    make -j${nproc} install && cd ../../.. && \
+    make -j4 install && cd ../../.. && \
     mkdir build && cd build &&  \
     cmake \
         -DCMAKE_BUILD_TYPE=Release \
@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y build-essential autoconf libtool pkg-co
         -DgRPC_ABSL_PROVIDER=package \
         -DgRPC_SSL_PROVIDER=package \
         .. && \
-    make -j${nproc} install && make clean && ldconfig && \
+    make -j4 install && make clean && ldconfig && \
     cd ../..
 
 #install thrift
@@ -43,7 +43,7 @@ RUN apt-get install -y --no-install-recommends \
         -DBUILD_TESTING=OFF \
         -DBUILD_TUTORIALS=OFF \
         .. && \
-    make -j${nproc} install && make clean && ldconfig && \
+    make -j4 install && make clean && ldconfig && \
     cd ../..
 
 #install opentelemetry-cpp
@@ -58,5 +58,5 @@ RUN apt-get install -y --no-install-recommends libcurl4-openssl-dev && git clone
         -DBUILD_TESTING=OFF \
         -DWITH_OTLP=ON \
         .. && \
-    make -j${nproc} install && ldconfig && \
+    make -j4 install && ldconfig && \
     cd ../..
