@@ -407,5 +407,5 @@ jobs:
       name: Build the Docker image
       working-directory:  ci/
       run: |
-        docker buildx build --platform linux/amd64,linux/arm64 . -f ../docker/ubuntuLatest/Dockerfile --build-arg CORES=8 -t otel-cpp
+        docker buildx build --platform linux/arm64 . -f ../docker/ubuntuLatest/Dockerfile --build-arg CORES=8 -t otel-cpp
         docker buildx imagetools inspect otel-cpp
