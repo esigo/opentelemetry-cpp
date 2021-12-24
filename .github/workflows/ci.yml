@@ -392,6 +392,7 @@ jobs:
       run: ./ci/docfx.cmd
   image_build:
     runs-on: ubuntu-latest
+    timeout-minutes: 300
     steps:
     -
       name: checkout
@@ -404,8 +405,13 @@ jobs:
       id: buildx
       uses: docker/setup-buildx-action@v1
     -
-      name: Build the Docker image
-      working-directory:  ci/
-      run: |
-        docker buildx build --platform linux/arm64 . -f ../docker/ubuntuLatest/Dockerfile --build-arg CORES=8 -t otel-cpp
-        docker buildx imagetools inspect otel-cpp
+      name: Build ARM Image
+      uses: docker/build-push-action@v2
+      with:
+        builder: ${{ steps.buildx.outputs.name }}
+        context: ci/
+        file: ./docker/ubuntuLatest/Dockerfile
+        #platforms: linux/amd64,linux/arm64
+        platforms: linux/arm64
+        push: false
+        tags: otel-cpp
