@@ -404,11 +404,8 @@ jobs:
       id: buildx
       uses: docker/setup-buildx-action@v1
     -
-      name: Available platforms
-      run: echo ${{ steps.buildx.outputs.platforms }}
-    -
       name: Build the Docker image
       working-directory:  ci/
       run: |
-        docker build --platform arm64 --platform amd64 . -f ../docker/ubuntuLatest/Dockerfile --build-arg CORES=8 -t otel-cpp
+        docker build --platform linux/amd64,linux/arm64 . -f ../docker/ubuntuLatest/Dockerfile --build-arg CORES=8 -t otel-cpp
         docker image inspect otel-cpp
