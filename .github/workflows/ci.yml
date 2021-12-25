@@ -391,6 +391,7 @@ jobs:
       shell: cmd
       run: ./ci/docfx.cmd
   docker_image:
+    name: Docker Image
     runs-on: ubuntu-latest
     timeout-minutes: 300
     steps:
@@ -411,8 +412,8 @@ jobs:
         builder: ${{ steps.buildx.outputs.name }}
         context: ci/
         file: ./docker/ubuntuLatest/Dockerfile
-        #platforms: linux/amd64,linux/arm64
-        platforms: linux/amd64
+        platforms: linux/amd64,linux/arm64
+        #platforms: linux/amd64
         push: false
         tags: otel-cpp
         cache-from: type=gha
