@@ -390,7 +390,7 @@ jobs:
     - name: run ./ci/docfx.cmd
       shell: cmd
       run: ./ci/docfx.cmd
-  image_build:
+  docker_image:
     runs-on: ubuntu-latest
     timeout-minutes: 300
     steps:
