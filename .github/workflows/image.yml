@@ -1,4 +1,4 @@
-name: 'Build opentelemetry images for ARM64 and amd64'
+name: 'Build Multi-Platform OpenTelemetry Docker image'
 on:
   schedule:
     - cron: '30 1 * * *'
