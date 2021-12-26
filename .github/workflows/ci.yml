@@ -390,3 +390,31 @@ jobs:
     - name: run ./ci/docfx.cmd
       shell: cmd
       run: ./ci/docfx.cmd
+  docker_image:
+    name: Docker Image
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+    -
+      name: checkout
+      uses: actions/checkout@v2
+    -
+      name: Set up QEMU
+      uses: docker/setup-qemu-action@v1
+    -
+      name: Set up Docker Buildx
+      id: buildx
+      uses: docker/setup-buildx-action@v1
+    -
+      name: Build ARM Image
+      uses: docker/build-push-action@v2
+      with:
+        builder: ${{ steps.buildx.outputs.name }}
+        context: ci/
+        file: ./docker/ubuntuLatest/Dockerfile
+        platforms: linux/amd64,linux/arm64
+        #platforms: linux/amd64
+        push: false
+        tags: otel-cpp
+        cache-from: type=gha
+        cache-to: type=gha,mode=max
