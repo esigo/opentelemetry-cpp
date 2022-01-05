@@ -29,8 +29,9 @@ nostd::shared_ptr<opentelemetry::logs::Logger> LoggerProvider::GetLogger(
   // If a logger with a name "logger_name" already exists, return it
   for (auto &logger : loggers_)
   {
-    auto& logger_lib = logger->GetInstrumentationLibrary();
-    if (logger->GetName() == logger_name && logger_lib.equal(library_name, library_version, schema_url))
+    auto &logger_lib = logger->GetInstrumentationLibrary();
+    if (logger->GetName() == logger_name &&
+        logger_lib.equal(library_name, library_version, schema_url))
     {
       return nostd::shared_ptr<opentelemetry::logs::Logger>{logger};
     }
