@@ -24,6 +24,7 @@ jobs:
         run: |
           sudo ./ci/setup_cmake.sh
           sudo ./ci/setup_ci_environment.sh
+          sudo ./ci/setup_thrift.sh dependencies_only
       - name: Run benchmark
         run: |
           ci/do_ci.sh bazel.benchmark
