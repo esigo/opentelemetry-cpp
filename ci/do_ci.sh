@@ -29,7 +29,7 @@ function run_benchmarks
       out=`echo "${benchmark}" | sed 's:.*/::'`
       ${benchmark} --benchmark_format=json | tee $out-benchmark.json
   done
-  jq . $(find . -name '*-benchmark.json') | jq -n '.benchmarks |= [inputs]' | tee benchmark_result.json
+  jq . $(find . -name '*-benchmark.json') | jq -n '.entries |= [inputs]' | tee benchmark_result.json
   mv ${BUILD_DIR}/benchmark_result.json ${SRC_DIR}
 }
 
