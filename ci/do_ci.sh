@@ -28,7 +28,7 @@ function run_benchmarks
   do
       ${benchmark} --benchmark_format=json | tee -a benchmark_result.json
   done
-  cp ${BUILD_DIR}/benchmark_result.json ${SRC_DIR}
+  mv ${BUILD_DIR}/benchmark_result.json ${SRC_DIR}
 }
 
 [ -z "${SRC_DIR}" ] && export SRC_DIR="`pwd`"
