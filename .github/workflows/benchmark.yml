@@ -26,7 +26,7 @@ jobs:
           sudo ./ci/setup_ci_environment.sh
       - name: Run benchmark
         run: |
-          ci/do_ci.sh cmake.benchmark
+          ci/do_ci.sh bazel.benchmark
       - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1
         with:
