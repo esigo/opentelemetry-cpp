@@ -26,8 +26,10 @@ function run_benchmarks
   # run all the benchmarks and store the results in json format
   for benchmark in "${benchmarks[@]}"
   do
-      ${benchmark} --benchmark_format=json | tee -a benchmark_result.json
+      out=`echo "${benchmark}" | sed 's:.*/::'`
+      ${benchmark} --benchmark_format=json | tee $out-benchmark.json
   done
+  jq . $(find . -name '*-benchmark.json') | jq -n '.benchmarks |= [inputs]' | tee benchmark_result.json
   mv ${BUILD_DIR}/benchmark_result.json ${SRC_DIR}
 }
 
@@ -65,16 +67,16 @@ if [[ "$1" == "cmake.test" ]]; then
   exit 0
 elif [[ "$1" == "cmake.benchmark" ]]; then
   cd "${BUILD_DIR}"
-  rm -rf *
-  cmake -DCMAKE_BUILD_TYPE=Debug  \
-        -DWITH_PROMETHEUS=OFF \
-        -DWITH_ZIPKIN=ON \
-        -DWITH_JAEGER=OFF \
-        -DWITH_ELASTICSEARCH=ON \
-        -DWITH_METRICS_PREVIEW=OFF \
-        -DWITH_LOGS_PREVIEW=OFF \
-        -DCMAKE_CXX_FLAGS="-Werror" \
-        "${SRC_DIR}"
+  # rm -rf *
+  # cmake -DCMAKE_BUILD_TYPE=Debug  \
+  #       -DWITH_PROMETHEUS=OFF \
+  #       -DWITH_ZIPKIN=ON \
+  #       -DWITH_JAEGER=OFF \
+  #       -DWITH_ELASTICSEARCH=ON \
+  #       -DWITH_METRICS_PREVIEW=OFF \
+  #       -DWITH_LOGS_PREVIEW=OFF \
+  #       -DCMAKE_CXX_FLAGS="-Werror" \
+  #       "${SRC_DIR}"
   make -j8
   run_benchmarks
   exit 0
