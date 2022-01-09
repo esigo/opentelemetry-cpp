@@ -72,7 +72,7 @@ elif [[ "$1" == "cmake.benchmark" ]]; then
         -DWITH_PROMETHEUS=OFF \
         -DWITH_ZIPKIN=ON \
         -DWITH_JAEGER=OFF \
-        -DWITH_ELASTICSEARCH=ON \
+        -DWITH_ELASTICSEARCH=OFF \
         -DWITH_METRICS_PREVIEW=OFF \
         -DWITH_LOGS_PREVIEW=OFF \
         -DCMAKE_CXX_FLAGS="-Werror" \
