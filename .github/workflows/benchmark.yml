@@ -19,6 +19,11 @@ jobs:
         with:
           path: .
           key: ${{ runner.os }}-googlebenchmark-v1.6.0
+          submodules: 'recursive'
+      - name: setup
+        run: |
+          sudo ./ci/setup_cmake.sh
+          sudo ./ci/setup_ci_environment.sh
       - name: Run benchmark
         run: |
           ci/do_ci.sh cmake.benchmark
