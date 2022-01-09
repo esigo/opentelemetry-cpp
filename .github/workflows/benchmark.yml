@@ -18,7 +18,7 @@ jobs:
         uses: actions/cache@v1
         with:
           path: .
-          key: ${{ runner.os }}-googlebenchmark-v1.5.3
+          key: ${{ runner.os }}-googlebenchmark-v1.5.0
           submodules: 'recursive'
       - name: setup
         run: |
