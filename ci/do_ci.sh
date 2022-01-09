@@ -33,6 +33,8 @@ function run_benchmarks
     fi
     ${benchmark} --benchmark_format=json | tee $out-benchmark.json
   done
+
+  # collect benchmark results into one array
   jq -s '.[0].benchmarks = ([.[].benchmarks] | add) | if .[0].benchmarks == null then null else .[0] end' $(find . -name '*-benchmark.json') > benchmark_result.json && echo "::set-output name=json_plaintext::$(cat benchmark_result.json)"
   mv benchmark_result.json ${SRC_DIR}
   popd
