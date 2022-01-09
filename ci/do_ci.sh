@@ -20,18 +20,22 @@ function install_prometheus_cpp_client
 function run_benchmarks
 {
   # find all the benchmark executables
-  readarray -d '' all_benchmarks_str < <(find . -name "*benchmark" )
+  pushd ./bazel-bin
+  readarray -d '' all_benchmarks_str < <(find . -name '*_benchmark_*' )
   readarray -t benchmarks <<<"$(tr T '\n'<<<"$all_benchmarks_str")"
 
   # run all the benchmarks and store the results in json format
   for benchmark in "${benchmarks[@]}"
   do
-      out=`echo "${benchmark}" | sed 's:.*/::'`
-      ${benchmark} --benchmark_format=json | tee $out-benchmark.json
+    out=`echo "${benchmark}" | sed 's:.*/::'`
+    if [[ ${out} == *"."* ]] || [[ ${benchmark} == *".runfiles"* ]]; then
+      continue
+    fi
+    ${benchmark} --benchmark_format=json | tee $out-benchmark.json
   done
   jq -s '.[0].benchmarks = ([.[].benchmarks] | add) | if .[0].benchmarks == null then null else .[0] end' $(find . -name '*-benchmark.json') > benchmark_result.json && echo "::set-output name=json_plaintext::$(cat benchmark_result.json)"
-  # jq . $(find . -name '*-benchmark.json') | jq -n '.entries |= [inputs]' | tee benchmark_result.json
-  mv ${BUILD_DIR}/benchmark_result.json ${SRC_DIR}
+  mv benchmark_result.json ${SRC_DIR}
+  popd
 }
 
 [ -z "${SRC_DIR}" ] && export SRC_DIR="`pwd`"
@@ -65,21 +69,6 @@ if [[ "$1" == "cmake.test" ]]; then
         "${SRC_DIR}"
   make
   make test
-  exit 0
-elif [[ "$1" == "cmake.benchmark" ]]; then
-  cd "${BUILD_DIR}"
-  rm -rf *
-  cmake -DCMAKE_BUILD_TYPE=Debug  \
-        -DWITH_PROMETHEUS=OFF \
-        -DWITH_ZIPKIN=ON \
-        -DWITH_JAEGER=OFF \
-        -DWITH_ELASTICSEARCH=OFF \
-        -DWITH_METRICS_PREVIEW=OFF \
-        -DWITH_LOGS_PREVIEW=OFF \
-        -DCMAKE_CXX_FLAGS="-Werror" \
-        "${SRC_DIR}"
-  make -j8
-  run_benchmarks
   exit 0
 elif [[ "$1" == "cmake.abseil.test" ]]; then
   cd "${BUILD_DIR}"
@@ -193,6 +182,10 @@ EOF
 elif [[ "$1" == "bazel.test" ]]; then
   bazel $BAZEL_STARTUP_OPTIONS build $BAZEL_OPTIONS //...
   bazel $BAZEL_STARTUP_OPTIONS test $BAZEL_TEST_OPTIONS //...
+  exit 0
+elif [[ "$1" == "bazel.benchmark" ]]; then
+  bazel $BAZEL_STARTUP_OPTIONS build $BAZEL_OPTIONS -- //... -//exporters/prometheus/... -//exporters/jaeger/...
+  run_benchmarks
   exit 0
 elif [[ "$1" == "bazel.macos.test" ]]; then
   bazel $BAZEL_STARTUP_OPTIONS build $BAZEL_MACOS_OPTIONS //...
