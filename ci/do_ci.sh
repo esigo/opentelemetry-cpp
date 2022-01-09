@@ -67,16 +67,16 @@ if [[ "$1" == "cmake.test" ]]; then
   exit 0
 elif [[ "$1" == "cmake.benchmark" ]]; then
   cd "${BUILD_DIR}"
-  # rm -rf *
-  # cmake -DCMAKE_BUILD_TYPE=Debug  \
-  #       -DWITH_PROMETHEUS=OFF \
-  #       -DWITH_ZIPKIN=ON \
-  #       -DWITH_JAEGER=OFF \
-  #       -DWITH_ELASTICSEARCH=ON \
-  #       -DWITH_METRICS_PREVIEW=OFF \
-  #       -DWITH_LOGS_PREVIEW=OFF \
-  #       -DCMAKE_CXX_FLAGS="-Werror" \
-  #       "${SRC_DIR}"
+  rm -rf *
+  cmake -DCMAKE_BUILD_TYPE=Debug  \
+        -DWITH_PROMETHEUS=OFF \
+        -DWITH_ZIPKIN=ON \
+        -DWITH_JAEGER=OFF \
+        -DWITH_ELASTICSEARCH=ON \
+        -DWITH_METRICS_PREVIEW=OFF \
+        -DWITH_LOGS_PREVIEW=OFF \
+        -DCMAKE_CXX_FLAGS="-Werror" \
+        "${SRC_DIR}"
   make -j8
   run_benchmarks
   exit 0
