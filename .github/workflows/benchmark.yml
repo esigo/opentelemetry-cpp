@@ -31,7 +31,7 @@ jobs:
         uses: benchmark-action/github-action-benchmark@v1
         with:
           name: OpenTelemetry-cpp benchmarks
-          tool: 'OpenTelemetry-cpp'
+          tool: 'googlecpp'
           output-file-path: benchmark_result.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
           auto-push: true
