@@ -17,6 +17,19 @@ function install_prometheus_cpp_client
   popd
 }
 
+function run_benchmarks
+{
+  # find all the benchmark executables
+  readarray -d '' all_benchmarks_str < <(find . -name "*benchmark" )
+  readarray -t benchmarks <<<"$(tr T '\n'<<<"$all_benchmarks_str")"
+
+  # run all the benchmarks and store the results in json format
+  for benchmark in "${benchmarks[@]}"
+  do
+      ${benchmark} --benchmark_format=json | tee benchmark_result.json
+  done
+}
+
 [ -z "${SRC_DIR}" ] && export SRC_DIR="`pwd`"
 [ -z "${BUILD_DIR}" ] && export BUILD_DIR=$HOME/build
 mkdir -p "${BUILD_DIR}"
@@ -48,6 +61,21 @@ if [[ "$1" == "cmake.test" ]]; then
         "${SRC_DIR}"
   make
   make test
+  exit 0
+elif [[ "$1" == "cmake.benchmark" ]]; then
+  cd "${BUILD_DIR}"
+  rm -rf *
+  cmake -DCMAKE_BUILD_TYPE=Debug  \
+        -DWITH_PROMETHEUS=ON \
+        -DWITH_ZIPKIN=ON \
+        -DWITH_JAEGER=ON \
+        -DWITH_ELASTICSEARCH=ON \
+        -DWITH_METRICS_PREVIEW=ON \
+        -DWITH_LOGS_PREVIEW=ON \
+        -DCMAKE_CXX_FLAGS="-Werror" \
+        "${SRC_DIR}"
+  make -j8
+  run_benchmarks
   exit 0
 elif [[ "$1" == "cmake.abseil.test" ]]; then
   cd "${BUILD_DIR}"
