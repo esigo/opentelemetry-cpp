@@ -26,7 +26,7 @@ function run_benchmarks
   # run all the benchmarks and store the results in json format
   for benchmark in "${benchmarks[@]}"
   do
-      ${benchmark} --benchmark_format=json | tee benchmark_result.json
+      ${benchmark} --benchmark_format=json | tee -a benchmark_result.json
   done
   cp ${BUILD_DIR}/benchmark_result.json ${SRC_DIR}
 }
