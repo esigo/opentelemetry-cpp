@@ -66,12 +66,12 @@ elif [[ "$1" == "cmake.benchmark" ]]; then
   cd "${BUILD_DIR}"
   rm -rf *
   cmake -DCMAKE_BUILD_TYPE=Debug  \
-        -DWITH_PROMETHEUS=ON \
+        -DWITH_PROMETHEUS=OFF \
         -DWITH_ZIPKIN=ON \
         -DWITH_JAEGER=ON \
         -DWITH_ELASTICSEARCH=ON \
-        -DWITH_METRICS_PREVIEW=ON \
-        -DWITH_LOGS_PREVIEW=ON \
+        -DWITH_METRICS_PREVIEW=OFF \
+        -DWITH_LOGS_PREVIEW=OFF \
         -DCMAKE_CXX_FLAGS="-Werror" \
         "${SRC_DIR}"
   make -j8
