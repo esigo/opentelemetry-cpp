@@ -30,8 +30,8 @@ jobs:
       - name: Store benchmark result
         uses: benchmark-action/github-action-benchmark@v1
         with:
-          name: C++ Benchmark
-          tool: 'googlecpp'
+          name: OpenTelemetry-cpp benchmarks
+          tool: 'OpenTelemetry-cpp'
           output-file-path: benchmark_result.json
           github-token: ${{ secrets.GITHUB_TOKEN }}
           auto-push: true
