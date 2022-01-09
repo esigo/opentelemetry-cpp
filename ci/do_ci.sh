@@ -68,7 +68,7 @@ elif [[ "$1" == "cmake.benchmark" ]]; then
   cmake -DCMAKE_BUILD_TYPE=Debug  \
         -DWITH_PROMETHEUS=OFF \
         -DWITH_ZIPKIN=ON \
-        -DWITH_JAEGER=ON \
+        -DWITH_JAEGER=OFF \
         -DWITH_ELASTICSEARCH=ON \
         -DWITH_METRICS_PREVIEW=OFF \
         -DWITH_LOGS_PREVIEW=OFF \
