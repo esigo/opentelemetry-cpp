@@ -7,9 +7,6 @@ set -e
 
 function install_prometheus_cpp_client
 {
-  docker run -d --rm -it -p 4317:4317 -p 4318:4318 -v \
-    $(pwd)/examples/otlp:/cfg otel/opentelemetry-collector:0.38.0 \
-    --config=/cfg/opentelemetry-collector-config/config.dev.yaml
   pushd third_party/prometheus-cpp
   git submodule update --recursive --init
   [[ -d _build ]] && rm -rf ./_build
@@ -18,11 +15,13 @@ function install_prometheus_cpp_client
   make -j 4
   sudo make install
   popd
-  docker kill $(docker ps -q)
 }
 
 function run_benchmarks
 {
+  docker run -d --rm -it -p 4317:4317 -p 4318:4318 -v \
+    $(pwd)/examples/otlp:/cfg otel/opentelemetry-collector:0.38.0 \
+    --config=/cfg/opentelemetry-collector-config/config.dev.yaml
   # find all the benchmark executables
   pushd ./bazel-bin
   readarray -d '' all_benchmarks_str < <(find . -name '*_benchmark_*' )
@@ -42,6 +41,7 @@ function run_benchmarks
   jq -s '.[0].benchmarks = ([.[].benchmarks] | add) | if .[0].benchmarks == null then null else .[0] end' $(find . -name '*-benchmark.json') > benchmark_result.json && echo "::set-output name=json_plaintext::$(cat benchmark_result.json)"
   mv benchmark_result.json ${SRC_DIR}
   popd
+  docker kill $(docker ps -q)
 }
 
 [ -z "${SRC_DIR}" ] && export SRC_DIR="`pwd`"
