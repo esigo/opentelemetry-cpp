@@ -24,6 +24,7 @@ def otel_cc_benchmark(name, srcs, deps, tags = [""]):
         srcs = srcs,
         deps = deps + ["@com_github_google_benchmark//:benchmark"],
         tags = tags + ["manual"],
+        defines = ["BAZEL_BUILD"],
     )
 
     # The result of running the benchmark, captured into a text file.
@@ -44,4 +45,5 @@ def otel_cc_benchmark(name, srcs, deps, tags = [""]):
         deps = deps + ["@com_github_google_benchmark//:benchmark"],
         args = ["--benchmark_min_time=0"],
         tags = tags + ["benchmark"],
+        defines = ["BAZEL_BUILD"],
     )
