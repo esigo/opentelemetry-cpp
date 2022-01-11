@@ -14,11 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Cache Benchmark library
-        uses: actions/cache@v1
         with:
-          path: .
-          key: ${{ runner.os }}-googlebenchmark-v1.5.0
           submodules: 'recursive'
       - name: setup
         run: |
