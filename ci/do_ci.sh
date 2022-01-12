@@ -43,6 +43,7 @@ function run_benchmarks
     "::set-output name=json_plaintext::$(cat benchmark_result.json)"
   cat benchmark_result.json
   mv benchmark_result.json ${SRC_DIR}
+  ls | grep json
   popd
   docker kill $(docker ps -q)
 }
@@ -193,7 +194,7 @@ elif [[ "$1" == "bazel.test" ]]; then
   bazel $BAZEL_STARTUP_OPTIONS test $BAZEL_TEST_OPTIONS //...
   exit 0
 elif [[ "$1" == "bazel.benchmark" ]]; then
-  bazel $BAZEL_STARTUP_OPTIONS build $BAZEL_OPTIONS -- //... -//exporters/prometheus/... -//exporters/jaeger/...
+  bazel $BAZEL_STARTUP_OPTIONS build $BAZEL_OPTIONS --compilation_mode=opt -- //... -//exporters/prometheus/... -//exporters/jaeger/...
   run_benchmarks
   exit 0
 elif [[ "$1" == "bazel.macos.test" ]]; then
