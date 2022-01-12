@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1642007886669,
+  "lastUpdate": 1642025162676,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp Benchmark": [
@@ -216,6 +216,78 @@ window.BENCHMARK_DATA = {
             "value": 53187.436617781335,
             "unit": "ns/iter",
             "extra": "iterations: 13230\ncpu: 53180.937263794454 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "71217171+esigo@users.noreply.github.com",
+            "name": "Ehsan Saei",
+            "username": "esigo"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "ced837c1ef403420e0dfe972da9fb1211f94cfea",
+          "message": "Merge branch 'open-telemetry:main' into benchmark-action",
+          "timestamp": "2022-01-12T22:37:39+01:00",
+          "tree_id": "144790b7eaba396b34bd04b1a0df8a1b066b5a32",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/ced837c1ef403420e0dfe972da9fb1211f94cfea"
+        },
+        "date": 1642025161229,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_CreateBaggageFromTenEntries",
+            "value": 3633.9815865029555,
+            "unit": "ns/iter",
+            "extra": "iterations: 192221\ncpu: 3633.401137232664 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_ExtractBaggageHavingTenEntries",
+            "value": 1.6097430837045854,
+            "unit": "ns/iter",
+            "extra": "iterations: 434919568\ncpu: 1.6096516494286595 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_CreateBaggageFrom180Entries",
+            "value": 73333.13838653325,
+            "unit": "ns/iter",
+            "extra": "iterations: 9555\ncpu: 73329.76452119311 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_ExtractBaggageWith180Entries",
+            "value": 1.6095935095976965,
+            "unit": "ns/iter",
+            "extra": "iterations: 434534573\ncpu: 1.609510366854055 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_SetValueBaggageWithTenEntries",
+            "value": 697.6847618522926,
+            "unit": "ns/iter",
+            "extra": "iterations: 1044845\ncpu: 697.6418511836683 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_SetValueBaggageWith180Entries",
+            "value": 17028.508141752176,
+            "unit": "ns/iter",
+            "extra": "iterations: 40959\ncpu: 17028.22090383066 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_BaggageToHeaderTenEntries",
+            "value": 2737.801343949685,
+            "unit": "ns/iter",
+            "extra": "iterations: 252869\ncpu: 2736.992276633354 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_BaggageToHeader180Entries",
+            "value": 47842.688639508844,
+            "unit": "ns/iter",
+            "extra": "iterations: 14663\ncpu: 47840.27825138105 ns\nthreads: 1"
           }
         ]
       }
