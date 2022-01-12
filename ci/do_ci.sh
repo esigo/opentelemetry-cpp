@@ -38,7 +38,7 @@ function run_benchmarks
   done
 
   # collect benchmark results into one array
-  jq -s '.[0].benchmarks = ([.[].benchmarks] | add) | \
+  jq -s '.[0].benchmarks = ([.[].benchmarks] | add) |
     if .[0].benchmarks == null then null else .[0] end' \
     $(find . -name '*-benchmark.json') > benchmark_result.json
 
