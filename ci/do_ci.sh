@@ -38,9 +38,10 @@ function run_benchmarks
   done
 
   # collect benchmark results into one array
-  jq -s '.[0].benchmarks = ([.[].benchmarks] | add) |
-    if .[0].benchmarks == null then null else .[0] end' \
-    $(find . -name '*-benchmark.json') | tee benchmark_result.json
+  find . -type f -name "*-benchmark.json" -exec cat {} \; > tmp_bench.json
+  cat tmp_bench.json | docker run -i --rm itchyny/gojq:0.12.6 -s \
+    '.[0].benchmarks = ([.[].benchmarks] | add) |
+    if .[0].benchmarks == null then null else .[0] end'| tee benchmark_result.json
 
   cat benchmark_result.json
   mv benchmark_result.json ${SRC_DIR}
