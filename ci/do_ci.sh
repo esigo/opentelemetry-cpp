@@ -40,15 +40,14 @@ function run_benchmarks
   # collect benchmark results into one array
   find . -type f -name "*-benchmark.json" -exec cat {} \; > tmp_bench.json
   cat *-benchmark.json > tmp2_bench.json
-  cat tmp2_bench.json
-  echo "========= Printing tmp_benchmark ========="
-  cat tmp_bench.json
-  echo "========= Finished printing tmp_benchmark ========="
   cat tmp_bench.json | docker run -i --rm itchyny/gojq:0.12.6 -s \
     '.[0].benchmarks = ([.[].benchmarks] | add) |
     if .[0].benchmarks == null then null else .[0] end'| tee benchmark_result.json
 
-  ls benchmark_result.json
+  echo "========= Printing tmp_benchmark ========="
+  cat benchmark_result.json
+  echo "========= Finished printing tmp_benchmark ========="
+  
   mv benchmark_result.json ${SRC_DIR}
   ls | grep json
   popd
