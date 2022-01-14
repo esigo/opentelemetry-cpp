@@ -31,7 +31,7 @@ function run_benchmarks
   for benchmark in "${benchmarks[@]}"
   do
     out=`echo "${benchmark}" | sed 's:.*/::'`
-    if [[ ${out} == *"."* ]] || [[ ${benchmark} == *".runfiles"* ]]; then
+    if [[ ${out} == *"."* ]] || [[ ${out} == *"_objs"* ]] || [[ ${benchmark} == *".runfiles"* ]]; then
       continue
     fi
     ${benchmark} --benchmark_format=json | tee $out-benchmark.json
