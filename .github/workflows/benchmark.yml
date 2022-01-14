@@ -32,9 +32,9 @@ jobs:
         id: run_benchmarks
         run: |
           ci/do_ci.sh bazel.benchmark
-          #echo "::set-output name=json_plaintext::$(cat benchmark_result.json)"
+          echo "::set-output name=json_plaintext::$(cat benchmark_result.json)"
       - name: Store benchmark result
-        #if: steps.run_benchmarks.outputs.json_plaintext != 'null'
+        if: steps.run_benchmarks.outputs.json_plaintext != 'null'
         uses: benchmark-action/github-action-benchmark@v1
         with:
           name: OpenTelemetry-cpp Benchmark
