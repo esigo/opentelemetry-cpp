@@ -31,7 +31,7 @@ function run_benchmarks
   for benchmark in "${benchmarks[@]}"
   do
     out=`echo "${benchmark}" | sed 's:.*/::'`
-    if [[ ${out} == *"."* ]] || [[ ${out} == *"_objs"* ]] || [[ ${benchmark} == *".runfiles"* ]]; then
+    if [[ ${out} == *"."* ]] || [[ ${benchmark} == *"_objs"* ]] || [[ ${benchmark} == *".runfiles"* ]]; then
       continue
     fi
     ${benchmark} --benchmark_format=json | tee $out-benchmark.json
@@ -39,6 +39,8 @@ function run_benchmarks
 
   # collect benchmark results into one array
   find . -type f -name "*-benchmark.json" -exec cat {} \; > tmp_bench.json
+  cat *-benchmark.json > tmp2_bench.json
+  cat tmp2_bench.json
   echo "========= Printing tmp_benchmark ========="
   cat tmp_bench.json
   echo "========= Finished printing tmp_benchmark ========="
