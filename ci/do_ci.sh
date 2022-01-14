@@ -34,19 +34,21 @@ function run_benchmarks
     if [[ ${out} == *"."* ]] || [[ ${benchmark} == *"_objs"* ]] || [[ ${benchmark} == *".runfiles"* ]]; then
       continue
     fi
+    echo "========= running benchmark ${benchmark} ========="
     ${benchmark} --benchmark_format=json | tee $out-benchmark.json
   done
 
   # collect benchmark results into one array
   find . -type f -name "*-benchmark.json" -exec cat {} \; > tmp_bench.json
-  cat *-benchmark.json > tmp2_bench.json
   cat tmp_bench.json | docker run -i --rm itchyny/gojq:0.12.6 -s \
     '.[0].benchmarks = ([.[].benchmarks] | add) |
     if .[0].benchmarks == null then null else .[0] end'| tee benchmark_result.json
 
-  echo "========= Printing tmp_benchmark ========="
+  benchmark_count=`cat benchmark_result.json | jq '.benchmarks | length'`
+  echo "Storing the result of ${benchmark_count} benchmarks"
+  echo "========= Printing benchmark_result ========="
   cat benchmark_result.json
-  echo "========= Finished printing tmp_benchmark ========="
+  echo "========= Finished printing benchmark_result ========="
   
   mv benchmark_result.json ${SRC_DIR}
   ls | grep json
