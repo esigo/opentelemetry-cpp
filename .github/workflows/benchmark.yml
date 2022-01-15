@@ -12,9 +12,6 @@ jobs:
   benchmark:
     name: Run OpenTelemetry-cpp benchmarks
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        components: ["api", "sdk", "exporters"]
     steps:
       - uses: actions/checkout@v2
         with:
@@ -34,9 +31,25 @@ jobs:
         id: run_benchmarks
         run: |
           ci/do_ci.sh bazel.benchmark
-          echo "::set-output name=json_plaintext::$(cat ${{ matrix.components }}-benchmark_result.json)"
-      - name: Store benchmark result
-        if: steps.run_benchmarks.outputs.json_plaintext != 'null'
+          echo "::set-output name=api_json::$(cat api-benchmark_result.json)"
+          echo "::set-output name=sdk_json::$(cat sdk-benchmark_result.json)"
+          echo "::set-output name=exporters_json::$(cat exporters-benchmark_result.json)"
+  store_benchmark:
+    needs: benchmark
+    strategy:
+      matrix:
+        components: ["api", "sdk", "exporters"]
+    name: Store benchmark result
+    runs-on: ubuntu-latest
+    steps:
+      - name: Store json files
+        id: store_json
+        run: |
+          echo ${{needs.benchmark.outputs.api_json}} > api-benchmark_result.json
+          echo ${{needs.benchmark.outputs.sdk_json}} > sdk-benchmark_result.json
+          echo ${{needs.benchmark.outputs.exporters_json}} > exporters-benchmark_result.json
+      - name: Push benchmark result
+        if: steps.run_benchmarks.outputs.api_json != 'null'
         uses: benchmark-action/github-action-benchmark@v1
         with:
           name: OpenTelemetry-cpp ${{ matrix.components }} Benchmark
