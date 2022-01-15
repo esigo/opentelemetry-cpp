@@ -37,7 +37,7 @@ function run_benchmarks
   )
 
   # collect benchmark results into one array
-  pushd $BENCHMARK_DIR
+  pushd bazel-bin
   find . -type f -name "*_result.json" -exec cat {} \; > tmp_bench.json
   cat tmp_bench.json | docker run -i --rm itchyny/gojq:0.12.6 -s \
     '.[0].benchmarks = ([.[].benchmarks] | add) |
@@ -237,7 +237,7 @@ elif [[ "$1" == "benchmark" ]]; then
   echo "Benchmark results in $BENCHMARK_DIR:"
   (
     cd bazel-bin
-    find . -name \*_result.txt -exec bash -c \
+    find . -name \*_result.json -exec bash -c \
       'echo "$@" && mkdir -p "$BENCHMARK_DIR/$(dirname "$@")" && \
        cp "$@" "$BENCHMARK_DIR/$@" && chmod +w "$BENCHMARK_DIR/$@"' _ {} \;
   )
