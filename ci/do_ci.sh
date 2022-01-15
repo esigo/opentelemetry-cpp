@@ -200,7 +200,6 @@ elif [[ "$1" == "bazel.test" ]]; then
   bazel $BAZEL_STARTUP_OPTIONS test $BAZEL_TEST_OPTIONS //...
   exit 0
 elif [[ "$1" == "bazel.benchmark" ]]; then
-  bazel $BAZEL_STARTUP_OPTIONS build $BAZEL_OPTIONS --compilation_mode=opt -- //... -//exporters/prometheus/... -//exporters/jaeger/...
   run_benchmarks
   exit 0
 elif [[ "$1" == "bazel.macos.test" ]]; then
