@@ -27,10 +27,10 @@ jobs:
         run: |
           sudo ./ci/setup_cmake.sh
           sudo ./ci/setup_ci_environment.sh
-          sudo ./ci/setup_thrift.sh dependencies_only
       - name: Run benchmark
         id: run_benchmarks
         run: |
+          env BENCHMARK_DIR=/benchmark
           ci/do_ci.sh bazel.benchmark
           echo "::set-output name=json_plaintext::$(cat benchmark_result.json)"
       - name: Store benchmark result
