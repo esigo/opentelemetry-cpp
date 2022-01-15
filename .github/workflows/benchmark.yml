@@ -13,6 +13,7 @@ jobs:
     name: Run OpenTelemetry-cpp benchmarks
     runs-on: ubuntu-latest
     outputs:
+      output1: ${{ steps.run_benchmarks.outputs.test }}
       api_result: ${{ steps.run_benchmarks.outputs.api_json }}
       sdk_result: ${{ steps.run_benchmarks.outputs.sdk_json }}
       exporters_result: ${{ steps.run_benchmarks.outputs.exporters_json }}
@@ -34,9 +35,8 @@ jobs:
       - name: Run benchmark
         id: run_benchmarks
         run: |
-          ci/do_ci.sh bazel.benchmark
-          echo "printing api results"
-          cat api-benchmark_result.json
+          #ci/do_ci.sh bazel.benchmark
+          echo "::set-output name=test::hello_world"
           echo "::set-output name=api_json::$(cat api-benchmark_result.json)"
           echo "::set-output name=sdk_json::$(cat sdk-benchmark_result.json)"
           echo "::set-output name=exporters_json::$(cat exporters-benchmark_result.json)"
@@ -51,6 +51,7 @@ jobs:
       - name: Store json files
         id: store_json
         run: |
+          echo ${{needs.benchmark.outputs.output1}}
           echo ${{needs.benchmark.outputs.api_result}} | tee api-benchmark_result.json
           echo ${{needs.benchmark.outputs.sdk_result}} | tee sdk-benchmark_result.json
           echo ${{needs.benchmark.outputs.exporters_result}} | tee exporters-benchmark_result.json
