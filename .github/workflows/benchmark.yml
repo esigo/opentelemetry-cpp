@@ -12,6 +12,10 @@ jobs:
   benchmark:
     name: Run OpenTelemetry-cpp benchmarks
     runs-on: ubuntu-latest
+    outputs:
+      api_result: ${{ steps.run_benchmarks.outputs.api_json }}
+      sdk_result: ${{ steps.run_benchmarks.outputs.sdk_json }}
+      exporters_result: ${{ steps.run_benchmarks.outputs.exporters_json }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -45,11 +49,10 @@ jobs:
       - name: Store json files
         id: store_json
         run: |
-          echo ${{needs.benchmark.outputs.api_json}} > api-benchmark_result.json
-          echo ${{needs.benchmark.outputs.sdk_json}} > sdk-benchmark_result.json
-          echo ${{needs.benchmark.outputs.exporters_json}} > exporters-benchmark_result.json
+          echo ${{needs.benchmark.outputs.api_json}} | tee api-benchmark_result.json
+          echo ${{needs.benchmark.outputs.sdk_json}} | tee sdk-benchmark_result.json
+          echo ${{needs.benchmark.outputs.exporters_json}} | tee exporters-benchmark_result.json
       - name: Push benchmark result
-        if: steps.run_benchmarks.outputs.api_json != 'null'
         uses: benchmark-action/github-action-benchmark@v1
         with:
           name: OpenTelemetry-cpp ${{ matrix.components }} Benchmark
