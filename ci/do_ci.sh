@@ -22,24 +22,22 @@ function run_benchmarks
   docker run -d --rm -it -p 4317:4317 -p 4318:4318 -v \
     $(pwd)/examples/otlp:/cfg otel/opentelemetry-collector:0.38.0 \
     --config=/cfg/opentelemetry-collector-config/config.dev.yaml
-  # find all the benchmark executables
-  pushd ./bazel-bin
-  readarray -d '' all_benchmarks_str < <(find . -name '*_benchmark_*' )
-  readarray -t benchmarks <<<"$(tr T '\n'<<<"$all_benchmarks_str")"
 
-  # run all the benchmarks and store the results in json format
-  for benchmark in "${benchmarks[@]}"
-  do
-    out=`echo "${benchmark}" | sed 's:.*/::'`
-    if [[ ${out} == *"."* ]] || [[ ${benchmark} == *"_objs"* ]] || [[ ${benchmark} == *".runfiles"* ]]; then
-      continue
-    fi
-    echo "========= running benchmark ${benchmark} ========="
-    ${benchmark} --benchmark_format=json | tee $out-benchmark.json
-  done
+  [ -z "${BENCHMARK_DIR}" ] && export BENCHMARK_DIR=$HOME/benchmark
+  bazel $BAZEL_STARTUP_OPTIONS build $BAZEL_OPTIONS -c opt -- \
+    $(bazel query 'attr("tags", "benchmark_result", ...)')
+  echo ""
+  echo "Benchmark results in $BENCHMARK_DIR:"
+  (
+    cd bazel-bin
+    find . -name \*_result.json -exec bash -c \
+      'echo "$@" && mkdir -p "$BENCHMARK_DIR/$(dirname "$@")" && \
+       cp "$@" "$BENCHMARK_DIR/$@" && chmod +w "$BENCHMARK_DIR/$@"' _ {} \;
+  )
 
   # collect benchmark results into one array
-  find . -type f -name "*-benchmark.json" -exec cat {} \; > tmp_bench.json
+  pushd $BENCHMARK_DIR
+  find . -type f -name "*_result.json" -exec cat {} \; > tmp_bench.json
   cat tmp_bench.json | docker run -i --rm itchyny/gojq:0.12.6 -s \
     '.[0].benchmarks = ([.[].benchmarks] | add) |
     if .[0].benchmarks == null then null else .[0] end'| tee benchmark_result.json
