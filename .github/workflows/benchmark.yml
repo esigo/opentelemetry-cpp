@@ -35,6 +35,8 @@ jobs:
         id: run_benchmarks
         run: |
           ci/do_ci.sh bazel.benchmark
+          echo "printing api results"
+          cat api-benchmark_result.json
           echo "::set-output name=api_json::$(cat api-benchmark_result.json)"
           echo "::set-output name=sdk_json::$(cat sdk-benchmark_result.json)"
           echo "::set-output name=exporters_json::$(cat exporters-benchmark_result.json)"
