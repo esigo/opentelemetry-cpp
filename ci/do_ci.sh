@@ -24,6 +24,7 @@ function run_benchmarks
     --config=/cfg/opentelemetry-collector-config/config.dev.yaml
 
   [ -z "${BENCHMARK_DIR}" ] && export BENCHMARK_DIR=$HOME/benchmark
+  mkdir -p $BENCHMARK_DIR
   bazel $BAZEL_STARTUP_OPTIONS build $BAZEL_OPTIONS -c opt -- \
     $(bazel query 'attr("tags", "benchmark_result", ...)')
   echo ""
