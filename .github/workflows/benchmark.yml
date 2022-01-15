@@ -49,9 +49,9 @@ jobs:
       - name: Store json files
         id: store_json
         run: |
-          echo ${{needs.benchmark.outputs.api_json}} | tee api-benchmark_result.json
-          echo ${{needs.benchmark.outputs.sdk_json}} | tee sdk-benchmark_result.json
-          echo ${{needs.benchmark.outputs.exporters_json}} | tee exporters-benchmark_result.json
+          echo ${{needs.benchmark.outputs.api_result}} | tee api-benchmark_result.json
+          echo ${{needs.benchmark.outputs.sdk_result}} | tee sdk-benchmark_result.json
+          echo ${{needs.benchmark.outputs.exporters_result}} | tee exporters-benchmark_result.json
       - name: Push benchmark result
         uses: benchmark-action/github-action-benchmark@v1
         with:
