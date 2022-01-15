@@ -37,20 +37,19 @@ function run_benchmarks
   )
 
   # collect benchmark results into one array
-  pushd bazel-bin
-  find . -type f -name "*_result.json" -exec cat {} \; > tmp_bench.json
-  cat tmp_bench.json | docker run -i --rm itchyny/gojq:0.12.6 -s \
-    '.[0].benchmarks = ([.[].benchmarks] | add) |
-    if .[0].benchmarks == null then null else .[0] end'| tee benchmark_result.json
+  components=(api sdk exporters)
+  pushd $BENCHMARK_DIR
+  components=(api sdk exporters)
+  for component in "${components[@]}"
+  do
+    out=$component-benchmark_result.json
+    find ./$component -type f -name "*_result.json" -exec cat {} \; > $component_tmp_bench.json
+    cat $component_tmp_bench.json | docker run -i --rm itchyny/gojq:0.12.6 -s \
+      '.[0].benchmarks = ([.[].benchmarks] | add) |
+      if .[0].benchmarks == null then null else .[0] end' > $BENCHMARK_DIR/$out
+  done
 
-  benchmark_count=`cat benchmark_result.json | jq '.benchmarks | length'`
-  echo "Storing the result of ${benchmark_count} benchmarks"
-  echo "========= Printing benchmark_result ========="
-  cat benchmark_result.json
-  echo "========= Finished printing benchmark_result ========="
-  
-  mv benchmark_result.json ${SRC_DIR}
-  ls | grep json
+  mv *benchmark_result.json ${SRC_DIR}
   popd
   docker kill $(docker ps -q)
 }
