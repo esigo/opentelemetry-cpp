@@ -57,9 +57,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@master
-      with:
-        name: benchmark_results
-        path: benchmarks
+        with:
+          name: benchmark_results
+          path: benchmarks
       - name: Store json files
         id: store_json
         run: |
