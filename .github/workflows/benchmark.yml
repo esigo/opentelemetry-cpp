@@ -56,6 +56,7 @@ jobs:
     name: Store benchmark result
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
       - uses: actions/download-artifact@master
         with:
           name: benchmark_results
