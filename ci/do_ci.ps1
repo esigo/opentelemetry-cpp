@@ -5,7 +5,7 @@ $action = $args[0]
 
 $SRC_DIR=(Get-Item -Path ".\").FullName
 
-$BAZEL_OPTIONS="--copt=/DENABLE_METRICS_PREVIEW --copt=/DENABLE_LOGS_PREVIEW --build_tag_filters=-jaeger"
+$BAZEL_OPTIONS="--copt=-DENABLE_METRICS_PREVIEW --copt=-DENABLE_LOGS_PREVIEW --build_tag_filters=-jaeger"
 $BAZEL_TEST_OPTIONS="$BAZEL_OPTIONS --test_output=errors"
 
 if (!(test-path build)) {
@@ -22,7 +22,7 @@ $VCPKG_DIR="$SRC_DIR\vcpkg"
 
 switch ($action) {
   "bazel.build" {
-    bazel build --copt=DTEST $BAZEL_OPTIONS -- //...
+    bazel build --copt=-DTEST $BAZEL_OPTIONS -- //...
     #bazel test $BAZEL_TEST_OPTIONS -- //...
     $exit = $LASTEXITCODE
     if ($exit -ne 0) {
