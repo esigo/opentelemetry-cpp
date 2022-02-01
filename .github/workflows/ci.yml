@@ -144,6 +144,7 @@ jobs:
         key: bazel_test
     - name: setup
       run: |
+        sudo ./ci/setup_thrift.sh dependencies_only
         sudo ./ci/setup_ci_environment.sh
         sudo ./ci/install_bazelisk.sh
     - name: run tests
@@ -187,6 +188,7 @@ jobs:
         key: bazel_valgrind
     - name: setup
       run: |
+        sudo ./ci/setup_thrift.sh dependencies_only
         sudo ./ci/setup_ci_environment.sh
         sudo ./ci/install_bazelisk.sh
     - name: run tests
@@ -208,6 +210,7 @@ jobs:
         key: bazel_noexcept
     - name: setup
       run: |
+        sudo ./ci/setup_thrift.sh dependencies_only
         sudo ./ci/setup_ci_environment.sh
         sudo ./ci/install_bazelisk.sh
     - name: run tests
@@ -229,6 +232,7 @@ jobs:
         key: bazel_asan
     - name: setup
       run: |
+        sudo ./ci/setup_thrift.sh dependencies_only
         sudo ./ci/setup_ci_environment.sh
         sudo ./ci/install_bazelisk.sh
     - name: run tests
@@ -250,6 +254,7 @@ jobs:
         key: bazel_tsan
     - name: setup
       run: |
+        sudo ./ci/setup_thrift.sh dependencies_only
         sudo ./ci/setup_ci_environment.sh
         sudo ./ci/install_bazelisk.sh
     - name: run tests
@@ -288,6 +293,7 @@ jobs:
         key: bazel_benchmark
     - name: setup
       run: |
+        sudo ./ci/setup_thrift.sh dependencies_only
         sudo ./ci/setup_ci_environment.sh
         sudo ./ci/install_bazelisk.sh
     - name: run tests
