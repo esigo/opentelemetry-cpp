@@ -189,7 +189,8 @@ cmake(
         "@bazel_tools//platforms:osx": [],
         "@bazel_tools//platforms:linux": [],
         "@bazel_tools//platforms:windows": [
-            "-G \"NMake Makefiles\"",
+            "-G \"Visual Studio 16 2019\"",
+            "-A x64",
         ],
     }),
     install = True,
