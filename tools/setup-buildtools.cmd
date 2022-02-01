@@ -61,15 +61,19 @@ if %ERRORLEVEL% == 1 (
 )
 
 REM Install dependencies
-vcpkg install gtest:%ARCH%-windows
-vcpkg install --overlay-ports=%~dp0ports benchmark:%ARCH%-windows
-vcpkg install --overlay-ports=%~dp0ports protobuf:%ARCH%-windows
-vcpkg install ms-gsl:%ARCH%-windows
-vcpkg install nlohmann-json:%ARCH%-windows
-vcpkg install abseil:%ARCH%-windows
-vcpkg install gRPC:%ARCH%-windows
-vcpkg install prometheus-cpp:%ARCH%-windows
-vcpkg install curl:%ARCH%-windows
-vcpkg install thrift:%ARCH%-windows
+@REM vcpkg install gtest:%ARCH%-windows
+@REM vcpkg install --overlay-ports=%~dp0ports benchmark:%ARCH%-windows
+@REM vcpkg install --overlay-ports=%~dp0ports protobuf:%ARCH%-windows
+@REM vcpkg install ms-gsl:%ARCH%-windows
+@REM vcpkg install nlohmann-json:%ARCH%-windows
+@REM vcpkg install abseil:%ARCH%-windows
+@REM vcpkg install gRPC:%ARCH%-windows
+@REM vcpkg install prometheus-cpp:%ARCH%-windows
+@REM vcpkg install curl:%ARCH%-windows
+@REM vcpkg install thrift:%ARCH%-windows
+vcpkg install boost-locale[core]:%ARCH%-windows 
+vcpkg install boost-numeric-conversion[core]:%ARCH%-windows
+vcpkg install boost-scope-exit[core]:%ARCH%-windows
+vcpkg install openssl:%ARCH%-windows
 popd
 exit /b 0
