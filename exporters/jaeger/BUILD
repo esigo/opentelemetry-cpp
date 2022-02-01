@@ -17,13 +17,6 @@ CONFIGURE_OPTIONS = [
     "no-comp",
 ]
 
-LIB_NAME = "openssl"
-
-MAKE_TARGETS = [
-    "build_libs",
-    "install_dev",
-]
-
 config_setting(
     name = "windows",
     constraint_values = [
@@ -31,147 +24,6 @@ config_setting(
     ],
     tags = ["jaeger"],
     visibility = ["//visibility:private"],
-)
-
-alias(
-    name = "openssl",
-    actual = "openssl_default",
-    tags = ["jaeger"],
-    visibility = ["//visibility:private"],
-)
-
-# Opnessl can be build for Windows using powershell (fails in CI)
-#TODO bring openssl build when the CI env changed for Windows
-# configure_make_variant(
-#    name = "openssl_msvc",
-#    build_data = [
-#        "@nasm//:nasm",
-#        "@perl//:perl",
-#    ],
-#    configure_command = "Configure",
-#    configure_in_place = True,
-#    configure_options = CONFIGURE_OPTIONS + [
-#        "no-shared",
-#        "VC-WIN64A",
-#        "ASFLAGS=\"-g\"",
-#        "CFLAGS=\"/W3 /wd4090 /nologo /O2 /Zi /MP\"",
-#        "LDFLAGS=\"/nologo /debug /Zi\"",
-#        "ARFLAGS=\"/nologo\"",
-#        "LD=\"link\"",
-#    ],
-#    configure_prefix = "$PERL",
-#    env = {
-#        # The Zi flag must be set otherwise OpenSSL fails to build due to missing .pdb files
-#        "CFLAGS": "-Zi",
-#        "PATH": "$$(dirname $(execpath @nasm//:nasm)):$$PATH",
-#        "PERL": "$(execpath @perl//:perl)",
-#        "CL": "/MP",
-#    },
-#    lib_name = LIB_NAME,
-#    lib_source = "@com_github_openssl//:all_srcs",
-#    out_static_libs = [
-#        "libssl.lib",
-#        "libcrypto.lib",
-#    ],
-#    tags = ["jaeger"],
-#    target_compatible_with = [
-#        "@bazel_tools//platforms:windows",
-#    ],
-#    targets = MAKE_TARGETS,
-#    toolchain = "@rules_foreign_cc//toolchains:preinstalled_nmake_toolchain",
-# )
-
-configure_make(
-    name = "openssl_default",
-    configure_command = "config",
-    configure_options = select({
-        "@bazel_tools//platforms:osx": [
-            "no-shared",
-            "no-afalgeng",
-            "ARFLAGS=r",
-        ] + CONFIGURE_OPTIONS,
-        "@bazel_tools//platforms:linux": [
-            "no-shared",
-        ] + CONFIGURE_OPTIONS,
-        "@bazel_tools//platforms:windows": [
-            "no-shared",
-        ] + CONFIGURE_OPTIONS,
-    }),
-    copts = [
-        "-Ilibs/exporters/jaeger/openssl/include",
-        "-fexceptions",
-    ],
-    env = select({
-        "@bazel_tools//platforms:osx": {
-            "AR": "",
-        },
-        "@bazel_tools//platforms:linux": {},
-        "@bazel_tools//platforms:windows": {},
-    }),
-    lib_source = "@com_github_openssl//:all_srcs",
-    out_static_libs = select({
-        "@bazel_tools//platforms:osx": [
-            "libssl.a",
-            "libcrypto.a",
-        ],
-        "@bazel_tools//platforms:linux": [
-            "libssl.a",
-            "libcrypto.a",
-        ],
-        "@bazel_tools//platforms:windows": [
-        ],
-    }),
-    tags = ["jaeger"],
-    target_compatible_with = select({
-        "@platforms//os:osx": [],
-        "@platforms//os:linux": [],
-        "//conditions:default": [":incompatible"],
-    }),
-    visibility = ["//visibility:private"],
-)
-
-filegroup(
-    name = "openssl_files",
-    srcs = [
-        ":openssl",
-    ],
-    output_group = "gen_dir",
-    tags = ["jaeger"],
-    visibility = [
-        "//visibility:private",
-    ],
-)
-
-genrule(
-    name = "openssl_includes",
-    srcs = [
-        ":openssl_files",
-    ],
-    outs = ["include"],
-    cmd = "cp -r $(location openssl_files)/include/ $(location include)",
-    tags = ["jaeger"],
-    target_compatible_with = select({
-        "@platforms//os:osx": [],
-        "@platforms//os:linux": [],
-        "//conditions:default": [":incompatible"],
-    }),
-)
-
-cc_library(
-    name = "openssl_header_only",
-    hdrs = [
-        ":openssl_includes",
-    ],
-    copts = [
-        "-isystem include",
-        "-fexceptions",
-    ],
-    tags = ["jaeger"],
-    target_compatible_with = select({
-        "@platforms//os:osx": [],
-        "@platforms//os:linux": [],
-        "//conditions:default": [":incompatible"],
-    }),
 )
 
 THRIFT_CACHE_ENTRIES = {
@@ -209,8 +61,6 @@ THRIFT_DEPS_WIN = [
 ]
 
 THRIFT_DEPS = THRIFT_DEPS_WIN + [
-    ":openssl",
-    ":openssl_header_only",
     "@boost//:locale",
     "@boost//:numeric_conversion",
 ]
