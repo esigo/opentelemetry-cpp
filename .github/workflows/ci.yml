@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ Jaeger-Windows-bazel ]
   pull_request:
-    branches: [ main ]
+    branches: [ Jaeger-Windows-bazel ]
 
 jobs:
   cmake_test:
