@@ -94,8 +94,8 @@ alias(
 boost_library(
     name = "thrift_boost",
     linkstatic = True,
+    alwayslink = True
     deps = [
-        "@boost//:atomic_sse",
         "@boost//:locale",
         "@boost//:numeric_conversion",
     ],
