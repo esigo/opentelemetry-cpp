@@ -71,7 +71,7 @@ cmake(
         "@bazel_tools//platforms:windows": THRIFT_CACHE_ENTRIES_WIN,
     }),
     copts = [
-        "-Ilibs/exporters/jaeger/openssl/include",
+        "-I$VCPKG_DIR/packages/boost_x64-windows/include",
         "-fexceptions",
     ],
     generate_args = select({
@@ -138,6 +138,7 @@ cc_library(
         "thrift-gen/zipkincore_types.h",
     ],
     copts = [
+        "-Ilibs/exporters/jaeger/openssl/include"
         "-fexceptions",
     ],
     strip_include_prefix = "thrift-gen",
