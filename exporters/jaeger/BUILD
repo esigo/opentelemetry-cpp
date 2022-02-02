@@ -213,8 +213,6 @@ THRIFT_DEPS_WIN = [
 THRIFT_DEPS = THRIFT_DEPS_WIN + [
     ":openssl",
     ":openssl_header_only",
-    "@boost//:locale",
-    "@boost//:numeric_conversion",
 ]
 
 cmake(
