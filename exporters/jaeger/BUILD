@@ -1,6 +1,7 @@
 package(default_visibility = ["//visibility:public"])
 
 load("@rules_foreign_cc//foreign_cc:defs.bzl", "cmake", "configure_make", "configure_make_variant")
+load("@com_github_nelhage_rules_boost//:boost/boost.bzl", "boost_library")
 
 constraint_setting(
     name = "incompatible_setting",
@@ -26,6 +27,15 @@ MAKE_TARGETS = [
 
 config_setting(
     name = "windows",
+    constraint_values = [
+        "@bazel_tools//platforms:windows",
+    ],
+    tags = ["jaeger"],
+    visibility = ["//visibility:private"],
+)
+
+config_setting(
+    name = "windows_x86_64",
     constraint_values = [
         "@bazel_tools//platforms:windows",
     ],
@@ -80,6 +90,15 @@ alias(
 #    targets = MAKE_TARGETS,
 #    toolchain = "@rules_foreign_cc//toolchains:preinstalled_nmake_toolchain",
 # )
+
+boost_library(
+    name = "thrift_boost",
+    linkstatic = True,
+    deps = [
+        "@boost//:locale",
+        "@boost//:numeric_conversion",
+    ],
+)
 
 configure_make(
     name = "openssl_default",
@@ -206,8 +225,7 @@ THRIFT_CACHE_ENTRIES_WIN = {
 }
 
 THRIFT_DEPS_WIN = [
-    "@boost//:locale",
-    "@boost//:numeric_conversion",
+    ":thrift_boost",
 ]
 
 THRIFT_DEPS = THRIFT_DEPS_WIN + [
@@ -268,8 +286,6 @@ THRIFT_GEN_DEPS = [
 ]
 
 THRIFT_GEN_DEPS_WIN = THRIFT_GEN_DEPS + [
-    "@boost//:locale",
-    "@boost//:numeric_conversion",
 ]
 
 cc_library(
