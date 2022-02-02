@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ thrift-boost ]
   pull_request:
-    branches: [ main ]
+    branches: [ thrift-boost ]
 
 jobs:
   cmake_test:

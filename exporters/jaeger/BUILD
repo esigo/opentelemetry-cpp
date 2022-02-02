@@ -206,6 +206,8 @@ THRIFT_CACHE_ENTRIES_WIN = {
 }
 
 THRIFT_DEPS_WIN = [
+    "@boost//:locale",
+    "@boost//:numeric_conversion",
 ]
 
 THRIFT_DEPS = THRIFT_DEPS_WIN + [
@@ -258,7 +260,7 @@ cmake(
     deps = select({
         "@bazel_tools//platforms:osx": THRIFT_DEPS,
         "@bazel_tools//platforms:linux": THRIFT_DEPS,
-        "@bazel_tools//platforms:windows": [],
+        "@bazel_tools//platforms:windows": THRIFT_DEPS_WIN,
     }),
 )
 
