@@ -117,8 +117,8 @@ def opentelemetry_cpp_deps():
     maybe(
         git_repository,
         name = "com_github_nelhage_rules_boost",
-        commit = "ef58870fe00ecb8047cd34324b8c21221387d5fc",
-        remote = "https://github.com/nelhage/rules_boost",
+        commit = "381e2e0ef0e0e1d07a9ca91b4ec4ce2051a71b83",
+        remote = "https://github.com/esigo/rules_boost",
         shallow_since = "1637888414 -0800",
     )
 
