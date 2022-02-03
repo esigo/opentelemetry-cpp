@@ -91,14 +91,15 @@ alias(
 #    toolchain = "@rules_foreign_cc//toolchains:preinstalled_nmake_toolchain",
 # )
 
-boost_library(
-    name = "thrift_boost",
-    linkstatic = True,
-    deps = [
-        "@boost//:locale",
-        "@boost//:numeric_conversion",
-    ],
-)
+# boost_library(
+#     name = "thrift_boost",
+#     linkstatic = True,
+#     deps = [
+#         "@boost//:asio"
+#         "@boost//:locale",
+#         "@boost//:numeric_conversion",
+#     ],
+# )
 
 configure_make(
     name = "openssl_default",
@@ -225,7 +226,8 @@ THRIFT_CACHE_ENTRIES_WIN = {
 }
 
 THRIFT_DEPS_WIN = [
-    ":thrift_boost",
+    "@boost//:locale",
+    "@boost//:numeric_conversion",
 ]
 
 THRIFT_DEPS = THRIFT_DEPS_WIN + [
