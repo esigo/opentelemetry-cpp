@@ -226,6 +226,7 @@ THRIFT_CACHE_ENTRIES_WIN = {
 }
 
 THRIFT_DEPS_WIN = [
+    "@boost//:asio",
     "@boost//:locale",
     "@boost//:numeric_conversion",
 ]
