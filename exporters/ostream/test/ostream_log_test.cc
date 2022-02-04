@@ -189,7 +189,7 @@ TEST(OStreamLogExporter, LogWithStringAttributesToCerr)
       "}\n";
 // TODO this test fails on Mac
 // issue https://github.com/open-telemetry/opentelemetry-cpp/issues/1187
-#ifndef __APPLE__
+#if !defined(__APPLE__)
   ASSERT_EQ(stdcerrOutput.str(), expectedOutput);
 #endif
 }
