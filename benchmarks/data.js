@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1644049286036,
+  "lastUpdate": 1644049287465,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp exporters Benchmark": [
@@ -288,6 +288,54 @@ window.BENCHMARK_DATA = {
             "value": 1852969.4201210127,
             "unit": "ns/iter",
             "extra": "iterations: 434\ncpu: 301027.41935483867 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lalit_fin@yahoo.com",
+            "name": "Lalit Kumar Bhasin",
+            "username": "lalitb"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "44795b6d21738a8478d620c6f4cde6f12ea5ccac",
+          "message": "Add Aggregation as part of metrics SDK. (#1178)",
+          "timestamp": "2022-02-04T21:53:10-08:00",
+          "tree_id": "4e8e0f917db86d65af01d12113128c0637c8e104",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/44795b6d21738a8478d620c6f4cde6f12ea5ccac"
+        },
+        "date": 1644049286280,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 29.099444929414037,
+            "unit": "ns/iter",
+            "extra": "iterations: 4796000\ncpu: 29.07821100917431 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 79.87918506179149,
+            "unit": "ns/iter",
+            "extra": "iterations: 1756000\ncpu: 79.78445330296128 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 664.020484348513,
+            "unit": "ns/iter",
+            "extra": "iterations: 212000\ncpu: 663.2580188679246 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 1880519.604556775,
+            "unit": "ns/iter",
+            "extra": "iterations: 378\ncpu: 307280.6878306878 ns\nthreads: 1"
           }
         ]
       }
