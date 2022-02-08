@@ -268,8 +268,7 @@ THRIFT_GEN_DEPS = [
 ]
 
 THRIFT_GEN_DEPS_WIN = THRIFT_GEN_DEPS + [
-    #"@boost//:locale",
-    "@boost//:numeric_conversion",
+    #"@boost//:numeric_conversion",
 ]
 
 cc_library(
