@@ -266,12 +266,26 @@ cmake(
     }),
 )
 
+cc_library(
+    name = "boost_noncopy",
+    srcs = [
+    ],
+    hdrs = [
+        "boost/noncopyable.hpp",
+        "boost/config.hpp"
+    ],
+    copts = [
+        "-fexceptions",
+    ],
+)
+
 THRIFT_GEN_DEPS = [
     ":thrift",
     "//ext/src/http/client/curl:http_client_curl",
 ]
 
 THRIFT_GEN_DEPS_WIN = THRIFT_GEN_DEPS + [
+    ":boost_noncopy",
     #"@boost//:numeric_conversion",
 ]
 
@@ -293,8 +307,6 @@ cc_library(
         "thrift-gen/jaeger_types.h",
         "thrift-gen/zipkincore_constants.h",
         "thrift-gen/zipkincore_types.h",
-        "boost/noncopyable.hpp",
-        "boost/config.hpp"
     ],
     copts = [
         "-fexceptions",
