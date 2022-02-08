@@ -271,9 +271,10 @@ cc_library(
     srcs = [
     ],
     hdrs = [
-        "boost/noncopyable.hpp",
-        "boost/config.hpp"
+        "thrift-gen/boost/noncopyable.hpp",
+        "thrift-gen/boost/config.hpp"
     ],
+    strip_include_prefix = "thrift-gen",
     copts = [
         "-fexceptions",
     ],
