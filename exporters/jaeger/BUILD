@@ -210,13 +210,13 @@ THRIFT_CACHE_ENTRIES_WIN = {
 }
 
 THRIFT_DEPS_WIN = [
+    "@boost//:numeric_conversion",
 ]
 
 THRIFT_DEPS = THRIFT_DEPS_WIN + [
     ":openssl",
     ":openssl_header_only",
     "@boost//:locale",
-    "@boost//:numeric_conversion",
 ]
 
 cmake(
@@ -266,19 +266,7 @@ cmake(
     }),
 )
 
-cc_library(
-    name = "boost_noncopy",
-    srcs = [
-    ],
-    hdrs = [
-        "thrift-gen/boost/noncopyable.hpp",
-        "thrift-gen/boost/config.hpp"
-    ],
-    strip_include_prefix = "thrift-gen",
-    copts = [
-        "-fexceptions",
-    ],
-)
+
 
 THRIFT_GEN_DEPS = [
     ":thrift",
@@ -286,8 +274,7 @@ THRIFT_GEN_DEPS = [
 ]
 
 THRIFT_GEN_DEPS_WIN = THRIFT_GEN_DEPS + [
-    ":boost_noncopy",
-    #"@boost//:numeric_conversion",
+    "@boost//:numeric_conversion",
 ]
 
 cc_library(
