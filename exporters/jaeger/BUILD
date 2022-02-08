@@ -202,6 +202,7 @@ THRIFT_CACHE_ENTRIES_WIN = {
     "BUILD_TESTING": "OFF",
     "BUILD_TUTORIALS": "OFF",
     "WITH_HASKELL": "OFF",
+    "BUILD_TESTING": "OFF",
     "CMAKE_TOOLCHAIN_FILE": "$VCPKG_DIR/scripts/buildsystems/vcpkg.cmake",
 }
 
