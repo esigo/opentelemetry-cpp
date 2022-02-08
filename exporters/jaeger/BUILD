@@ -293,6 +293,8 @@ cc_library(
         "thrift-gen/jaeger_types.h",
         "thrift-gen/zipkincore_constants.h",
         "thrift-gen/zipkincore_types.h",
+        "boost/noncopyable.hpp",
+        "boost/config.hpp"
     ],
     copts = [
         "-fexceptions",
