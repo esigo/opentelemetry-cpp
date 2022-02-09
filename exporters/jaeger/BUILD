@@ -242,7 +242,7 @@ cmake(
             "-G \"NMake Makefiles\"",
         ],
     }),
-    install = True,
+    install = False,
     lib_source = "@com_github_thrift//:all_srcs",
     out_lib_dir = select({
         "@bazel_tools//platforms:osx": "lib",
