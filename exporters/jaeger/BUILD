@@ -210,13 +210,14 @@ THRIFT_CACHE_ENTRIES_WIN = {
 }
 
 THRIFT_DEPS_WIN = [
-    "@boost//:numeric_conversion",
+    "@boost//:core",
+    #"@boost//:numeric_conversion",
 ]
 
 THRIFT_DEPS = THRIFT_DEPS_WIN + [
     ":openssl",
     ":openssl_header_only",
-    "@boost//:locale",
+    #"@boost//:locale",
 ]
 
 cmake(
