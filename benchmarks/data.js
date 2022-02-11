@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1644603111039,
+  "lastUpdate": 1644603111914,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp exporters Benchmark": [
@@ -384,6 +384,54 @@ window.BENCHMARK_DATA = {
             "value": 2676890.5085486337,
             "unit": "ns/iter",
             "extra": "iterations: 296\ncpu: 471115.5405405408 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lalit_fin@yahoo.com",
+            "name": "Lalit Kumar Bhasin",
+            "username": "lalitb"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": false,
+          "id": "7485102bfaa68f8a5d4d70312c60cb928e70f00c",
+          "message": "Change Monday's community meeting time (13:00 PT - 14:00 PT) (#1204)",
+          "timestamp": "2022-02-11T09:47:47-08:00",
+          "tree_id": "5402daaa08f470822751ac029072af80d68fefaa",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/7485102bfaa68f8a5d4d70312c60cb928e70f00c"
+        },
+        "date": 1644603110914,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 25.863202213471084,
+            "unit": "ns/iter",
+            "extra": "iterations: 5419000\ncpu: 25.855065510241747 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 77.46917766760725,
+            "unit": "ns/iter",
+            "extra": "iterations: 1810000\ncpu: 77.15734806629833 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 646.8459351422035,
+            "unit": "ns/iter",
+            "extra": "iterations: 219000\ncpu: 645.7054794520546 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 1542288.229006146,
+            "unit": "ns/iter",
+            "extra": "iterations: 436\ncpu: 270808.2568807339 ns\nthreads: 1"
           }
         ]
       }
