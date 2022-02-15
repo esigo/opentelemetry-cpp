@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1644876181767,
+  "lastUpdate": 1644910740852,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp exporters Benchmark": [
@@ -480,6 +480,54 @@ window.BENCHMARK_DATA = {
             "value": 2090883.7649911484,
             "unit": "ns/iter",
             "extra": "iterations: 374\ncpu: 387950.8021390376 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "admin@owent.net",
+            "name": "WenTao Ou",
+            "username": "owent"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "15c6f33631d8cdf09b85911f35263449294d31a4",
+          "message": "Update grpc to v1.43.2 to support VS2022/MSVC 19.30 and bazel 5.0 (#1207)\n\nSigned-off-by: owent <admin@owent.net>",
+          "timestamp": "2022-02-14T20:24:58-08:00",
+          "tree_id": "dff039d78807ee53fdc13748fd26ef7b48546fa8",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/15c6f33631d8cdf09b85911f35263449294d31a4"
+        },
+        "date": 1644910740240,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 38.11284798343166,
+            "unit": "ns/iter",
+            "extra": "iterations: 3675000\ncpu: 38.07224489795918 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 110.45100642185585,
+            "unit": "ns/iter",
+            "extra": "iterations: 1275000\ncpu: 110.15498039215686 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 854.3780355742483,
+            "unit": "ns/iter",
+            "extra": "iterations: 165000\ncpu: 852.112121212121 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 2130230.153328404,
+            "unit": "ns/iter",
+            "extra": "iterations: 347\ncpu: 386581.8443804037 ns\nthreads: 1"
           }
         ]
       }
