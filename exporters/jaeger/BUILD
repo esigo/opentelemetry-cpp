@@ -210,6 +210,7 @@ THRIFT_CACHE_ENTRIES_WIN = {
     "WITH_BOOSTTHREADS": "OFF",
     "WITH_BOOST_FUNCTIONAL": "OFF",
     "WITH_BOOST_SMART_PTR": "OFF",
+    "BUILD_SHARED_LIBS": "OFF",
     "CMAKE_TOOLCHAIN_FILE": "$VCPKG_DIR/scripts/buildsystems/vcpkg.cmake",
 }
 
@@ -245,7 +246,7 @@ cmake(
     out_lib_dir = select({
         "@bazel_tools//platforms:osx": "lib",
         "@bazel_tools//platforms:linux": "lib",
-        "@bazel_tools//platforms:windows": "lib",
+        "@bazel_tools//platforms:windows": "bin",
     }),
     out_static_libs = select({
         "@bazel_tools//platforms:osx": [
