@@ -74,5 +74,5 @@ cc_library(
     visibility = ["//visibility:public"],
 )
         """,
-        path = "$VCPKG_DIR//installed/x64-windows/",
+        path = "$VCPKG_DIR/installed/x64-windows/",
     )
