@@ -245,7 +245,7 @@ cmake(
     out_lib_dir = select({
         "@bazel_tools//platforms:osx": "lib",
         "@bazel_tools//platforms:linux": "lib",
-        "@bazel_tools//platforms:windows": "bin",
+        "@bazel_tools//platforms:windows": "lib",
     }),
     out_static_libs = select({
         "@bazel_tools//platforms:osx": [
