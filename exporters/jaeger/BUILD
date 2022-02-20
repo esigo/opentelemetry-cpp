@@ -214,13 +214,14 @@ THRIFT_CACHE_ENTRIES_WIN = {
 }
 
 THRIFT_DEPS_WIN = [
+    "@boost//:core",
+    #"@boost//:numeric_conversion",
 ]
 
 THRIFT_DEPS = THRIFT_DEPS_WIN + [
     ":openssl",
     ":openssl_header_only",
-    "@boost//:locale",
-    "@boost//:numeric_conversion",
+    #"@boost//:locale",
 ]
 
 cmake(
@@ -238,10 +239,11 @@ cmake(
         "@bazel_tools//platforms:osx": [],
         "@bazel_tools//platforms:linux": [],
         "@bazel_tools//platforms:windows": [
-            "-G \"NMake Makefiles\"",
+            "-G \"Visual Studio 16 2019\"",
+            "-A Win64",
         ],
     }),
-    install = True,
+    install = False,
     lib_source = "@com_github_thrift//:all_srcs",
     out_lib_dir = select({
         "@bazel_tools//platforms:osx": "lib",
@@ -266,9 +268,11 @@ cmake(
     deps = select({
         "@bazel_tools//platforms:osx": THRIFT_DEPS,
         "@bazel_tools//platforms:linux": THRIFT_DEPS,
-        "@bazel_tools//platforms:windows": [],
+        "@bazel_tools//platforms:windows": THRIFT_DEPS_WIN,
     }),
 )
+
+
 
 THRIFT_GEN_DEPS = [
     ":thrift",
