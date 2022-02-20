@@ -257,7 +257,7 @@ cmake(
             "libthriftz.a",
         ],
         "@bazel_tools//platforms:windows": [
-            "libthrift.lib",
+            "thriftmd.lib",
         ],
     }),
     tags = ["jaeger"],
