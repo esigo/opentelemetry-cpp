@@ -214,14 +214,12 @@ THRIFT_CACHE_ENTRIES_WIN = {
 }
 
 THRIFT_DEPS_WIN = [
-    "@boost//:core",
-    #"@boost//:numeric_conversion",
 ]
 
 THRIFT_DEPS = THRIFT_DEPS_WIN + [
     ":openssl",
     ":openssl_header_only",
-    #"@boost//:locale",
+    "@boost//:numeric_conversion",
 ]
 
 cmake(
@@ -271,8 +269,6 @@ cmake(
         "@bazel_tools//platforms:windows": THRIFT_DEPS_WIN,
     }),
 )
-
-
 
 THRIFT_GEN_DEPS = [
     ":thrift",
