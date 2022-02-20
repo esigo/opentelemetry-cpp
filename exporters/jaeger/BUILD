@@ -187,6 +187,10 @@ THRIFT_CACHE_ENTRIES = {
     "BUILD_TESTING": "OFF",
     "BUILD_TUTORIALS": "OFF",
     "WITH_HASKELL": "OFF",
+    "WITH_STDTHREADS": "ON",
+    "WITH_BOOSTTHREADS": "OFF",
+    "WITH_BOOST_FUNCTIONAL": "OFF",
+    "WITH_BOOST_SMART_PTR": "OFF",
 }
 
 THRIFT_CACHE_ENTRIES_WIN = {
@@ -202,6 +206,10 @@ THRIFT_CACHE_ENTRIES_WIN = {
     "BUILD_TESTING": "OFF",
     "BUILD_TUTORIALS": "OFF",
     "WITH_HASKELL": "OFF",
+    "WITH_STDTHREADS": "ON",
+    "WITH_BOOSTTHREADS": "OFF",
+    "WITH_BOOST_FUNCTIONAL": "OFF",
+    "WITH_BOOST_SMART_PTR": "OFF",
     "CMAKE_TOOLCHAIN_FILE": "$VCPKG_DIR/scripts/buildsystems/vcpkg.cmake",
 }
 
@@ -268,8 +276,7 @@ THRIFT_GEN_DEPS = [
 ]
 
 THRIFT_GEN_DEPS_WIN = THRIFT_GEN_DEPS + [
-    "@boost//:locale",
-    "@boost//:numeric_conversion",
+    "@boost_all_hdrs//:boost_all_hdrs",
 ]
 
 cc_library(

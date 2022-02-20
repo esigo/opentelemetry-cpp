@@ -56,3 +56,23 @@ select_file(
             "https://strawberryperl.com/download/5.32.1.1/strawberry-perl-5.32.1.1-64bit.zip",
         ],
     )
+
+    # boost headers from vcpkg
+    maybe(
+        native.new_local_repository,
+        name = "boost_all_hdrs",
+        build_file_content = """
+package(default_visibility = ["//visibility:public"])
+cc_library(
+  name = "boost_all_hdrs",
+  hdrs = glob(["include/**/*.hpp"]),
+  strip_include_prefix = "include",
+  copts = [
+      "-isystem include",
+      "-fexceptions",
+    ],
+    visibility = ["//visibility:public"],
+)
+        """,
+        path = "$VCPKG_DIR//installed/x64-windows/",
+    )
