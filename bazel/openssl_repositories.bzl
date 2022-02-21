@@ -66,8 +66,7 @@ package(default_visibility = ["//visibility:public"])
 cc_library(
   name = "boost_all_hdrs",
   hdrs = glob(
-      ["include/**/*.hpp"],
-      ["include/**/*.h"],
+      ["include/**/*.h*"],
   ),
   strip_include_prefix = "include",
   copts = [
