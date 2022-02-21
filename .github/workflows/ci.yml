@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ vcpkg-boost-windows ]
   pull_request:
-    branches: [ main ]
+    branches: [ vcpkg-boost-windows ]
 
 jobs:
   cmake_test:
