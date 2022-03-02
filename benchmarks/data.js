@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1646150943646,
+  "lastUpdate": 1646237687021,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp exporters Benchmark": [
@@ -864,6 +864,54 @@ window.BENCHMARK_DATA = {
             "value": 2720029.1554133096,
             "unit": "ns/iter",
             "extra": "iterations: 240\ncpu: 528209.5833333334 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "artiom.vaskov@ibm.com",
+            "name": "Artiom Vaskov",
+            "username": "velemas"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "84394fda87e80697ee0534311021926b529c8342",
+          "message": "Added s390x arch into CMake build. (#1216)",
+          "timestamp": "2022-03-02T07:52:37-08:00",
+          "tree_id": "e328dfc358d429ff046cb55b8f5d310864548cb6",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/84394fda87e80697ee0534311021926b529c8342"
+        },
+        "date": 1646237686328,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 28.311313766547418,
+            "unit": "ns/iter",
+            "extra": "iterations: 4942000\ncpu: 28.303460137596122 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 82.36538330900026,
+            "unit": "ns/iter",
+            "extra": "iterations: 1708000\ncpu: 82.0121194379391 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 651.6906950208876,
+            "unit": "ns/iter",
+            "extra": "iterations: 216000\ncpu: 651.428703703704 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 1929813.25226389,
+            "unit": "ns/iter",
+            "extra": "iterations: 546\ncpu: 340673.26007325994 ns\nthreads: 1"
           }
         ]
       }
