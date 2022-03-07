@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1646667895446,
+  "lastUpdate": 1646670898002,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp exporters Benchmark": [
@@ -1056,6 +1056,54 @@ window.BENCHMARK_DATA = {
             "value": 1636173.9900377062,
             "unit": "ns/iter",
             "extra": "iterations: 432\ncpu: 285153.4722222224 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "49699333+dependabot[bot]@users.noreply.github.com",
+            "name": "dependabot[bot]",
+            "username": "dependabot[bot]"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "32cd04774b8e7610d89c532b8b984d1ea5c1f518",
+          "message": "Bump codecov/codecov-action from 1 to 2.1.0 (#1247)\n\nBumps [codecov/codecov-action](https://github.com/codecov/codecov-action) from 1 to 2.1.0.\r\n- [Release notes](https://github.com/codecov/codecov-action/releases)\r\n- [Changelog](https://github.com/codecov/codecov-action/blob/master/CHANGELOG.md)\r\n- [Commits](https://github.com/codecov/codecov-action/compare/v1...v2.1.0)\r\n\r\n---\r\nupdated-dependencies:\r\n- dependency-name: codecov/codecov-action\r\n  dependency-type: direct:production\r\n  update-type: version-update:semver-major\r\n...\r\n\r\nSigned-off-by: dependabot[bot] <support@github.com>\r\n\r\nCo-authored-by: dependabot[bot] <49699333+dependabot[bot]@users.noreply.github.com>\r\nCo-authored-by: Ehsan Saei <71217171+esigo@users.noreply.github.com>",
+          "timestamp": "2022-03-07T17:16:50+01:00",
+          "tree_id": "2a039464fe4b158522433cc28d990e1bde7df908",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/32cd04774b8e7610d89c532b8b984d1ea5c1f518"
+        },
+        "date": 1646670897071,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 39.652104136086216,
+            "unit": "ns/iter",
+            "extra": "iterations: 4045000\ncpu: 35.924746600741656 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 100.19089672684477,
+            "unit": "ns/iter",
+            "extra": "iterations: 1242000\ncpu: 99.98011272141706 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 815.7768914865893,
+            "unit": "ns/iter",
+            "extra": "iterations: 172000\ncpu: 813.7802325581392 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 2652058.811307703,
+            "unit": "ns/iter",
+            "extra": "iterations: 318\ncpu: 461804.0880503144 ns\nthreads: 1"
           }
         ]
       }
