@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1646852853369,
+  "lastUpdate": 1646852855047,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp exporters Benchmark": [
@@ -1200,6 +1200,54 @@ window.BENCHMARK_DATA = {
             "value": 3282098.3936912133,
             "unit": "ns/iter",
             "extra": "iterations: 228\ncpu: 503779.8245614036 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "dj@gregor.com",
+            "name": "DJ Gregor",
+            "username": "deejgregor"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "fd5a6218bde5a728019f377a67f75c7b821f76c7",
+          "message": "Add support for span links to Jaeger export. (#1251)",
+          "timestamp": "2022-03-09T09:35:09-08:00",
+          "tree_id": "a2ab79068f3d318617bcedeed45d64c2082b8f90",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/fd5a6218bde5a728019f377a67f75c7b821f76c7"
+        },
+        "date": 1646852851193,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 37.612155565662476,
+            "unit": "ns/iter",
+            "extra": "iterations: 3742000\ncpu: 37.5743987172635 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 109.33680643332671,
+            "unit": "ns/iter",
+            "extra": "iterations: 1269000\ncpu: 109.23278171788807 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 848.5199492654683,
+            "unit": "ns/iter",
+            "extra": "iterations: 162000\ncpu: 847.7888888888887 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 1778184.863883005,
+            "unit": "ns/iter",
+            "extra": "iterations: 355\ncpu: 356896.0563380282 ns\nthreads: 1"
           }
         ]
       }
