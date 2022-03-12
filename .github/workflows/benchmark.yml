@@ -32,7 +32,7 @@ jobs:
       #  run: |
       #    sudo ./ci/setup_cmake.sh
       #    sudo ./ci/setup_ci_environment.sh
-      - uses: docker-practice/actions-setup-docker@1.0.
+      - uses: docker-practice/actions-setup-docker@1.0.8
       - name: Run benchmark
         id: run_benchmarks
         run: |
