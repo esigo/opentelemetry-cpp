@@ -32,10 +32,12 @@ jobs:
       #  run: |
       #    sudo ./ci/setup_cmake.sh
       #    sudo ./ci/setup_ci_environment.sh
-      - uses: docker-practice/actions-setup-docker@1.0.8
       - name: Run benchmark
         id: run_benchmarks
         run: |
+          brew install podman
+          podman machine init
+          podman machine start
           ci/do_ci.sh bazel.benchmark
           mkdir -p benchmarks
           mv api-benchmark_result.json benchmarks
