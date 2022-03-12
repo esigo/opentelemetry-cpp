@@ -26,12 +26,8 @@ jobs:
         env:
           cache-name: bazel_cache
         with:
-          path: /home/runner/.cache/bazel
-          key: bazel_benchmark
-      #- name: setup
-      #  run: |
-      #    sudo ./ci/setup_cmake.sh
-      #    sudo ./ci/setup_ci_environment.sh
+          path: /Users/runner/.cache/bazel
+          key: bazel_osx
       - uses: docker-practice/actions-setup-docker@1.0.8
       - name: Run benchmark
         id: run_benchmarks
