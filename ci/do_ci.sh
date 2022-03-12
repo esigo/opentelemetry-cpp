@@ -19,7 +19,7 @@ function install_prometheus_cpp_client
 
 function run_benchmarks
 {
-  colima run -d --rm -it -p 4317:4317 -p 4318:4318 -v \
+  lima nerdctl run -d --rm -it -p 4317:4317 -p 4318:4318 -v \
     $(pwd)/examples/otlp:/cfg otel/opentelemetry-collector:0.38.0 \
     --config=/cfg/opentelemetry-collector-config/config.dev.yaml
 
@@ -44,14 +44,14 @@ function run_benchmarks
   do
     out=$component-benchmark_result.json
     find ./$component -type f -name "*_result.json" -exec cat {} \; > $component_tmp_bench.json
-    cat $component_tmp_bench.json | colima run -i --rm itchyny/gojq:0.12.6 -s \
+    cat $component_tmp_bench.json | lima nerdctl run -i --rm itchyny/gojq:0.12.6 -s \
       '.[0].benchmarks = ([.[].benchmarks] | add) |
       if .[0].benchmarks == null then null else .[0] end' > $BENCHMARK_DIR/$out
   done
 
   mv *benchmark_result.json ${SRC_DIR}
   popd
-  colima kill $(colima ps -q)
+  lima nerdctl kill $(lima nerdctl ps -q)
 }
 
 [ -z "${SRC_DIR}" ] && export SRC_DIR="`pwd`"
