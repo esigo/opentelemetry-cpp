@@ -20,6 +20,7 @@ using MetricAttributes = opentelemetry::sdk::common::OrderedAttributeMap;
  */
 class ExemplarData
 {
+public:
   /**
    * The set of key/value pairs that were filtered out by the aggregator, but recorded alongside the
    * original measurement. Only key/value pairs that were filtered out by the aggregator should be
