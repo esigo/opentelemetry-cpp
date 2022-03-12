@@ -11,7 +11,7 @@ permissions:
 jobs:
   benchmark:
     name: Run OpenTelemetry-cpp benchmarks
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     outputs:
       output1: ${{ steps.run_benchmarks.outputs.test }}
       api_result: ${{ steps.run_benchmarks.outputs.api_json }}
@@ -28,10 +28,10 @@ jobs:
         with:
           path: /home/runner/.cache/bazel
           key: bazel_benchmark
-      - name: setup
-        run: |
-          sudo ./ci/setup_cmake.sh
-          sudo ./ci/setup_ci_environment.sh
+      #- name: setup
+      #  run: |
+      #    sudo ./ci/setup_cmake.sh
+      #    sudo ./ci/setup_ci_environment.sh
       - name: Run benchmark
         id: run_benchmarks
         run: |
