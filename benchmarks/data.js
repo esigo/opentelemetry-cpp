@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1647027654672,
+  "lastUpdate": 1647074302990,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp exporters Benchmark": [
@@ -1296,6 +1296,54 @@ window.BENCHMARK_DATA = {
             "value": 1716522.4602881898,
             "unit": "ns/iter",
             "extra": "iterations: 423\ncpu: 287676.3593380613 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "71217171+esigo@users.noreply.github.com",
+            "name": "Ehsan Saei",
+            "username": "esigo"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c1060578ecff00d597762f566931fd5b96b3b7da",
+          "message": "setup docker",
+          "timestamp": "2022-03-12T09:16:52+01:00",
+          "tree_id": "3c281253e68244357e60ecd5a114247f0141a0f9",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/c1060578ecff00d597762f566931fd5b96b3b7da"
+        },
+        "date": 1647074301899,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 67.72340370562593,
+            "unit": "ns/iter",
+            "extra": "iterations: 2051000\ncpu: 67.06387128230132 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 237.68877156598523,
+            "unit": "ns/iter",
+            "extra": "iterations: 626000\ncpu: 222.2124600638977 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 1754.157530863997,
+            "unit": "ns/iter",
+            "extra": "iterations: 81000\ncpu: 1739.345679012346 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_local",
+            "value": 344586765.49998015,
+            "unit": "ns/iter",
+            "extra": "iterations: 10\ncpu: 1110699.9999999867 ns\nthreads: 1"
           }
         ]
       }
