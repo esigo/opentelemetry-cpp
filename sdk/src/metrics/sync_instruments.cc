@@ -15,12 +15,13 @@ LongCounter::LongCounter(InstrumentDescriptor instrument_descriptor,
 {}
 
 void LongCounter::Add(long value,
-                      const opentelemetry::common::KeyValueIterable &attributes) noexcept
+                      const opentelemetry::common::KeyValueIterable &attributes,
+                      const opentelemetry::trace::SpanContext &context) noexcept
 {
   return storage_->RecordLong(value, attributes);
 }
 
-void LongCounter::Add(long value) noexcept
+void LongCounter::Add(long value, const opentelemetry::trace::SpanContext &context) noexcept
 {
   return storage_->RecordLong(value);
 }
@@ -31,12 +32,13 @@ DoubleCounter::DoubleCounter(InstrumentDescriptor instrument_descriptor,
 {}
 
 void DoubleCounter::Add(double value,
-                        const opentelemetry::common::KeyValueIterable &attributes) noexcept
+                        const opentelemetry::common::KeyValueIterable &attributes,
+                        const opentelemetry::trace::SpanContext &context) noexcept
 {
   return storage_->RecordDouble(value, attributes);
 }
 
-void DoubleCounter::Add(double value) noexcept
+void DoubleCounter::Add(double value, const opentelemetry::trace::SpanContext &context) noexcept
 {
   return storage_->RecordDouble(value);
 }
@@ -47,12 +49,13 @@ LongUpDownCounter::LongUpDownCounter(InstrumentDescriptor instrument_descriptor,
 {}
 
 void LongUpDownCounter::Add(long value,
-                            const opentelemetry::common::KeyValueIterable &attributes) noexcept
+                            const opentelemetry::common::KeyValueIterable &attributes,
+                            const opentelemetry::trace::SpanContext &context) noexcept
 {
   return storage_->RecordLong(value, attributes);
 }
 
-void LongUpDownCounter::Add(long value) noexcept
+void LongUpDownCounter::Add(long value, const opentelemetry::trace::SpanContext &context) noexcept
 {
   return storage_->RecordLong(value);
 }
@@ -63,12 +66,14 @@ DoubleUpDownCounter::DoubleUpDownCounter(InstrumentDescriptor instrument_descrip
 {}
 
 void DoubleUpDownCounter::Add(double value,
-                              const opentelemetry::common::KeyValueIterable &attributes) noexcept
+                              const opentelemetry::common::KeyValueIterable &attributes,
+                              const opentelemetry::trace::SpanContext &context) noexcept
 {
   return storage_->RecordDouble(value, attributes);
 }
 
-void DoubleUpDownCounter::Add(double value) noexcept
+void DoubleUpDownCounter::Add(double value,
+                              const opentelemetry::trace::SpanContext &context) noexcept
 {
   return storage_->RecordDouble(value);
 }

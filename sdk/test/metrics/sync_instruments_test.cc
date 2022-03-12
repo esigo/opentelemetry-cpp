@@ -22,12 +22,14 @@ TEST(SyncInstruments, LongCounter)
       "long_counter", "description", "1", InstrumentType::kCounter, InstrumentValueType::kLong};
   std::unique_ptr<WritableMetricStorage> metric_storage(new MultiMetricStorage());
   LongCounter counter(instrument_descriptor, std::move(metric_storage));
-  EXPECT_NO_THROW(counter.Add(10l));
-  EXPECT_NO_THROW(counter.Add(10l));
+  EXPECT_NO_THROW(counter.Add(10l, opentelemetry::trace::SpanContext{false, false}));
+  EXPECT_NO_THROW(counter.Add(10l, opentelemetry::trace::SpanContext{false, false}));
 
   EXPECT_NO_THROW(counter.Add(
-      10l, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}})));
-  EXPECT_NO_THROW(counter.Add(10l, opentelemetry::common::KeyValueIterableView<M>({})));
+      10l, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}}),
+      opentelemetry::trace::SpanContext{false, false}));
+  EXPECT_NO_THROW(counter.Add(10l, opentelemetry::common::KeyValueIterableView<M>({}),
+                              opentelemetry::trace::SpanContext{false, false}));
 }
 
 TEST(SyncInstruments, DoubleCounter)
@@ -36,12 +38,14 @@ TEST(SyncInstruments, DoubleCounter)
       "double_counter", "description", "1", InstrumentType::kCounter, InstrumentValueType::kDouble};
   std::unique_ptr<WritableMetricStorage> metric_storage(new MultiMetricStorage());
   DoubleCounter counter(instrument_descriptor, std::move(metric_storage));
-  EXPECT_NO_THROW(counter.Add(10.10));
-  EXPECT_NO_THROW(counter.Add(10.10));
+  EXPECT_NO_THROW(counter.Add(10.10, opentelemetry::trace::SpanContext{false, false}));
+  EXPECT_NO_THROW(counter.Add(10.10, opentelemetry::trace::SpanContext{false, false}));
 
   EXPECT_NO_THROW(counter.Add(
-      10.10, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}})));
-  EXPECT_NO_THROW(counter.Add(10.10, opentelemetry::common::KeyValueIterableView<M>({})));
+      10.10, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}}),
+      opentelemetry::trace::SpanContext{false, false}));
+  EXPECT_NO_THROW(counter.Add(10.10, opentelemetry::common::KeyValueIterableView<M>({}),
+                              opentelemetry::trace::SpanContext{false, false}));
 }
 
 TEST(SyncInstruments, LongUpDownCounter)
@@ -51,12 +55,14 @@ TEST(SyncInstruments, LongUpDownCounter)
                                                 InstrumentValueType::kLong};
   std::unique_ptr<WritableMetricStorage> metric_storage(new MultiMetricStorage());
   LongUpDownCounter counter(instrument_descriptor, std::move(metric_storage));
-  EXPECT_NO_THROW(counter.Add(10l));
-  EXPECT_NO_THROW(counter.Add(10l));
+  EXPECT_NO_THROW(counter.Add(10l, opentelemetry::trace::SpanContext{false, false}));
+  EXPECT_NO_THROW(counter.Add(10l, opentelemetry::trace::SpanContext{false, false}));
 
   EXPECT_NO_THROW(counter.Add(
-      10l, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}})));
-  EXPECT_NO_THROW(counter.Add(10l, opentelemetry::common::KeyValueIterableView<M>({})));
+      10l, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}}),
+      opentelemetry::trace::SpanContext{false, false}));
+  EXPECT_NO_THROW(counter.Add(10l, opentelemetry::common::KeyValueIterableView<M>({}),
+                              opentelemetry::trace::SpanContext{false, false}));
 }
 
 TEST(SyncInstruments, DoubleUpDownCounter)
@@ -66,12 +72,14 @@ TEST(SyncInstruments, DoubleUpDownCounter)
                                                 InstrumentValueType::kDouble};
   std::unique_ptr<WritableMetricStorage> metric_storage(new MultiMetricStorage());
   DoubleUpDownCounter counter(instrument_descriptor, std::move(metric_storage));
-  EXPECT_NO_THROW(counter.Add(10.10));
-  EXPECT_NO_THROW(counter.Add(10.10));
+  EXPECT_NO_THROW(counter.Add(10.10, opentelemetry::trace::SpanContext{false, false}));
+  EXPECT_NO_THROW(counter.Add(10.10, opentelemetry::trace::SpanContext{false, false}));
 
   EXPECT_NO_THROW(counter.Add(
-      10.10, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}})));
-  EXPECT_NO_THROW(counter.Add(10.10, opentelemetry::common::KeyValueIterableView<M>({})));
+      10.10, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}}),
+      opentelemetry::trace::SpanContext{false, false}));
+  EXPECT_NO_THROW(counter.Add(10.10, opentelemetry::common::KeyValueIterableView<M>({}),
+                              opentelemetry::trace::SpanContext{false, false}));
 }
 
 TEST(SyncInstruments, LongHistogram)

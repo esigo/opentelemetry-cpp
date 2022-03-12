@@ -35,9 +35,11 @@ public:
   LongCounter(InstrumentDescriptor instrument_descriptor,
               std::unique_ptr<WritableMetricStorage> storage);
 
-  void Add(long value, const opentelemetry::common::KeyValueIterable &attributes) noexcept override;
+  void Add(long value,
+           const opentelemetry::common::KeyValueIterable &attributes,
+           const opentelemetry::trace::SpanContext &context) noexcept override;
 
-  void Add(long value) noexcept override;
+  void Add(long value, const opentelemetry::trace::SpanContext &context) noexcept override;
 };
 
 class DoubleCounter : public Synchronous, public opentelemetry::metrics::Counter<double>
@@ -48,9 +50,10 @@ public:
                 std::unique_ptr<WritableMetricStorage> storage);
 
   void Add(double value,
-           const opentelemetry::common::KeyValueIterable &attributes) noexcept override;
+           const opentelemetry::common::KeyValueIterable &attributes,
+           const opentelemetry::trace::SpanContext &context) noexcept override;
 
-  void Add(double value) noexcept override;
+  void Add(double value, const opentelemetry::trace::SpanContext &context) noexcept override;
 };
 
 class LongUpDownCounter : public Synchronous, public opentelemetry::metrics::UpDownCounter<long>
@@ -59,9 +62,11 @@ public:
   LongUpDownCounter(InstrumentDescriptor instrument_descriptor,
                     std::unique_ptr<WritableMetricStorage> storage);
 
-  void Add(long value, const opentelemetry::common::KeyValueIterable &attributes) noexcept override;
+  void Add(long value,
+           const opentelemetry::common::KeyValueIterable &attributes,
+           const opentelemetry::trace::SpanContext &context) noexcept override;
 
-  void Add(long value) noexcept override;
+  void Add(long value, const opentelemetry::trace::SpanContext &context) noexcept override;
 };
 
 class DoubleUpDownCounter : public Synchronous, public opentelemetry::metrics::UpDownCounter<double>
@@ -71,9 +76,10 @@ public:
                       std::unique_ptr<WritableMetricStorage> storage);
 
   void Add(double value,
-           const opentelemetry::common::KeyValueIterable &attributes) noexcept override;
+           const opentelemetry::common::KeyValueIterable &attributes,
+           const opentelemetry::trace::SpanContext &context) noexcept override;
 
-  void Add(double value) noexcept override;
+  void Add(double value, const opentelemetry::trace::SpanContext &context) noexcept override;
 };
 
 class LongHistogram : public Synchronous, public opentelemetry::metrics::Histogram<long>
