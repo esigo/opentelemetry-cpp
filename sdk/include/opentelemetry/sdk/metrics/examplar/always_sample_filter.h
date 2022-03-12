@@ -11,30 +11,30 @@ namespace sdk
 namespace metrics
 {
 
-class NeverSampleFilter final : public ExemplarFilter
+class AlwaysSampleFilter final : public ExemplarFilter
 {
 public:
-  static nostd::shared_ptr<ExemplarFilter> GetNeverSampleFilter()
+  static nostd::shared_ptr<ExemplarFilter> GetAlwaysSampleFilter()
   {
-    return nostd::shared_ptr<ExemplarFilter>{new NeverSampleFilter{}};
+    return nostd::shared_ptr<ExemplarFilter>{new AlwaysSampleFilter{}};
   }
 
   bool shouldSampleMeasurement(long value,
                                MetricAttributes attributes,
                                opentelemetry::trace::SpanContext context) noexcept override
   {
-    return false;
+    return true;
   }
 
   bool shouldSampleMeasurement(double value,
                                MetricAttributes attributes,
                                opentelemetry::trace::SpanContext context) noexcept override
   {
-    return false;
+    return true;
   }
 
 private:
-  explicit NeverSampleFilter() = default;
+  explicit AlwaysSampleFilter() = default;
 };
 }  // namespace metrics
 }  // namespace sdk
