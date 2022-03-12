@@ -35,9 +35,8 @@ jobs:
       - name: Run benchmark
         id: run_benchmarks
         run: |
-          brew install podman
-          podman machine init
-          podman machine start
+          brew install colima
+          colima start --runtime containerd
           ci/do_ci.sh bazel.benchmark
           mkdir -p benchmarks
           mv api-benchmark_result.json benchmarks
