@@ -7,12 +7,12 @@
 
 using namespace opentelemetry::sdk::metrics;
 
-TEST(SampleMeasurement, shouldSampleMeasurement)
+TEST(NeverSampleFilter, SampleMeasurement)
 {
   auto filter = opentelemetry::sdk::metrics::NeverSampleFilter::GetNeverSampleFilter();
-  ASSERT_TRUE(!filter->shouldSampleMeasurement(1.0, MetricAttributes{},
+  ASSERT_FALSE(filter->shouldSampleMeasurement(1.0, MetricAttributes{},
                                                opentelemetry::trace::SpanContext{false, false}));
-  ASSERT_TRUE(!filter->shouldSampleMeasurement(1l, MetricAttributes{},
+  ASSERT_FALSE(filter->shouldSampleMeasurement(1l, MetricAttributes{},
                                                opentelemetry::trace::SpanContext{false, false}));
 }
 

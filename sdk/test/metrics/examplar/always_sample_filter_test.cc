@@ -7,7 +7,7 @@
 
 using namespace opentelemetry::sdk::metrics;
 
-TEST(SampleMeasurement, shouldSampleMeasurement)
+TEST(AlwaysSampleFilter, SampleMeasurement)
 {
   auto filter = opentelemetry::sdk::metrics::AlwaysSampleFilter::GetAlwaysSampleFilter();
   ASSERT_TRUE(filter->shouldSampleMeasurement(1.0, MetricAttributes{},

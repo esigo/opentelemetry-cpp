@@ -2,12 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 #pragma once
-#include <list>
-#include "opentelemetry/nostd/shared_ptr.h"
 #ifndef ENABLE_METRICS_PREVIEW
 #  include "opentelemetry/sdk/common/attribute_utils.h"
 #  include "opentelemetry/sdk/metrics/examplar/reservoir.h"
 #  include "opentelemetry/trace/span_context.h"
+#include <vector>
+#include "opentelemetry/nostd/shared_ptr.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
@@ -23,23 +23,24 @@ public:
     return nostd::shared_ptr<ExemplarReservoir>{new NoExemplarReservoir{}};
   }
 
-  void offerMeasurement(long value,
-                        MetricAttributes attributes,
-                        opentelemetry::trace::SpanContext context) noexcept override
+  void OfferMeasurement(long value,
+                        const MetricAttributes &attributes,
+                        const opentelemetry::trace::SpanContext &context) noexcept override
   {
     // Stores nothing
   }
 
-  void offerMeasurement(double value,
-                        MetricAttributes attributes,
-                        opentelemetry::trace::SpanContext context) noexcept override
+  void OfferMeasurement(double value,
+                        const MetricAttributes &attributes,
+                        const opentelemetry::trace::SpanContext &context) noexcept override
   {
     // Stores nothing.
   }
 
-  std::list<ExemplarData> collectAndReset(MetricAttributes pointAttributes) noexcept override
+  std::vector<ExemplarData> CollectAndReset(
+      const MetricAttributes &pointAttributes) noexcept override
   {
-    return std::list<ExemplarData>{};
+    return std::vector<ExemplarData>{};
   }
 
 private:

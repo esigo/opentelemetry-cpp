@@ -21,14 +21,17 @@ class ExemplarFilter
 {
 public:
   // Returns whether or not a reservoir should attempt to filter a measurement.
-  virtual bool shouldSampleMeasurement(long value,
-                                       MetricAttributes attributes,
-                                       opentelemetry::trace::SpanContext context) noexcept = 0;
+  virtual bool shouldSampleMeasurement(
+      long value,
+      const MetricAttributes &attributes,
+      const opentelemetry::trace::SpanContext &context) noexcept = 0;
 
   // Returns whether or not a reservoir should attempt to filter a measurement.
-  virtual bool shouldSampleMeasurement(double value,
-                                       MetricAttributes attributes,
-                                       opentelemetry::trace::SpanContext context) noexcept = 0;
+  virtual bool shouldSampleMeasurement(
+      double value,
+      const MetricAttributes &attributes,
+      const opentelemetry::trace::SpanContext &context) noexcept = 0;
+
   virtual ~ExemplarFilter() = default;
 };
 

@@ -1,4 +1,18 @@
-load("//bazel:otel_cc_benchmark.bzl", "otel_cc_benchmark")
+cc_test(
+    name = "no_examplar_reservoir_test",
+    srcs = [
+        "no_examplar_reservoir_test.cc",
+    ],
+    tags = [
+        "metrics",
+        "test",
+    ],
+    deps = [
+        "//api",
+        "//sdk:headers",
+        "@com_google_googletest//:gtest_main",
+    ],
+)
 
 cc_test(
     name = "never_sample_filter_test",
