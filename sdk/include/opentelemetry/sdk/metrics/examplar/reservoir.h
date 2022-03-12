@@ -19,6 +19,8 @@ namespace metrics
 class ExemplarReservoir
 {
 public:
+  virtual ~ExemplarReservoir() = default;
+
   /** Offers a long measurement to be sampled. */
   virtual void offerMeasurement(long value,
                                 MetricAttributes attributes,
