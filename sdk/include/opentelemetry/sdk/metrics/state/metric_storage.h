@@ -4,9 +4,9 @@
 #pragma once
 #ifndef ENABLE_METRICS_PREVIEW
 #  include "opentelemetry/common/key_value_iterable_view.h"
+#  include "opentelemetry/context/context.h"
 #  include "opentelemetry/sdk/metrics/data/metric_data.h"
 #  include "opentelemetry/sdk/metrics/instruments.h"
-#  include "opentelemetry/trace/span_context.h"
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
 {
@@ -30,19 +30,18 @@ public:
 class WritableMetricStorage
 {
 public:
-  virtual void RecordLong(long value,
-                          const opentelemetry::trace::SpanContext &context) noexcept = 0;
+  virtual void RecordLong(long value, const opentelemetry::context::Context &context) noexcept = 0;
 
   virtual void RecordLong(long value,
                           const opentelemetry::common::KeyValueIterable &attributes,
-                          const opentelemetry::trace::SpanContext &context) noexcept = 0;
+                          const opentelemetry::context::Context &context) noexcept = 0;
 
   virtual void RecordDouble(double value,
-                            const opentelemetry::trace::SpanContext &context) noexcept = 0;
+                            const opentelemetry::context::Context &context) noexcept = 0;
 
   virtual void RecordDouble(double value,
                             const opentelemetry::common::KeyValueIterable &attributes,
-                            const opentelemetry::trace::SpanContext &context) noexcept = 0;
+                            const opentelemetry::context::Context &context) noexcept = 0;
 };
 
 class NoopMetricStorage : public MetricStorage
@@ -67,16 +66,19 @@ public:
 class NoopWritableMetricStorage : public WritableMetricStorage
 {
 public:
-  void RecordLong(long value) noexcept = 0;
+  void RecordLong(long value, const opentelemetry::context::Context &context) noexcept = 0;
 
   void RecordLong(long value,
-                  const opentelemetry::common::KeyValueIterable &attributes) noexcept override
+                  const opentelemetry::common::KeyValueIterable &attributes,
+                  const opentelemetry::context::Context &context) noexcept override
   {}
 
-  void RecordDouble(double value) noexcept override {}
+  void RecordDouble(double value, const opentelemetry::context::Context &context) noexcept override
+  {}
 
   void RecordDouble(double value,
-                    const opentelemetry::common::KeyValueIterable &attributes) noexcept override
+                    const opentelemetry::common::KeyValueIterable &attributes,
+                    const opentelemetry::context::Context &context) noexcept override
   {}
 };
 
