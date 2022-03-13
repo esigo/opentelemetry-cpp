@@ -10,10 +10,10 @@ using namespace opentelemetry::sdk::metrics;
 TEST(AlwaysSampleFilter, SampleMeasurement)
 {
   auto filter = opentelemetry::sdk::metrics::AlwaysSampleFilter::GetAlwaysSampleFilter();
-  ASSERT_TRUE(filter->shouldSampleMeasurement(1.0, MetricAttributes{},
-                                              opentelemetry::trace::SpanContext{false, false}));
-  ASSERT_TRUE(filter->shouldSampleMeasurement(1l, MetricAttributes{},
-                                              opentelemetry::trace::SpanContext{false, false}));
+  ASSERT_TRUE(
+      filter->shouldSampleMeasurement(1.0, MetricAttributes{}, opentelemetry::context::Context{}));
+  ASSERT_TRUE(
+      filter->shouldSampleMeasurement(1l, MetricAttributes{}, opentelemetry::context::Context{}));
 }
 
 #endif

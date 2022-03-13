@@ -21,14 +21,14 @@ public:
 
   bool shouldSampleMeasurement(long value,
                                const MetricAttributes &attributes,
-                               const opentelemetry::trace::SpanContext &context) noexcept override
+                               const opentelemetry::context::Context &context) noexcept override
   {
     return true;
   }
 
   bool shouldSampleMeasurement(double value,
                                const MetricAttributes &attributes,
-                               const opentelemetry::trace::SpanContext &context) noexcept override
+                               const opentelemetry::context::Context &context) noexcept override
   {
     return true;
   }

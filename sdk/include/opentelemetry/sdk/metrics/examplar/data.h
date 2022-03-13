@@ -3,8 +3,8 @@
 
 #pragma once
 #ifndef ENABLE_METRICS_PREVIEW
+#  include "opentelemetry/context/context.h"
 #  include "opentelemetry/sdk/common/attribute_utils.h"
-#  include "opentelemetry/trace/span_context.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
@@ -26,16 +26,16 @@ public:
    * original measurement. Only key/value pairs that were filtered out by the aggregator should be
    * included
    */
-  MetricAttributes getFilteredAttributes();
+  MetricAttributes GetFilteredAttributes();
 
   /** Returns the timestamp in nanos when measurement was collected. */
-  long getEpochNanos();
+  long GetEpochNanos();
 
   /**
    * Returns the SpanContext associated with this exemplar. If the exemplar was not recorded
-   * inside a sampled trace, the SpanContext will be invalid.
+   * inside a sampled trace, the Context will be invalid.
    */
-  opentelemetry::trace::SpanContext getSpanContext();
+  opentelemetry::context::Context GetSpanContext();
 };
 
 }  // namespace metrics

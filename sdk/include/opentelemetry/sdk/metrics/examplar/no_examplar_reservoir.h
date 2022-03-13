@@ -4,10 +4,10 @@
 #pragma once
 #ifndef ENABLE_METRICS_PREVIEW
 #  include <vector>
+#  include "opentelemetry/context/context.h"
 #  include "opentelemetry/nostd/shared_ptr.h"
 #  include "opentelemetry/sdk/common/attribute_utils.h"
 #  include "opentelemetry/sdk/metrics/examplar/reservoir.h"
-#  include "opentelemetry/trace/span_context.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
@@ -25,14 +25,14 @@ public:
 
   void OfferMeasurement(long value,
                         const MetricAttributes &attributes,
-                        const opentelemetry::trace::SpanContext &context) noexcept override
+                        const opentelemetry::context::Context &context) noexcept override
   {
     // Stores nothing
   }
 
   void OfferMeasurement(double value,
                         const MetricAttributes &attributes,
-                        const opentelemetry::trace::SpanContext &context) noexcept override
+                        const opentelemetry::context::Context &context) noexcept override
   {
     // Stores nothing.
   }

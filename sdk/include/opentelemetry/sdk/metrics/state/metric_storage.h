@@ -6,6 +6,7 @@
 #  include "opentelemetry/common/key_value_iterable_view.h"
 #  include "opentelemetry/sdk/metrics/data/metric_data.h"
 #  include "opentelemetry/sdk/metrics/instruments.h"
+#  include "opentelemetry/trace/span_context.h"
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
 {
@@ -29,15 +30,19 @@ public:
 class WritableMetricStorage
 {
 public:
-  virtual void RecordLong(long value) noexcept = 0;
+  virtual void RecordLong(long value,
+                          const opentelemetry::trace::SpanContext &context) noexcept = 0;
 
   virtual void RecordLong(long value,
-                          const opentelemetry::common::KeyValueIterable &attributes) noexcept = 0;
-
-  virtual void RecordDouble(double value) noexcept = 0;
+                          const opentelemetry::common::KeyValueIterable &attributes,
+                          const opentelemetry::trace::SpanContext &context) noexcept = 0;
 
   virtual void RecordDouble(double value,
-                            const opentelemetry::common::KeyValueIterable &attributes) noexcept = 0;
+                            const opentelemetry::trace::SpanContext &context) noexcept = 0;
+
+  virtual void RecordDouble(double value,
+                            const opentelemetry::common::KeyValueIterable &attributes,
+                            const opentelemetry::trace::SpanContext &context) noexcept = 0;
 };
 
 class NoopMetricStorage : public MetricStorage

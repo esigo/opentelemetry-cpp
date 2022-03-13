@@ -3,8 +3,8 @@
 
 #pragma once
 #ifndef ENABLE_METRICS_PREVIEW
+#  include "opentelemetry/context/context.h"
 #  include "opentelemetry/sdk/common/attribute_utils.h"
-#  include "opentelemetry/trace/span_context.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
@@ -21,16 +21,14 @@ class ExemplarFilter
 {
 public:
   // Returns whether or not a reservoir should attempt to filter a measurement.
-  virtual bool shouldSampleMeasurement(
-      long value,
-      const MetricAttributes &attributes,
-      const opentelemetry::trace::SpanContext &context) noexcept = 0;
+  virtual bool shouldSampleMeasurement(long value,
+                                       const MetricAttributes &attributes,
+                                       const opentelemetry::context::Context &context) noexcept = 0;
 
   // Returns whether or not a reservoir should attempt to filter a measurement.
-  virtual bool shouldSampleMeasurement(
-      double value,
-      const MetricAttributes &attributes,
-      const opentelemetry::trace::SpanContext &context) noexcept = 0;
+  virtual bool shouldSampleMeasurement(double value,
+                                       const MetricAttributes &attributes,
+                                       const opentelemetry::context::Context &context) noexcept = 0;
 
   virtual ~ExemplarFilter() = default;
 };
