@@ -13,10 +13,10 @@ TEST(Counter, Add)
       new opentelemetry::metrics::NoopCounter<long>("test", "none", "unitless")};
 
   std::map<std::string, std::string> labels = {{"k1", "v1"}};
-  EXPECT_NO_THROW(counter->Add(10l, labels, opentelemetry::contet::Context{}));
-  EXPECT_NO_THROW(counter->Add(2l, opentelemetry::contet::Context{}));
+  EXPECT_NO_THROW(counter->Add(10l, labels, opentelemetry::contxet::Context{}));
+  EXPECT_NO_THROW(counter->Add(2l, opentelemetry::contxet::Context{}));
   EXPECT_NO_THROW(
-      counter->Add(10l, {{"k1", "1"}, {"k2", 2}}, opentelemetry::contet::Context{}));
+      counter->Add(10l, {{"k1", "1"}, {"k2", 2}}, opentelemetry::contxet::Context{}));
 }
 
 TEST(histogram, Record)
@@ -36,10 +36,10 @@ TEST(UpDownCountr, Record)
       new opentelemetry::metrics::NoopUpDownCounter<long>("test", "none", "unitless")};
 
   std::map<std::string, std::string> labels = {{"k1", "v1"}};
-  EXPECT_NO_THROW(counter->Add(10l, labels, opentelemetry::contet::Context{}));
-  EXPECT_NO_THROW(counter->Add(2l, opentelemetry::contet::Context{}));
+  EXPECT_NO_THROW(counter->Add(10l, labels, opentelemetry::contxet::Context{}));
+  EXPECT_NO_THROW(counter->Add(2l, opentelemetry::contxet::Context{}));
   EXPECT_NO_THROW(
-      counter->Add(10l, {{"k1", "1"}, {"k2", 2}}, opentelemetry::contet::Context{}));
+      counter->Add(10l, {{"k1", "1"}, {"k2", 2}}, opentelemetry::contxet::Context{}));
 }
 
 #endif
