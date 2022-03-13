@@ -89,12 +89,12 @@ TEST(SyncInstruments, LongHistogram)
       "long_histogram", "description", "1", InstrumentType::kHistogram, InstrumentValueType::kLong};
   std::unique_ptr<WritableMetricStorage> metric_storage(new MultiMetricStorage());
   LongHistogram counter(instrument_descriptor, std::move(metric_storage));
-  EXPECT_NO_THROW(counter.Record(10l));
-  EXPECT_NO_THROW(counter.Record(10l));
+  EXPECT_NO_THROW(counter.Record(10l, opentelemetry::context::Context{}));
+  EXPECT_NO_THROW(counter.Record(10l, opentelemetry::context::Context{}));
 
   EXPECT_NO_THROW(counter.Record(
-      10l, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}})));
-  EXPECT_NO_THROW(counter.Record(10l, opentelemetry::common::KeyValueIterableView<M>({})));
+      10l, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}}), opentelemetry::context::Context{}));
+  EXPECT_NO_THROW(counter.Record(10l, opentelemetry::common::KeyValueIterableView<M>({}), opentelemetry::context::Context{}));
 }
 
 TEST(SyncInstruments, DoubleHistogram)
@@ -104,12 +104,12 @@ TEST(SyncInstruments, DoubleHistogram)
                                                 InstrumentValueType::kDouble};
   std::unique_ptr<WritableMetricStorage> metric_storage(new MultiMetricStorage());
   DoubleHistogram counter(instrument_descriptor, std::move(metric_storage));
-  EXPECT_NO_THROW(counter.Record(10.10));
-  EXPECT_NO_THROW(counter.Record(10.10));
+  EXPECT_NO_THROW(counter.Record(10.10, opentelemetry::context::Context{}));
+  EXPECT_NO_THROW(counter.Record(10.10, opentelemetry::context::Context{}));
 
   EXPECT_NO_THROW(counter.Record(
-      10.10, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}})));
-  EXPECT_NO_THROW(counter.Record(10.10, opentelemetry::common::KeyValueIterableView<M>({})));
+      10.10, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}}), opentelemetry::context::Context{}));
+  EXPECT_NO_THROW(counter.Record(10.10, opentelemetry::common::KeyValueIterableView<M>({}), opentelemetry::context::Context{}));
 }
 
 #endif
