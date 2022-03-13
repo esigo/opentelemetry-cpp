@@ -93,8 +93,10 @@ TEST(SyncInstruments, LongHistogram)
   EXPECT_NO_THROW(counter.Record(10l, opentelemetry::context::Context{}));
 
   EXPECT_NO_THROW(counter.Record(
-      10l, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}}), opentelemetry::context::Context{}));
-  EXPECT_NO_THROW(counter.Record(10l, opentelemetry::common::KeyValueIterableView<M>({}), opentelemetry::context::Context{}));
+      10l, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}}),
+      opentelemetry::context::Context{}));
+  EXPECT_NO_THROW(counter.Record(10l, opentelemetry::common::KeyValueIterableView<M>({}),
+                                 opentelemetry::context::Context{}));
 }
 
 TEST(SyncInstruments, DoubleHistogram)
@@ -108,8 +110,10 @@ TEST(SyncInstruments, DoubleHistogram)
   EXPECT_NO_THROW(counter.Record(10.10, opentelemetry::context::Context{}));
 
   EXPECT_NO_THROW(counter.Record(
-      10.10, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}}), opentelemetry::context::Context{}));
-  EXPECT_NO_THROW(counter.Record(10.10, opentelemetry::common::KeyValueIterableView<M>({}), opentelemetry::context::Context{}));
+      10.10, opentelemetry::common::KeyValueIterableView<M>({{"abc", "123"}, {"xyz", "456"}}),
+      opentelemetry::context::Context{}));
+  EXPECT_NO_THROW(counter.Record(10.10, opentelemetry::common::KeyValueIterableView<M>({}),
+                                 opentelemetry::context::Context{}));
 }
 
 #endif
