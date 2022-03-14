@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   benchmark:
-    name: OpenTelemetry-cpp benchmarks
+    name: OpenTelemetry-cpp Mac benchmarks
     runs-on: macos-latest
     outputs:
       output1: ${{ steps.run_benchmarks.outputs.test }}
