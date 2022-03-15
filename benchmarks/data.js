@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1647373823919,
+  "lastUpdate": 1647373827485,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp exporters Benchmark": [
@@ -46,6 +46,52 @@ window.BENCHMARK_DATA = {
             "value": 3173340.9963923395,
             "unit": "ns/iter",
             "extra": "iterations: 278\ncpu: 543196.0431654677 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Ehsan Saei",
+            "username": "esigo",
+            "email": "71217171+esigo@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "9f2aa70f79e1e087b51651618ceec21013bff1c0",
+          "message": "benchmark cron (#12)",
+          "timestamp": "2022-03-15T17:58:39Z",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/9f2aa70f79e1e087b51651618ceec21013bff1c0"
+        },
+        "date": 1647373826185,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 31.50757318354211,
+            "unit": "ns/iter",
+            "extra": "iterations: 4444000\ncpu: 31.47405490549055 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 94.45951601908271,
+            "unit": "ns/iter",
+            "extra": "iterations: 1511000\ncpu: 92.82031767041693 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 738.6283269004216,
+            "unit": "ns/iter",
+            "extra": "iterations: 189000\ncpu: 737.6359788359788 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 2097194.5270640925,
+            "unit": "ns/iter",
+            "extra": "iterations: 409\ncpu: 332774.08312958444 ns\nthreads: 1"
           }
         ]
       }
