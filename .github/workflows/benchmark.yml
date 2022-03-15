@@ -1,5 +1,7 @@
 name: OpenTelemetry-cpp benchmarks
 on:
+  schedule:
+    - cron: 15 * * * *
   push:
     branches:
       - benchmark-action
