@@ -2,9 +2,6 @@ name: OpenTelemetry-cpp benchmarks
 on:
   schedule:
     - cron: 30 * * * *
-  push:
-    branches:
-      - benchmark-action
 
 permissions:
   contents: write
@@ -12,15 +9,10 @@ permissions:
 
 jobs:
   benchmark:
-    name: OpenTelemetry-cpp Mac benchmarks
-    runs-on: macos-latest
-    outputs:
-      output1: ${{ steps.run_benchmarks.outputs.test }}
-      api_result: ${{ steps.run_benchmarks.outputs.api_json }}
-      sdk_result: ${{ steps.run_benchmarks.outputs.sdk_json }}
-      exporters_result: ${{ steps.run_benchmarks.outputs.exporters_json }}
+    name: Run OpenTelemetry-cpp benchmarks
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: 'recursive'
       - name: Mount Bazel Cache
@@ -28,9 +20,12 @@ jobs:
         env:
           cache-name: bazel_cache
         with:
-          path: /Users/runner/.cache/bazel
-          key: bazel_osx
-      - uses: docker-practice/actions-setup-docker@1.0.8
+          path: /home/runner/.cache/bazel
+          key: bazel_benchmark
+      - name: setup
+        run: |
+          sudo ./ci/setup_cmake.sh
+          sudo ./ci/setup_ci_environment.sh
       - name: Run benchmark
         id: run_benchmarks
         run: |
@@ -39,10 +34,6 @@ jobs:
           mv api-benchmark_result.json benchmarks
           mv sdk-benchmark_result.json benchmarks
           mv exporters-benchmark_result.json benchmarks
-          echo "::set-output name=test::hello_world"
-          echo "::set-output name=api_json::$(cat api-benchmark_result.json)"
-          echo "::set-output name=sdk_json::$(cat sdk-benchmark_result.json)"
-          echo "::set-output name=exporters_json::$(cat exporters-benchmark_result.json)"
       - uses: actions/upload-artifact@master
         with:
           name: benchmark_results
@@ -55,18 +46,15 @@ jobs:
     name: Store benchmark result
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/download-artifact@master
         with:
           name: benchmark_results
           path: benchmarks
-      - name: Store json files
-        id: store_json
+      - name: Print json files
+        id: print_json
         run: |
           cat benchmarks/*
-          echo ${{needs.benchmark.outputs.api_result}} | tee api-benchmark_result.json
-          echo ${{needs.benchmark.outputs.sdk_result}} | tee sdk-benchmark_result.json
-          echo ${{needs.benchmark.outputs.exporters_result}} | tee exporters-benchmark_result.json
       - name: Push benchmark result
         uses: benchmark-action/github-action-benchmark@v1
         with:
@@ -79,6 +67,5 @@ jobs:
           alert-threshold: '200%'
           comment-on-alert: true
           fail-on-alert: true
-          alert-comment-cc-users: '@esigo'
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: benchmarks
