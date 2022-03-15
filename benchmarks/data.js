@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1647384808302,
+  "lastUpdate": 1647384809679,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp exporters Benchmark": [
@@ -184,6 +184,52 @@ window.BENCHMARK_DATA = {
             "value": 1564798.6619146515,
             "unit": "ns/iter",
             "extra": "iterations: 373\ncpu: 347648.2573726542 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Ehsan Saei",
+            "username": "esigo",
+            "email": "71217171+esigo@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "9f2aa70f79e1e087b51651618ceec21013bff1c0",
+          "message": "benchmark cron (#12)",
+          "timestamp": "2022-03-15T17:58:39Z",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/9f2aa70f79e1e087b51651618ceec21013bff1c0"
+        },
+        "date": 1647384809150,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 31.632203785026864,
+            "unit": "ns/iter",
+            "extra": "iterations: 4438000\ncpu: 31.5106128886886 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 92.66298914712573,
+            "unit": "ns/iter",
+            "extra": "iterations: 1512000\ncpu: 92.47460317460317 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 748.3934101305509,
+            "unit": "ns/iter",
+            "extra": "iterations: 190000\ncpu: 739.2952631578949 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 2132334.331474682,
+            "unit": "ns/iter",
+            "extra": "iterations: 404\ncpu: 293170.297029703 ns\nthreads: 1"
           }
         ]
       }
