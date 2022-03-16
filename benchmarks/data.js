@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1647409912876,
+  "lastUpdate": 1647414068781,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp exporters Benchmark": [
@@ -506,6 +506,52 @@ window.BENCHMARK_DATA = {
             "value": 1866917.30804023,
             "unit": "ns/iter",
             "extra": "iterations: 363\ncpu: 346224.51790633623 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Ehsan Saei",
+            "username": "esigo",
+            "email": "71217171+esigo@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "9f2aa70f79e1e087b51651618ceec21013bff1c0",
+          "message": "benchmark cron (#12)",
+          "timestamp": "2022-03-15T17:58:39Z",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/9f2aa70f79e1e087b51651618ceec21013bff1c0"
+        },
+        "date": 1647414067694,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 27.880122845571588,
+            "unit": "ns/iter",
+            "extra": "iterations: 5041000\ncpu: 27.742610593136284 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 82.40686888143166,
+            "unit": "ns/iter",
+            "extra": "iterations: 1703000\ncpu: 82.23540810334705 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 652.6891575303189,
+            "unit": "ns/iter",
+            "extra": "iterations: 215000\ncpu: 651.88 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 1669579.1787474696,
+            "unit": "ns/iter",
+            "extra": "iterations: 411\ncpu: 317274.695863747 ns\nthreads: 1"
           }
         ]
       }
