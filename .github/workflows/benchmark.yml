@@ -17,7 +17,7 @@ jobs:
       sdk_result: ${{ steps.run_benchmarks.outputs.sdk_json }}
       exporters_result: ${{ steps.run_benchmarks.outputs.exporters_json }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
         with:
           submodules: 'recursive'
       - name: Mount Bazel Cache

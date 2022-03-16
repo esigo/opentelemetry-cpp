@@ -210,7 +210,6 @@ void BM_otlp_grpc_with_collector(benchmark::State &state)
     foo_library();
   }
 }
-
 BENCHMARK(BM_otlp_grpc_with_collector);
 }  // namespace
 
