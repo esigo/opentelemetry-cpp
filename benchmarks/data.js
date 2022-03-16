@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1647451841966,
+  "lastUpdate": 1647451859151,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -244,6 +244,156 @@ window.BENCHMARK_DATA = {
             "value": 130289855.83969362,
             "unit": "ns/iter",
             "extra": "iterations: 131\ncpu: 1071229.0076335876 ns\nthreads: 1"
+          }
+        ]
+      }
+    ],
+    "OpenTelemetry-cpp sdk Benchmark": [
+      {
+        "commit": {
+          "author": {
+            "name": "Ehsan Saei",
+            "username": "esigo",
+            "email": "71217171+esigo@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "f7088444f783ac96669f27c7f86d5db1ed12eb32",
+          "message": "Benchmark action Mac (#13)",
+          "timestamp": "2022-03-16T16:51:08Z",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/f7088444f783ac96669f27c7f86d5db1ed12eb32"
+        },
+        "date": 1647451857868,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_AttributseHashMap",
+            "value": 22110067.000016898,
+            "unit": "ns/iter",
+            "extra": "iterations: 10\ncpu: 21924699.999999996 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_AttributseProcessorFilter",
+            "value": 431.1504769659476,
+            "unit": "ns/iter",
+            "extra": "iterations: 491125\ncpu: 286.18172562993124 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_AlwaysOffSamplerConstruction",
+            "value": 2.5692681503584365,
+            "unit": "ns/iter",
+            "extra": "iterations: 69877714\ncpu: 2.013517500014382 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_AlwaysOnSamplerConstruction",
+            "value": 2.226704609171581,
+            "unit": "ns/iter",
+            "extra": "iterations: 68870523\ncpu: 2.0034260521006932 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_ParentBasedSamplerConstruction",
+            "value": 352.4284692980093,
+            "unit": "ns/iter",
+            "extra": "iterations: 559508\ncpu: 253.99636823780892 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_TraceIdRatioBasedSamplerConstruction",
+            "value": 342.4674525261759,
+            "unit": "ns/iter",
+            "extra": "iterations: 430187\ncpu: 326.3627213281666 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_AlwaysOffSamplerShouldSample",
+            "value": 44.75697659773904,
+            "unit": "ns/iter",
+            "extra": "iterations: 3176620\ncpu: 44.21145746107494 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_AlwaysOnSamplerShouldSample",
+            "value": 44.92369370135518,
+            "unit": "ns/iter",
+            "extra": "iterations: 3115195\ncpu: 44.247310360988685 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_ParentBasedSamplerShouldSample",
+            "value": 71.16162002473953,
+            "unit": "ns/iter",
+            "extra": "iterations: 2847438\ncpu: 49.525573515560254 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_TraceIdRatioBasedSamplerShouldSample",
+            "value": 30.102884323803085,
+            "unit": "ns/iter",
+            "extra": "iterations: 4725579\ncpu: 29.34031999041805 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_SpanCreation",
+            "value": 2032.2350719408435,
+            "unit": "ns/iter",
+            "extra": "iterations: 73603\ncpu: 1939.4997486515483 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_NoopSpanCreation",
+            "value": 1994.0061680251897,
+            "unit": "ns/iter",
+            "extra": "iterations: 73119\ncpu: 1938.0188459907838 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_BaselineBuffer/1",
+            "value": 5045250.650000526,
+            "unit": "ns/iter",
+            "extra": "iterations: 100\ncpu: 82889.99999999999 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_BaselineBuffer/2",
+            "value": 6799480.600000151,
+            "unit": "ns/iter",
+            "extra": "iterations: 100\ncpu: 125219.99999999999 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_BaselineBuffer/4",
+            "value": 6444462.189999741,
+            "unit": "ns/iter",
+            "extra": "iterations: 100\ncpu: 229279.99999999997 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_LockFreeBuffer/1",
+            "value": 3277622.1469998746,
+            "unit": "ns/iter",
+            "extra": "iterations: 1000\ncpu: 78767 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_LockFreeBuffer/2",
+            "value": 2626128.218623385,
+            "unit": "ns/iter",
+            "extra": "iterations: 1235\ncpu: 110337.65182186235 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_LockFreeBuffer/4",
+            "value": 2845030.465346718,
+            "unit": "ns/iter",
+            "extra": "iterations: 808\ncpu: 176944.30693069307 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_AttributeMapHash",
+            "value": 138.78482415782634,
+            "unit": "ns/iter",
+            "extra": "iterations: 986054\ncpu: 138.1902005366846 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_RandomIdGeneration",
+            "value": 7.115070771590899,
+            "unit": "ns/iter",
+            "extra": "iterations: 26553876\ncpu: 5.298209572116703 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_RandomIdStdGeneration",
+            "value": 5.556312403153408,
+            "unit": "ns/iter",
+            "extra": "iterations: 26796823\ncpu: 5.192667802448077 ns\nthreads: 1"
           }
         ]
       }
