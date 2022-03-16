@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1647424504746,
+  "lastUpdate": 1647424506391,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp exporters Benchmark": [
@@ -644,6 +644,52 @@ window.BENCHMARK_DATA = {
             "value": 1838604.8093550752,
             "unit": "ns/iter",
             "extra": "iterations: 397\ncpu: 320859.69773299753 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Ehsan Saei",
+            "username": "esigo",
+            "email": "71217171+esigo@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "9f2aa70f79e1e087b51651618ceec21013bff1c0",
+          "message": "benchmark cron (#12)",
+          "timestamp": "2022-03-15T17:58:39Z",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/9f2aa70f79e1e087b51651618ceec21013bff1c0"
+        },
+        "date": 1647424505139,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 41.48511226962627,
+            "unit": "ns/iter",
+            "extra": "iterations: 3412000\ncpu: 41.432737397420865 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 122.61092178220672,
+            "unit": "ns/iter",
+            "extra": "iterations: 1230000\ncpu: 122.35439024390246 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 1055.7785034179688,
+            "unit": "ns/iter",
+            "extra": "iterations: 125000\ncpu: 1055.7415999999998 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 2013288.1547340471,
+            "unit": "ns/iter",
+            "extra": "iterations: 289\ncpu: 436216.95501730137 ns\nthreads: 1"
           }
         ]
       }
