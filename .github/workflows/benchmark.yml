@@ -1,10 +1,7 @@
 name: OpenTelemetry-cpp benchmarks
 on:
   schedule:
-    - cron: 15 * * * *
-  push:
-    branches:
-      - benchmark-action
+    - cron: 30 * * * *
 
 permissions:
   contents: write
@@ -39,10 +36,6 @@ jobs:
           mv api-benchmark_result.json benchmarks
           mv sdk-benchmark_result.json benchmarks
           mv exporters-benchmark_result.json benchmarks
-          echo "::set-output name=test::hello_world"
-          echo "::set-output name=api_json::$(cat api-benchmark_result.json)"
-          echo "::set-output name=sdk_json::$(cat sdk-benchmark_result.json)"
-          echo "::set-output name=exporters_json::$(cat exporters-benchmark_result.json)"
       - uses: actions/upload-artifact@master
         with:
           name: benchmark_results
@@ -55,7 +48,7 @@ jobs:
     name: Store benchmark result
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/download-artifact@master
         with:
           name: benchmark_results
@@ -67,6 +60,10 @@ jobs:
           echo ${{needs.benchmark.outputs.api_result}} | tee api-benchmark_result.json
           echo ${{needs.benchmark.outputs.sdk_result}} | tee sdk-benchmark_result.json
           echo ${{needs.benchmark.outputs.exporters_result}} | tee exporters-benchmark_result.json
+      - name: Print json files
+        id: print_json
+        run: |
+          cat benchmarks/*
       - name: Push benchmark result
         uses: benchmark-action/github-action-benchmark@v1
         with:
@@ -79,6 +76,5 @@ jobs:
           alert-threshold: '200%'
           comment-on-alert: true
           fail-on-alert: true
-          alert-comment-cc-users: '@esigo'
           gh-pages-branch: gh-pages
           benchmark-data-dir-path: benchmarks

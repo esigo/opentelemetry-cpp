@@ -37,7 +37,6 @@ function run_benchmarks
   )
 
   # collect benchmark results into one array
-  components=(api sdk exporters)
   pushd $BENCHMARK_DIR
   components=(api sdk exporters)
   for component in "${components[@]}"
@@ -60,11 +59,11 @@ mkdir -p "${BUILD_DIR}"
 [ -z "${PLUGIN_DIR}" ] && export PLUGIN_DIR=$HOME/plugin
 mkdir -p "${PLUGIN_DIR}"
 
-BAZEL_OPTIONS="--copt=-DENABLE_METRICS_PREVIEW --copt=-DENABLE_LOGS_PREVIEW"
+BAZEL_OPTIONS="--copt=-DENABLE_METRICS_PREVIEW --copt=-DENABLE_LOGS_PREVIEW --copt=-DENABLE_TEST"
 BAZEL_TEST_OPTIONS="$BAZEL_OPTIONS --test_output=errors"
 
 # https://github.com/bazelbuild/bazel/issues/4341
-BAZEL_MACOS_OPTIONS="$BAZEL_OPRIONS --features=-supports_dynamic_linker --build_tag_filters=-jaeger"
+BAZEL_MACOS_OPTIONS="$BAZEL_OPTIONS --features=-supports_dynamic_linker --build_tag_filters=-jaeger"
 BAZEL_MACOS_TEST_OPTIONS="$BAZEL_MACOS_OPTIONS --test_output=errors"
 
 BAZEL_STARTUP_OPTIONS="--output_user_root=$HOME/.cache/bazel"
@@ -161,6 +160,10 @@ elif [[ "$1" == "cmake.exporter.otprotocol.test" ]]; then
   make -j $(nproc)
   cd exporters/otlp && make test
   exit 0
+elif [[ "$1" == "bazel.with_abseil" ]]; then
+  bazel $BAZEL_STARTUP_OPTIONS build $BAZEL_OPTIONS --//api:with_abseil=true //...
+  bazel $BAZEL_STARTUP_OPTIONS test $BAZEL_TEST_OPTIONS --//api:with_abseil=true //...
+  exit 0
 elif [[ "$1" == "cmake.test_example_plugin" ]]; then
   # Build the plugin
   cd "${BUILD_DIR}"
@@ -203,8 +206,8 @@ elif [[ "$1" == "bazel.benchmark" ]]; then
   run_benchmarks
   exit 0
 elif [[ "$1" == "bazel.macos.test" ]]; then
-  bazel $BAZEL_STARTUP_OPTIONS build $BAZEL_MACOS_OPTIONS //...
-  bazel $BAZEL_STARTUP_OPTIONS test $BAZEL_MACOS_TEST_OPTIONS //...
+  bazel $BAZEL_STARTUP_OPTIONS build $BAZEL_MACOS_OPTIONS -- //... -//exporters/jaeger/...
+  bazel $BAZEL_STARTUP_OPTIONS test $BAZEL_MACOS_TEST_OPTIONS -- //... -//exporters/jaeger/...
   exit 0
 elif [[ "$1" == "bazel.legacy.test" ]]; then
   # we uses C++ future and async() function to test the Prometheus Exporter functionality,
@@ -215,8 +218,8 @@ elif [[ "$1" == "bazel.legacy.test" ]]; then
 elif [[ "$1" == "bazel.noexcept" ]]; then
   # there are some exceptions and error handling code from the Prometheus and Jaeger Clients
   # that make this test always fail. ignore Prometheus and Jaeger exporters in the noexcept here.
-  bazel $BAZEL_STARTUP_OPTIONS build --copt=-fno-exceptions $BAZEL_OPTIONS -- //... -//exporters/prometheus/... -//exporters/jaeger/...
-  bazel $BAZEL_STARTUP_OPTIONS test --copt=-fno-exceptions $BAZEL_TEST_OPTIONS -- //... -//exporters/prometheus/... -//exporters/jaeger/...
+  bazel $BAZEL_STARTUP_OPTIONS build --copt=-fno-exceptions --build_tag_filters=-jaeger $BAZEL_OPTIONS -- //... -//exporters/prometheus/... -//exporters/jaeger/...
+  bazel $BAZEL_STARTUP_OPTIONS test --copt=-fno-exceptions --build_tag_filters=-jaeger $BAZEL_TEST_OPTIONS -- //... -//exporters/prometheus/... -//exporters/jaeger/...
   exit 0
 elif [[ "$1" == "bazel.asan" ]]; then
   bazel $BAZEL_STARTUP_OPTIONS test --config=asan $BAZEL_TEST_OPTIONS //...
@@ -265,7 +268,7 @@ elif [[ "$1" == "code.coverage" ]]; then
   cp tmp_coverage.info coverage.info
   exit 0
 elif [[ "$1" == "third_party.tags" ]]; then
-  echo "gRPC=v1.39.1" > third_party_release
+  echo "gRPC=v1.43.2" > third_party_release
   echo "thrift=0.14.1" >> third_party_release
   echo "abseil=20210324.0" >> third_party_release
   git submodule status | sed 's:.*/::' | sed 's/ (/=/g' | sed 's/)//g' >> third_party_release

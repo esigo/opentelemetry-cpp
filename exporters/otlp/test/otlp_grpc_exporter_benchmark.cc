@@ -5,7 +5,6 @@
 #include "opentelemetry/exporters/otlp/otlp_recordable.h"
 
 #include <benchmark/benchmark.h>
-#include "opentelemetry/exporters/otlp/otlp_grpc_exporter.h"
 #include "opentelemetry/sdk/trace/simple_processor.h"
 #include "opentelemetry/sdk/trace/tracer_provider.h"
 #include "opentelemetry/trace/provider.h"
@@ -203,7 +202,7 @@ void InitTracer()
   trace::Provider::SetTracerProvider(provider);
 }
 
-void BM_otlp_grpc_local(benchmark::State &state)
+void BM_otlp_grpc_with_collector(benchmark::State &state)
 {
   InitTracer();
   while (state.KeepRunning())
@@ -211,7 +210,8 @@ void BM_otlp_grpc_local(benchmark::State &state)
     foo_library();
   }
 }
-BENCHMARK(BM_otlp_grpc_local);
+
+BENCHMARK(BM_otlp_grpc_with_collector);
 }  // namespace
 
 BENCHMARK_MAIN();
