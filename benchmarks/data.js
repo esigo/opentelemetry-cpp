@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1647407032331,
+  "lastUpdate": 1647407035129,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp exporters Benchmark": [
@@ -414,6 +414,52 @@ window.BENCHMARK_DATA = {
             "value": 1896682.3816299438,
             "unit": "ns/iter",
             "extra": "iterations: 400\ncpu: 336459.50000000006 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Ehsan Saei",
+            "username": "esigo",
+            "email": "71217171+esigo@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "9f2aa70f79e1e087b51651618ceec21013bff1c0",
+          "message": "benchmark cron (#12)",
+          "timestamp": "2022-03-15T17:58:39Z",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/9f2aa70f79e1e087b51651618ceec21013bff1c0"
+        },
+        "date": 1647407034104,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 41.45028625906928,
+            "unit": "ns/iter",
+            "extra": "iterations: 3499000\ncpu: 41.34386967705059 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 109.21909781916513,
+            "unit": "ns/iter",
+            "extra": "iterations: 1315000\ncpu: 109.04942965779468 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 889.9100921438925,
+            "unit": "ns/iter",
+            "extra": "iterations: 159000\ncpu: 880.2716981132075 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 3198840.3253387986,
+            "unit": "ns/iter",
+            "extra": "iterations: 285\ncpu: 497119.29824561405 ns\nthreads: 1"
           }
         ]
       }
