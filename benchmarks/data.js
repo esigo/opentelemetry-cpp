@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1647534224017,
+  "lastUpdate": 1647534225684,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -4992,6 +4992,52 @@ window.BENCHMARK_DATA = {
             "value": 60677793.30001031,
             "unit": "ns/iter",
             "extra": "iterations: 10\ncpu: 1430999.9999999935 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "Ehsan Saei",
+            "username": "esigo",
+            "email": "71217171+esigo@users.noreply.github.com"
+          },
+          "committer": {
+            "name": "GitHub",
+            "username": "web-flow",
+            "email": "noreply@github.com"
+          },
+          "id": "f7088444f783ac96669f27c7f86d5db1ed12eb32",
+          "message": "Benchmark action Mac (#13)",
+          "timestamp": "2022-03-16T16:51:08Z",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/f7088444f783ac96669f27c7f86d5db1ed12eb32"
+        },
+        "date": 1647534224277,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 68.34986379059771,
+            "unit": "ns/iter",
+            "extra": "iterations: 2063000\ncpu: 67.96122152205525 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 279.20403986671016,
+            "unit": "ns/iter",
+            "extra": "iterations: 602000\ncpu: 236.79568106312288 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 1833.0059487174692,
+            "unit": "ns/iter",
+            "extra": "iterations: 78000\ncpu: 1791.833333333333 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 154895230.7000036,
+            "unit": "ns/iter",
+            "extra": "iterations: 10\ncpu: 1180300.0000000007 ns\nthreads: 1"
           }
         ]
       }
