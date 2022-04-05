@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1649174064430,
+  "lastUpdate": 1649174066143,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -9012,6 +9012,54 @@ window.BENCHMARK_DATA = {
             "value": 2151934.0269746836,
             "unit": "ns/iter",
             "extra": "iterations: 342\ncpu: 393781.28654970776 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "Tom.Tan@microsoft.com",
+            "name": "Tom Tan",
+            "username": "ThomsonTan"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "237a0b26372b8a75ae941272b78bc07f12692c7b",
+          "message": "Excempt should be applied on issue instead of PR (#1316)",
+          "timestamp": "2022-04-04T20:41:02-07:00",
+          "tree_id": "2d6d0e656fc5dfad523d31bfef3949ed51344b5b",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/237a0b26372b8a75ae941272b78bc07f12692c7b"
+        },
+        "date": 1649174062972,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 34.2498443855097,
+            "unit": "ns/iter",
+            "extra": "iterations: 4003000\ncpu: 34.24798900824382 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 95.14402081185315,
+            "unit": "ns/iter",
+            "extra": "iterations: 1398000\ncpu: 95.12825464949931 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 770.3253831812945,
+            "unit": "ns/iter",
+            "extra": "iterations: 189000\ncpu: 770.1037037037037 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 1849861.0301190112,
+            "unit": "ns/iter",
+            "extra": "iterations: 332\ncpu: 432200.0000000001 ns\nthreads: 1"
           }
         ]
       }
