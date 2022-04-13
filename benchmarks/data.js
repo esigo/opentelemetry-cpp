@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1649813542545,
+  "lastUpdate": 1649813543876,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -9900,6 +9900,54 @@ window.BENCHMARK_DATA = {
             "value": 1668791.4226832015,
             "unit": "ns/iter",
             "extra": "iterations: 356\ncpu: 389681.1797752808 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lalit_fin@yahoo.com",
+            "name": "Lalit Kumar Bhasin",
+            "username": "lalitb"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "75c2a8f7a6bf81d9799e76804473609cc236b7be",
+          "message": "Update yield logic for ARM processor (#1325)",
+          "timestamp": "2022-04-12T14:33:39-07:00",
+          "tree_id": "c26515fdd5b5debb2af48f98dd0d92d81ceded34",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/75c2a8f7a6bf81d9799e76804473609cc236b7be"
+        },
+        "date": 1649813541668,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 37.1827367292847,
+            "unit": "ns/iter",
+            "extra": "iterations: 3657000\ncpu: 37.01279737489747 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 105.24272918701172,
+            "unit": "ns/iter",
+            "extra": "iterations: 1000000\ncpu: 104.99240000000002 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 812.2540084568001,
+            "unit": "ns/iter",
+            "extra": "iterations: 169000\ncpu: 807.7213017751476 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 3178156.3392052283,
+            "unit": "ns/iter",
+            "extra": "iterations: 260\ncpu: 516596.53846153856 ns\nthreads: 1"
           }
         ]
       }
