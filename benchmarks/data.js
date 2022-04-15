@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1650012054452,
+  "lastUpdate": 1650012055752,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -10344,6 +10344,54 @@ window.BENCHMARK_DATA = {
             "value": 2557876.240855028,
             "unit": "ns/iter",
             "extra": "iterations: 237\ncpu: 473271.30801687774 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "71217171+esigo@users.noreply.github.com",
+            "name": "Ehsan Saei",
+            "username": "esigo"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "e3304d7897fe72f628da5a567166970b103e17b6",
+          "message": "fix metrics compiler warnings (#1328)",
+          "timestamp": "2022-04-15T12:50:47+05:30",
+          "tree_id": "6b8621d7f00361094390222c31b3fde0c93b8d95",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/e3304d7897fe72f628da5a567166970b103e17b6"
+        },
+        "date": 1650012054061,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 32.68986804626509,
+            "unit": "ns/iter",
+            "extra": "iterations: 4171000\ncpu: 32.69012227283625 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 99.95760802166684,
+            "unit": "ns/iter",
+            "extra": "iterations: 1445000\ncpu: 99.94595155709342 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 752.3070267640828,
+            "unit": "ns/iter",
+            "extra": "iterations: 183000\ncpu: 752.2699453551916 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 1836918.2707771421,
+            "unit": "ns/iter",
+            "extra": "iterations: 315\ncpu: 432779.3650793651 ns\nthreads: 1"
           }
         ]
       }
