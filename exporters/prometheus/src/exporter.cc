@@ -17,10 +17,10 @@ namespace metrics
  */
 PrometheusExporter::PrometheusExporter(std::string &address) : is_shutdown_(false)
 {
-  // exposer_   = std::unique_ptr<::prometheus::Exposer>(new ::prometheus::Exposer{address});
-  // collector_ = std::shared_ptr<PrometheusCollector>(new PrometheusCollector);
+  exposer_   = std::unique_ptr<::prometheus::Exposer>(new ::prometheus::Exposer{address});
+  collector_ = std::shared_ptr<PrometheusCollector>(new PrometheusCollector);
 
-  // exposer_->RegisterCollectable(collector_);
+  exposer_->RegisterCollectable(collector_);
 }
 
 /**
@@ -54,6 +54,11 @@ sdk::common::ExportResult PrometheusExporter::Export(
     return sdk::common::ExportResult::kSuccess;
   }
   return sdk::common::ExportResult::kSuccess;
+}
+
+bool PrometheusExporter::ForceFlush(std::chrono::microseconds timeout) noexcept
+{
+  return true;
 }
 
 /**

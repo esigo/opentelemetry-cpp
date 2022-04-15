@@ -59,11 +59,12 @@ private:
   /**
    * Set value to metric family for different aggregator
    */
-  template <typename T>
-  static void SetMetricFamilyByAggregator(
-      std::shared_ptr<opentelemetry::sdk::metrics::Aggregation> aggregator,
-      std::string labels_str,
-      ::prometheus::MetricFamily *metric_family);
+  static void SetMetricFamilyByAggregator(const sdk::metrics::ResourceMetrics &data,
+                                          std::string labels_str,
+                                          ::prometheus::MetricFamily *metric_family);
+
+  static opentelemetry::sdk::metrics::AggregationType getAggregationType(
+      const opentelemetry::sdk::metrics::PointType &point_type);
 
   /**
    * Translate the OTel metric type to Prometheus metric type
@@ -73,7 +74,6 @@ private:
   /**
    * Set metric data for:
    * Counter => Prometheus Counter
-   * Gauge => Prometheus Gauge
    */
   template <typename T>
   static void SetData(std::vector<T> values,
@@ -88,36 +88,11 @@ private:
    */
   template <typename T>
   static void SetData(std::vector<T> values,
-                      const std::vector<double> &boundaries,
-                      const std::vector<int> &counts,
+                      const opentelemetry::sdk::metrics::ListType &boundaries,
+                      const std::vector<uint64_t> &counts,
                       const std::string &labels,
                       std::chrono::nanoseconds time,
                       ::prometheus::MetricFamily *metric_family);
-
-  /**
-   * Set metric data for:
-   * MinMaxSumCount => Prometheus Gauge
-   * Use Average (sum / count) as the gauge metric
-   */
-  static void SetData(double value,
-                      const std::string &labels,
-                      std::chrono::nanoseconds time,
-                      ::prometheus::MetricFamily *metric_family);
-
-  /**
-   * Set metric data for:
-   * Exact => Prometheus Summary
-   * Sketch => Prometheus Summary
-   */
-  template <typename T>
-  static void SetData(std::vector<T> values,
-                      opentelemetry::sdk::metrics::AggregationType kind,
-                      const std::vector<T> &quantiles,
-                      const std::string &labels,
-                      std::chrono::nanoseconds time,
-                      ::prometheus::MetricFamily *metric_family,
-                      bool do_quantile,
-                      std::vector<double> quantile_points);
 
   /**
    * Set time and labels to metric data
@@ -157,22 +132,11 @@ private:
   /**
    * Handle Histogram
    */
-  template <typename T>
+  template <typename T, typename U>
   static void SetValue(std::vector<T> values,
-                       std::vector<double> boundaries,
-                       std::vector<int> counts,
+                       const std::list<U> &boundaries,
+                       const std::vector<uint64_t> &counts,
                        ::prometheus::ClientMetric *metric);
-
-  /**
-   * Handle Exact and Sketch
-   */
-  template <typename T>
-  static void SetValue(std::vector<T> values,
-                       opentelemetry::sdk::metrics::AggregationType kind,
-                       std::vector<T> quantiles,
-                       ::prometheus::ClientMetric *metric,
-                       bool do_quantile,
-                       const std::vector<double> &quantile_points);
 };
 }  // namespace metrics
 }  // namespace exporter
