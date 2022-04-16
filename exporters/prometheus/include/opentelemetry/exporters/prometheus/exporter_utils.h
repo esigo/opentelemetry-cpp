@@ -109,14 +109,6 @@ private:
   static std::vector<std::pair<std::string, std::string>> ParseLabel(std::string labels);
 
   /**
-   * Build a quantiles vector from aggregator
-   */
-  template <typename T>
-  static std::vector<T> GetQuantilesVector(
-      std::shared_ptr<opentelemetry::sdk::metrics::Aggregation> aggregator,
-      const std::vector<double> &quantile_points);
-
-  /**
    * Handle Counter and Gauge.
    */
   template <typename T>

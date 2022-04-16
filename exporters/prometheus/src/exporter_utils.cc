@@ -104,7 +104,7 @@ void PrometheusExporterUtils::SetMetricFamilyByAggregator(
                                       (double)histogram_point_data.count_},
                   boundaries, counts, labels_str, time, metric_family);
         }
-        // else  // Counter, Untyped
+        else  // Counter, Untyped
         {
           auto sum_point_data = nostd::get<sdk::metrics::SumPointData>(point_data_attr.point_data);
           std::vector<metric_sdk::ValueType> values{sum_point_data.value_};
@@ -190,6 +190,10 @@ void PrometheusExporterUtils::SetData(std::vector<T> values,
   {
     SetValue(values, nostd::get<std::list<long>>(boundaries), counts, &metric);
   }
+  else
+  {
+    SetValue(values, nostd::get<std::list<double>>(boundaries), counts, &metric);
+  }
 }
 
 /**
@@ -254,23 +258,6 @@ std::vector<std::pair<std::string, std::string>> PrometheusExporterUtils::ParseL
 }
 
 /**
- * Build a quantiles vector from aggregator
- */
-template <typename T>
-std::vector<T> PrometheusExporterUtils::GetQuantilesVector(
-    std::shared_ptr<metric_sdk::Aggregation> aggregator,
-    const std::vector<double> &quantile_points)
-{
-  std::vector<T> quantiles;
-  for (double q : quantile_points)
-  {
-    // T quantile = aggregator->get_quantiles(q);
-    // quantiles.emplace_back(quantile);
-  }
-  return quantiles;
-}
-
-/**
  * Handle Counter.
  */
 template <typename T>
@@ -286,8 +273,9 @@ void PrometheusExporterUtils::SetValue(std::vector<T> values,
   }
   else
   {
-    value = nostd::holds_alternative<double>(value_var);
+    value = nostd::get<double>(value_var);
   }
+
   switch (type)
   {
     case prometheus_client::MetricType::Counter: {
@@ -322,15 +310,9 @@ void PrometheusExporterUtils::SetValue(std::vector<T> values,
     prometheus_client::ClientMetric::Bucket bucket;
     cumulative += counts[idx];
     bucket.cumulative_count = cumulative;
-    if (idx != boundaries.size())
-    {
-      bucket.upper_bound = boundary;
-    }
-    else
-    {
-      bucket.upper_bound = std::numeric_limits<double>::infinity();
-    }
+    bucket.upper_bound      = boundary;
     buckets.emplace_back(bucket);
+    ++idx;
   }
   prometheus_client::ClientMetric::Bucket bucket;
   cumulative += counts[idx];
