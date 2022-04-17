@@ -36,7 +36,9 @@ jobs:
         push: false
         tags: otel-cpp
         cache-from: type=gha
-        cache-to: type=gha,mode=max
+        # cache-to: type=gha,mode=max
+    -
+      name: Save Image
       run: |
         docker images
         docker save -o /opt/otel-cpp.tar otel-cpp
