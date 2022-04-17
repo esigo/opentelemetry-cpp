@@ -5,7 +5,9 @@ FROM ${BASE_IMAGE} as base
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y build-essential autoconf libtool pkg-config cmake git libssl-dev
+RUN apt-get update && apt-get install -y build-essential autoconf \
+    libtool pkg-config cmake git libssl-dev curl \
+	libcurl4-openssl-dev
 
 WORKDIR /work
 

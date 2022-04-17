@@ -20,7 +20,7 @@ jobs:
           event: push
           name: otel-cpp-deps
           path: /opt/
-      - name: print artifacts
+      - name: Load deps image
         run: |
           docker load -i /opt/otel-cpp-deps.tar
       - uses: actions/checkout@v3
