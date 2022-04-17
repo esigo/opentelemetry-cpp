@@ -22,4 +22,4 @@ jobs:
           path: path/to/artifact
       - name: print artifacts
         run: |
-          cat /*.txt
+          cat path/to/artifact/*.txt
