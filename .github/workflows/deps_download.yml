@@ -13,7 +13,7 @@ jobs:
           github_token: ${{secrets.GITHUB_TOKEN}}
           run_id: 2180176233
           # https://github.com/dawidd6/action-download-artifact/issues/147
-          # workflow: dependencies.yml
+          workflow: dependencies.yml
           workflow_conclusion: success
           commit: ${{github.event.pull_request.head.sha}}
           branch: artifacts
