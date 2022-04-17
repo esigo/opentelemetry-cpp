@@ -40,6 +40,7 @@ jobs:
     -
       name: Save Image
       run: |
+        docker images
         docker save -o /opt/otel-cpp.tar otel-cpp
     -
       name: Upload Image
