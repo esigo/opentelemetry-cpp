@@ -19,7 +19,7 @@ jobs:
           branch: artifacts
           event: push
           name: my-artifact
-          path: /
+          path: path/to/artifact
       - name: print artifacts
         run: |
           cat /*.txt
