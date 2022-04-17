@@ -42,7 +42,7 @@ jobs:
       name: Save Image
       run: |
         docker images
-        docker save -o /opt/otel-cpp.tar otel-cpp
+        docker save -o /opt/otel-cpp-deps.tar otel-cpp
     -
       name: Upload Image
       uses: actions/upload-artifact@v3
