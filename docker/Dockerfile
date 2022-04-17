@@ -3,6 +3,8 @@ ARG CORES=${nproc}
 
 FROM ${BASE_IMAGE} as base
 
+RUN apt-get update && apt-get install -y build-essential autoconf libtool pkg-config cmake git libssl-dev
+
 ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /work
 
@@ -24,7 +26,7 @@ ARG THRIFT_VERSION=0.14.1
 ADD setup_thrift.sh .
 RUN ./setup_thrift.sh
 
-FROM base
+FROM base as final
 ARG CORES
 COPY --from=grpc /usr /usr
 COPY --from=thrift /usr /usr
