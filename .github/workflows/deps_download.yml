@@ -3,14 +3,19 @@ on:
   push:
     branches:
       - artifacts
-- name: Download artifact
-  uses: dawidd6/action-download-artifact@v2
-  with:
-    workflow: dependencies.yml
-    workflow_conclusion: success
-    branch: artifacts
-    event: push
-    name: my-artifact
-    path: /
-    run: |
-      cat /*.txt
+jobs:
+  download_artifact:
+    name: download artifact
+    runs-on: ubuntu-latest
+    steps:
+    - name: Download artifact
+      uses: dawidd6/action-download-artifact@v2
+        with:
+          workflow: dependencies.yml
+          workflow_conclusion: success
+          branch: artifacts
+          event: push
+          name: my-artifact
+          path: /
+        run: |
+          cat /*.txt
