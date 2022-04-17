@@ -7,7 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y build-essential autoconf \
     libtool pkg-config cmake git libssl-dev curl \
-	libcurl4-openssl-dev
+	libcurl4-openssl-dev libgtest-dev libgmock-dev libbenchmark-dev
 
 WORKDIR /work
 
