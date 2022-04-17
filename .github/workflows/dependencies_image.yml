@@ -3,9 +3,9 @@ on:
   push:
     branches:
       - artifacts
-on:
-  schedule:
-    - cron: "0 3 * * 6"
+# on:
+#   schedule:
+#     - cron: "0 3 * * 6"
 
 jobs:
   docker_image:
