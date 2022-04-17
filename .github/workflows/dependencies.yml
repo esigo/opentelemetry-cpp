@@ -1,0 +1,22 @@
+name: OpenTelemetry-cpp dependencies
+on:
+  push:
+    branches:
+      - artifacts
+
+jobs:
+  cmake_test:
+    name: CMake test (without otlp-exporter)
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+    - name: setup
+      run: |
+        mkdir -p path/to/artifact
+        echo hello > path/to/artifact/world.txt
+    - uses: actions/upload-artifact@v3
+      with:
+        name: my-artifact
+        path: path/to/artifact/world.txt
