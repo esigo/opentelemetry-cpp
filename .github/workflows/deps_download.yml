@@ -22,4 +22,5 @@ jobs:
           path: /opt/otel-cpp-deps.tar
       - name: print artifacts
         run: |
-          ls -la -h /opt/otel-cpp-deps.tar
+          docker load -i /opt/otel-cpp-deps.tar
+          docker images
