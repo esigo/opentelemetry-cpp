@@ -19,7 +19,7 @@ jobs:
           branch: artifacts
           event: push
           name: otel-cpp-deps
-          path: /opt/otel-cpp-deps.tar
+          path: /opt/
       - name: print artifacts
         run: |
           docker load -i /opt/otel-cpp-deps.tar
