@@ -1,11 +1,11 @@
-name: 'Build Multi-Platform OpenTelemetry Docker image'
+name: 'OpenTelemetry-cpp dependencies image'
 on:
   push:
     branches:
       - artifacts
-# on:
-#   schedule:
-#     - cron: '30 1 * * *'
+on:
+  schedule:
+    - cron: "0 3 * * 6"
 
 jobs:
   docker_image:

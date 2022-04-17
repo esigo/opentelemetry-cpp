@@ -11,15 +11,15 @@ jobs:
       - uses: dawidd6/action-download-artifact@v2.19.0
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
-          run_id: 2180176233
+          run_id: 2180763318
           # https://github.com/dawidd6/action-download-artifact/issues/147
           workflow: dependencies.yml
           workflow_conclusion: success
           commit: ${{github.event.pull_request.head.sha}}
           branch: artifacts
           event: push
-          name: my-artifact
-          path: path/to/artifact
+          name: otel-cpp-deps
+          path: /opt/otel-cpp-deps.tar
       - name: print artifacts
         run: |
-          cat path/to/artifact/*.txt
+          ls -la -h /opt/otel-cpp-deps.tar
