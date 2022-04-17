@@ -23,4 +23,9 @@ jobs:
       - name: print artifacts
         run: |
           docker load -i /opt/otel-cpp-deps.tar
-          docker images
+      - uses: actions/checkout@v3
+        with:
+        submodules: 'recursive'
+      - name: cmake test
+        run: |
+          docker run -i --rm -v $(pwd):/work otel-cpp /work/ci/do_ci.sh cmake.test
