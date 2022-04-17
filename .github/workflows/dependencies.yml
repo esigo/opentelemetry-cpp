@@ -4,8 +4,8 @@ on:
     branches: [ artifacts ]
 
 jobs:
-  cmake_test:
-    name: CMake test (without otlp-exporter)
+  dependencies:
+    name: dependencies image
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
