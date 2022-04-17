@@ -3,9 +3,10 @@ ARG CORES=${nproc}
 
 FROM ${BASE_IMAGE} as base
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && apt-get install -y build-essential autoconf libtool pkg-config cmake git libssl-dev
 
-ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /work
 
 RUN apt-get update && apt-get install -y autoconf libtool pkg-config cmake git libssl-dev
