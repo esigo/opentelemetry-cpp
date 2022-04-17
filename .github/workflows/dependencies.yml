@@ -1,6 +1,6 @@
 name: OpenTelemetry-cpp dependencies
 on:
-  push:
+  pull_request:
     branches: [ artifacts ]
 
 jobs:
