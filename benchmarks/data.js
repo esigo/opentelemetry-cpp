@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1651003557413,
+  "lastUpdate": 1651003558310,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -11724,6 +11724,54 @@ window.BENCHMARK_DATA = {
             "value": 1730797.337550743,
             "unit": "ns/iter",
             "extra": "iterations: 306\ncpu: 368314.7058823529 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "Tom.Tan@microsoft.com",
+            "name": "Tom Tan",
+            "username": "ThomsonTan"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "c917beda3e5af3628020ad8faf58e61924260c8b",
+          "message": "Add explicit type cast in baggage UrlDecode (#1353)",
+          "timestamp": "2022-04-26T21:42:26+02:00",
+          "tree_id": "1a10f1e26593b56951c27fd751094bb3d592eced",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/c917beda3e5af3628020ad8faf58e61924260c8b"
+        },
+        "date": 1651003556784,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 35.93137725141944,
+            "unit": "ns/iter",
+            "extra": "iterations: 3947000\ncpu: 35.83987838864961 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 106.77281912271079,
+            "unit": "ns/iter",
+            "extra": "iterations: 1386000\ncpu: 106.59314574314574 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 811.1746914415475,
+            "unit": "ns/iter",
+            "extra": "iterations: 166000\ncpu: 810.4319277108435 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 2716837.7653344884,
+            "unit": "ns/iter",
+            "extra": "iterations: 308\ncpu: 505577.92207792215 ns\nthreads: 1"
           }
         ]
       }
