@@ -1,7 +1,6 @@
 name: 'OpenTelemetry-cpp dependencies image'
 on:
-  schedule:
-    - cron: "0 3 * * 6"
+  push: dep-image
 
 jobs:
   docker_image:
