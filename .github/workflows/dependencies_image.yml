@@ -1,6 +1,7 @@
 name: 'OpenTelemetry-cpp dependencies image'
 on:
-  push: dep-image
+  push:
+    branches: dep-image
 
 jobs:
   docker_image:
