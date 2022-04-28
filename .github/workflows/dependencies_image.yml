@@ -25,7 +25,7 @@ jobs:
       with:
         builder: ${{ steps.buildx.outputs.name }}
         context: ci/
-        file: ./docker/Dockerfile
+        file: ./docker/Dockerfile.debian.deps
         build-args: BASE_IMAGE=ubuntu:latest
         platforms: linux/amd64
         # platforms: linux/amd64,linux/arm64
