@@ -54,8 +54,7 @@ mkdir -p build && pushd build
 cmake -DgRPC_INSTALL=ON \
     -DCMAKE_CXX_STANDARD=11 \
     -DgRPC_BUILD_TESTS=OFF \
-    -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} \
-    -DCMAKE_PREFIX_PATH=${INSTALL_DIR} \
+    -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}
     ..
 make -j $(nproc)
 make install
