@@ -50,7 +50,8 @@ cmake -DCMAKE_BUILD_TYPE=Release  \
     -DCMAKE_CXX_STANDARD=11 \
     -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE \
     -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} ..
-make -j${nproc} install && popd
+make -j${nproc} install
+popd
 ls
 pwd
 mkdir -p build && pushd build
