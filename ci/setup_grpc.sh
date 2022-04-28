@@ -47,11 +47,13 @@ git submodule init
 git submodule update --depth 1
 mkdir -p "third_party/abseil-cpp/build" && pushd "third_party/abseil-cpp/build"
 cmake -DCMAKE_BUILD_TYPE=Release  \
-      -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE \
-      -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} ..
+    -DCMAKE_CXX_STANDARD=11 \
+    -DCMAKE_POSITION_INDEPENDENT_CODE=TRUE \
+    -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR} ..
 make -j${nproc} install && popd
 mkdir -p build && pushd build
 cmake -DgRPC_INSTALL=ON \
+    -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_CXX_STANDARD=11 \
     -DgRPC_BUILD_TESTS=OFF \
     -DCMAKE_INSTALL_PREFIX=${INSTALL_DIR}
