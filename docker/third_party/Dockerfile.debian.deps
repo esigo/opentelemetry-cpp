@@ -1,0 +1,52 @@
+ARG BASE_IMAGE=ubuntu:latest
+ARG CORES=${nproc}
+
+FROM ${BASE_IMAGE} as base
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y build-essential autoconf \
+    libtool pkg-config cmake git libssl-dev curl \
+	libcurl4-openssl-dev libgtest-dev libgmock-dev libbenchmark-dev
+
+FROM base as grpc
+# install grpc, protobuf and abseil
+ARG GRPC_VERSION=1.45.2
+
+RUN mkdir -p /opt/third_party/grpc
+
+WORKDIR /opt/third_party/grpc
+
+ADD CMakeLists.txt /opt/third_party/grpc
+
+RUN mkdir build \
+&& cd build \
+&& cmake .. \
+&& make -j3
+
+FROM base as thrift
+RUN apt-get install -y --no-install-recommends wget
+
+# install thrift
+# ARG THRIFT_VERSION=0.14.1
+# ADD setup_thrift.sh .
+# RUN ./setup_thrift.sh -i "/opt/otel-cpp"
+
+FROM scratch as final
+
+RUN mkdir -p /opt/third_party
+
+WORKDIR /opt/third_party
+
+COPY --from=grpc /opt/third_party/grpc/build/stage/ .
+# COPY --from=thrift /opt/otel-cpp /
+
+# how to use:
+#
+# docker create -ti --name deps otel-cpp-deps bash
+# docker cp deps:/ ./
+# docker rm -f deps
+#
+# or:
+#
+# COPY --from=otel-cpp-deps /usr

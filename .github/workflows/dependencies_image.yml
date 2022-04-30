@@ -24,8 +24,8 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         builder: ${{ steps.buildx.outputs.name }}
-        context: ci/
-        file: ./docker/Dockerfile.debian.deps
+        context: docker/third_party
+        file: ./docker/third_party/Dockerfile.debian.deps
         build-args: BASE_IMAGE=ubuntu:latest
         platforms: linux/amd64
         # platforms: linux/amd64,linux/arm64
