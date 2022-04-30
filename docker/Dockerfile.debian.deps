@@ -1,4 +1,4 @@
-ARG BASE_IMAGE=ubuntu:18.04
+ARG BASE_IMAGE=ubuntu:latest
 ARG CORES=${nproc}
 
 FROM ${BASE_IMAGE} as base
@@ -7,7 +7,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y build-essential autoconf \
     libtool pkg-config cmake git libssl-dev curl \
-	libcurl4-openssl-dev libgtest-dev libgmock-dev libbenchmark-dev
+	libcurl4-openssl-dev libgtest-dev libgmock-dev libbenchmark-dev \
+    g++-10
 
 WORKDIR /work
 RUN mkdir -p /opt/otel-cpp
@@ -17,7 +18,8 @@ FROM base as grpc
 ARG GRPC_VERSION=1.45.2
 
 ADD setup_grpc.sh .
-RUN ./setup_grpc.sh  -i "/opt/otel-cpp" -v ${GRPC_VERSION}
+RUN export CXX=g++-10 \
+    && ./setup_grpc.sh  -i "/opt/otel-cpp" -v ${GRPC_VERSION}
 
 FROM base as thrift
 RUN apt-get install -y --no-install-recommends wget
