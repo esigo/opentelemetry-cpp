@@ -13,7 +13,8 @@ FROM base as grpc
 # install grpc, protobuf and abseil
 ARG GRPC_VERSION=1.45.2
 
-RUN mkdir -p /opt/third_party/grpc
+RUN mkdir -p /opt/third_party/grpc \
+ && mkdir -p /opt/third_party/install
 
 WORKDIR /opt/third_party/grpc
 
@@ -21,11 +22,11 @@ ADD CMakeLists.txt /opt/third_party/grpc
 
 RUN mkdir build \
 && cd build \
-&& cmake .. \
-&& make -j3
+&& cmake -DCMAKE_INSTALL_PREFIX=/opt/third_party/install .. \
+&& make -j3 install
 
-FROM base as thrift
-RUN apt-get install -y --no-install-recommends wget
+# FROM base as thrift
+# RUN apt-get install -y --no-install-recommends wget
 
 # install thrift
 # ARG THRIFT_VERSION=0.14.1
@@ -34,11 +35,7 @@ RUN apt-get install -y --no-install-recommends wget
 
 FROM scratch as final
 
-RUN mkdir -p /opt/third_party
-
-WORKDIR /opt/third_party
-
-COPY --from=grpc /opt/third_party/grpc/build/stage/ .
+COPY --from=grpc /opt/third_party/install /
 # COPY --from=thrift /opt/otel-cpp /
 
 # how to use:
