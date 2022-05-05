@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1651779983815,
+  "lastUpdate": 1651779985104,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -13500,6 +13500,54 @@ window.BENCHMARK_DATA = {
             "value": 2688829.7154353214,
             "unit": "ns/iter",
             "extra": "iterations: 299\ncpu: 453616.3879598662 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "bolony.zsolt@gmail.com",
+            "name": "Zsolt Bölöny",
+            "username": "yzsolt"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "d3c4200654b359aa9ffc0c0e29a72ac97025fde5",
+          "message": "Fix empty tracestate header propagation (#1373)",
+          "timestamp": "2022-05-05T11:49:23-07:00",
+          "tree_id": "ba85d5d750054f84c5b85a7457f5ef1ee98804ad",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/d3c4200654b359aa9ffc0c0e29a72ac97025fde5"
+        },
+        "date": 1651779984282,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 28.26431116323401,
+            "unit": "ns/iter",
+            "extra": "iterations: 5019000\ncpu: 27.873460848774663 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 82.82689323202212,
+            "unit": "ns/iter",
+            "extra": "iterations: 1710000\ncpu: 81.69339181286551 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 651.4390309651693,
+            "unit": "ns/iter",
+            "extra": "iterations: 216000\ncpu: 650.6500000000003 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 1641088.8845629327,
+            "unit": "ns/iter",
+            "extra": "iterations: 483\ncpu: 283281.573498965 ns\nthreads: 1"
           }
         ]
       }
