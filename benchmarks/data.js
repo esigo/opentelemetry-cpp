@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1651911618893,
+  "lastUpdate": 1651911620406,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -14118,6 +14118,54 @@ window.BENCHMARK_DATA = {
             "value": 3103040.715553582,
             "unit": "ns/iter",
             "extra": "iterations: 281\ncpu: 524180.07117437746 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lalit_fin@yahoo.com",
+            "name": "Lalit Kumar Bhasin",
+            "username": "lalitb"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": false,
+          "id": "02630e0b6d5875625ba85985494a4182b01ed89a",
+          "message": "[Metrics SDK] Remove un-necessary files. (#1379)",
+          "timestamp": "2022-05-07T09:45:44+02:00",
+          "tree_id": "8a3bf1034364b8af5f0a03049ff90709b276ed88",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/02630e0b6d5875625ba85985494a4182b01ed89a"
+        },
+        "date": 1651911617804,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 36.12382966491459,
+            "unit": "ns/iter",
+            "extra": "iterations: 3805000\ncpu: 36.05545335085414 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 103.7729283173879,
+            "unit": "ns/iter",
+            "extra": "iterations: 1344000\ncpu: 102.89278273809524 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 953.4403404093678,
+            "unit": "ns/iter",
+            "extra": "iterations: 161000\ncpu: 952.6372670807456 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 3582013.911338308,
+            "unit": "ns/iter",
+            "extra": "iterations: 199\ncpu: 613634.1708542715 ns\nthreads: 1"
           }
         ]
       }
