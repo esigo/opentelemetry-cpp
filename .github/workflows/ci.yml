@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ superbuild2 ]
   pull_request:
     branches: [ main, async-changes ]
 
