@@ -293,6 +293,7 @@ endif()
 if(WITH_OTLP)
   set(protobuf_MODULE_COMPATIBLE ON)
   find_package(Protobuf PATHS ${EXTERNAL_PROTOBUF_DIR})
+  find_package(Protobuf)
   if(WITH_OTLP_GRPC OR (NOT DEFINED WITH_OTLP_GRPC AND NOT DEFINED
                                                        CACHE{WITH_OTLP_GRPC}))
     find_package(gRPC)
