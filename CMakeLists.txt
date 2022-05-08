@@ -297,6 +297,7 @@ if(WITH_OTLP)
     find_package(Protobuf)
   else()
     set(Protobuf_PROTOC_EXECUTABLE ${protobuf_PROTOC_EXECUTABLE})
+    set(Protobuf_PROTOC_EXECUTABLE_FOUND TRUE)
   endif()
   if(WITH_OTLP_GRPC OR (NOT DEFINED WITH_OTLP_GRPC AND NOT DEFINED
                                                        CACHE{WITH_OTLP_GRPC}))
