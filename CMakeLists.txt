@@ -292,7 +292,7 @@ endif()
 
 if(WITH_OTLP)
   set(protobuf_MODULE_COMPATIBLE ON)
-  find_package(protobuf PATHS EXACT ${EXTERNAL_PROTOBUF_DIR})
+  find_package(protobuf PATHS ${EXTERNAL_PROTOBUF_DIR})
   if((NOT protobuf_FOUND AND NOT PROTOBUF_FOUND))
     find_package(Protobuf)
   endif()
