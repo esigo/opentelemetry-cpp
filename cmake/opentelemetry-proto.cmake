@@ -215,17 +215,28 @@ if(WITH_OTLP_GRPC)
       ${METRICS_SERVICE_GRPC_PB_CPP_FILE} PROPERTIES GENERATED TRUE)
     add_custom_target(
           generated-files DEPENDS
-          ${COMMON_PB_CPP_FILE}
-          ${RESOURCE_PB_CPP_FILE}
-          ${TRACE_PB_CPP_FILE}
-          ${LOGS_PB_CPP_FILE}
-          ${METRICS_PB_CPP_FILE}
-          ${TRACE_SERVICE_PB_CPP_FILE}
-          ${TRACE_SERVICE_GRPC_PB_CPP_FILE}
-          ${LOGS_SERVICE_PB_CPP_FILE}
-          ${LOGS_SERVICE_GRPC_PB_CPP_FILE}
-          ${METRICS_SERVICE_PB_CPP_FILE}
-          ${METRICS_SERVICE_GRPC_PB_CPP_FILE})
+           ${COMMON_PB_H_FILE}
+           ${COMMON_PB_CPP_FILE}
+           ${RESOURCE_PB_H_FILE}
+           ${RESOURCE_PB_CPP_FILE}
+           ${TRACE_PB_H_FILE}
+           ${TRACE_PB_CPP_FILE}
+           ${LOGS_PB_H_FILE}
+           ${LOGS_PB_CPP_FILE}
+           ${METRICS_PB_H_FILE}
+           ${METRICS_PB_CPP_FILE}
+           ${TRACE_SERVICE_PB_H_FILE}
+           ${TRACE_SERVICE_PB_CPP_FILE}
+           ${TRACE_SERVICE_GRPC_PB_H_FILE}
+           ${TRACE_SERVICE_GRPC_PB_CPP_FILE}
+           ${LOGS_SERVICE_PB_H_FILE}
+           ${LOGS_SERVICE_PB_CPP_FILE}
+           ${LOGS_SERVICE_GRPC_PB_H_FILE}
+           ${LOGS_SERVICE_GRPC_PB_CPP_FILE}
+           ${METRICS_SERVICE_PB_H_FILE}
+           ${METRICS_SERVICE_PB_CPP_FILE}
+           ${METRICS_SERVICE_GRPC_PB_H_FILE}
+           ${METRICS_SERVICE_GRPC_PB_CPP_FILE})
 else()
   add_library(
     opentelemetry_proto STATIC
@@ -238,14 +249,22 @@ else()
     ${LOGS_SERVICE_PB_CPP_FILE}
     ${METRICS_SERVICE_PB_CPP_FILE})
   set_source_files_properties(
-    ${COMMON_PB_CPP_FILE}
-    ${RESOURCE_PB_CPP_FILE}
-    ${TRACE_PB_CPP_FILE}
-    ${LOGS_PB_CPP_FILE}
-    ${METRICS_PB_CPP_FILE}
-    ${TRACE_SERVICE_PB_CPP_FILE}
-    ${LOGS_SERVICE_PB_CPP_FILE}
-    ${METRICS_SERVICE_PB_CPP_FILE} PROPERTIES GENERATED TRUE)
+           ${COMMON_PB_H_FILE}
+           ${COMMON_PB_CPP_FILE}
+           ${RESOURCE_PB_H_FILE}
+           ${RESOURCE_PB_CPP_FILE}
+           ${TRACE_PB_H_FILE}
+           ${TRACE_PB_CPP_FILE}
+           ${LOGS_PB_H_FILE}
+           ${LOGS_PB_CPP_FILE}
+           ${METRICS_PB_H_FILE}
+           ${METRICS_PB_CPP_FILE}
+           ${TRACE_SERVICE_PB_H_FILE}
+           ${TRACE_SERVICE_PB_CPP_FILE}
+           ${LOGS_SERVICE_PB_H_FILE}
+           ${LOGS_SERVICE_PB_CPP_FILE}
+           ${METRICS_SERVICE_PB_H_FILE}
+           ${METRICS_SERVICE_PB_CPP_FILE} PROPERTIES GENERATED TRUE)
 endif()
 
 add_dependencies(opentelemetry_proto generated-files)
