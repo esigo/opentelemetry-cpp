@@ -188,19 +188,6 @@ endif()
 include_directories("${GENERATED_PROTOBUF_PATH}")
 
 if(WITH_OTLP_GRPC)
-  add_library(
-    opentelemetry_proto STATIC
-    ${COMMON_PB_CPP_FILE}
-    ${RESOURCE_PB_CPP_FILE}
-    ${TRACE_PB_CPP_FILE}
-    ${LOGS_PB_CPP_FILE}
-    ${METRICS_PB_CPP_FILE}
-    ${TRACE_SERVICE_PB_CPP_FILE}
-    ${TRACE_SERVICE_GRPC_PB_CPP_FILE}
-    ${LOGS_SERVICE_PB_CPP_FILE}
-    ${LOGS_SERVICE_GRPC_PB_CPP_FILE}
-    ${METRICS_SERVICE_PB_CPP_FILE}
-    ${METRICS_SERVICE_GRPC_PB_CPP_FILE})
   set_source_files_properties(
       ${COMMON_PB_CPP_FILE}
       ${RESOURCE_PB_CPP_FILE}
@@ -237,6 +224,19 @@ if(WITH_OTLP_GRPC)
            ${METRICS_SERVICE_PB_CPP_FILE}
            ${METRICS_SERVICE_GRPC_PB_H_FILE}
            ${METRICS_SERVICE_GRPC_PB_CPP_FILE})
+  add_library(
+    opentelemetry_proto STATIC
+    ${COMMON_PB_CPP_FILE}
+    ${RESOURCE_PB_CPP_FILE}
+    ${TRACE_PB_CPP_FILE}
+    ${LOGS_PB_CPP_FILE}
+    ${METRICS_PB_CPP_FILE}
+    ${TRACE_SERVICE_PB_CPP_FILE}
+    ${TRACE_SERVICE_GRPC_PB_CPP_FILE}
+    ${LOGS_SERVICE_PB_CPP_FILE}
+    ${LOGS_SERVICE_GRPC_PB_CPP_FILE}
+    ${METRICS_SERVICE_PB_CPP_FILE}
+    ${METRICS_SERVICE_GRPC_PB_CPP_FILE})
 else()
   add_library(
     opentelemetry_proto STATIC
