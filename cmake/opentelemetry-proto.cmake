@@ -217,6 +217,19 @@ if(WITH_OTLP_GRPC)
       ${LOGS_SERVICE_GRPC_PB_CPP_FILE}
       ${METRICS_SERVICE_PB_CPP_FILE}
       ${METRICS_SERVICE_GRPC_PB_CPP_FILE} PROPERTIES GENERATED TRUE)
+    add_custom_target(
+          generated-files DEPENDS
+          ${COMMON_PB_CPP_FILE}
+          ${RESOURCE_PB_CPP_FILE}
+          ${TRACE_PB_CPP_FILE}
+          ${LOGS_PB_CPP_FILE}
+          ${METRICS_PB_CPP_FILE}
+          ${TRACE_SERVICE_PB_CPP_FILE}
+          ${TRACE_SERVICE_GRPC_PB_CPP_FILE}
+          ${LOGS_SERVICE_PB_CPP_FILE}
+          ${LOGS_SERVICE_GRPC_PB_CPP_FILE}
+          ${METRICS_SERVICE_PB_CPP_FILE}
+          ${METRICS_SERVICE_GRPC_PB_CPP_FILE})
 else()
   add_library(
     opentelemetry_proto STATIC
@@ -239,6 +252,7 @@ else()
     ${METRICS_SERVICE_PB_CPP_FILE} PROPERTIES GENERATED TRUE)
 endif()
 
+add_dependencies(opentelemetry_proto generated-files)
 if(needs_proto_download)
   add_dependencies(opentelemetry_proto opentelemetry-proto)
 endif()
