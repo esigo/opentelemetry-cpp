@@ -189,7 +189,8 @@ include_directories("${GENERATED_PROTOBUF_PATH}")
 
 if(WITH_OTLP_GRPC)
     add_custom_target(
-          generated-files DEPENDS
+          generated-files ALL
+          DEPENDS
            ${COMMON_PB_H_FILE}
            ${COMMON_PB_CPP_FILE}
            ${RESOURCE_PB_H_FILE}
