@@ -207,9 +207,7 @@ endif()
 include_directories("${GENERATED_PROTOBUF_PATH}")
 
 if(WITH_OTLP_GRPC)
-    add_custom_target(
-          generated-files ALL
-          DEPENDS
+set_source_files_properties(
            ${COMMON_PB_H_FILE}
            ${COMMON_PB_CPP_FILE}
            ${RESOURCE_PB_H_FILE}
@@ -231,7 +229,9 @@ if(WITH_OTLP_GRPC)
            ${METRICS_SERVICE_PB_H_FILE}
            ${METRICS_SERVICE_PB_CPP_FILE}
            ${METRICS_SERVICE_GRPC_PB_H_FILE}
-           ${METRICS_SERVICE_GRPC_PB_CPP_FILE})
+           ${METRICS_SERVICE_GRPC_PB_CPP_FILE}
+           PROPERTIES GENERATED TRUE
+           )
   add_library(
     opentelemetry_proto STATIC
     ${COMMON_PB_CPP_FILE}
