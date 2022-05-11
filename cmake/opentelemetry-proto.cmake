@@ -137,6 +137,8 @@ if(WITH_OTLP_GRPC)
     set("ENV{PATH}" "/workspace/grpc/build/stage/bin")
     execute_process(COMMAND 
       ${PROTOBUF_PROTOC_EXECUTABLE} --proto_path=${PROTO_PATH} ${PROTOBUF_INCLUDE_FLAGS} --cpp_out=${GENERATED_PROTOBUF_PATH} --grpc_out=generate_mock_code=true:${GENERATED_PROTOBUF_PATH} --plugin=protoc-gen-grpc=${gRPC_CPP_PLUGIN_EXECUTABLE} ${proto_file}
+      COMMAND_ECHO STDOUT
+      COMMAND_ERROR_IS_FATAL ANY
     )
   endforeach()
 else()
