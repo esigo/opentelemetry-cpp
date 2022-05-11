@@ -1,7 +1,7 @@
-# if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/third_party/opentelemetry-proto/.git)
-#   set(PROTO_PATH "${CMAKE_CURRENT_SOURCE_DIR}/third_party/opentelemetry-proto")
-#   set(needs_proto_download FALSE)
-# else()
+if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/third_party/opentelemetry-proto/.git)
+  set(PROTO_PATH "${CMAKE_CURRENT_SOURCE_DIR}/third_party/opentelemetry-proto")
+  set(needs_proto_download FALSE)
+else()
   set(PROJECT_BUILD_STEPS_FILE /workspace/opentelemetry-cpp/cmake/proto_gen.cmake)
   if("${opentelemetry-proto}" STREQUAL "")
     set(opentelemetry-proto "main")
@@ -23,7 +23,7 @@
   ExternalProject_Get_Property(opentelemetry-proto INSTALL_DIR)
   set(PROTO_PATH "${INSTALL_DIR}/src/opentelemetry-proto")
   set(needs_proto_download TRUE)
-# endif()
+endif()
 
 include(${PROJECT_SOURCE_DIR}/cmake/proto-options-patch.cmake)
 
@@ -135,6 +135,7 @@ if(WITH_OTLP_GRPC)
     ${RESOURCE_PROTO} ${TRACE_PROTO} ${LOGS_PROTO} ${METRICS_PROTO}
     ${TRACE_SERVICE_PROTO} ${LOGS_SERVICE_PROTO} ${METRICS_SERVICE_PROTO}
   )
+
     if(EXISTS ${proto_file})
       message("${proto_file} exists")
     else()
@@ -142,8 +143,9 @@ if(WITH_OTLP_GRPC)
     endif()
     set("ENV{LD_LIBRARY_PATH}" "/workspace/grpc/build/stage/lib")
     set("ENV{PATH}" "/workspace/grpc/build/stage/bin")
+    set(arg --proto_path=${PROTO_PATH} ${PROTOBUF_INCLUDE_FLAGS} --cpp_out=${GENERATED_PROTOBUF_PATH} --grpc_out=generate_mock_code=true:${GENERATED_PROTOBUF_PATH} --plugin=protoc-gen-grpc=${gRPC_CPP_PLUGIN_EXECUTABLE} ${proto_file})
     execute_process(COMMAND 
-      ${PROTOBUF_PROTOC_EXECUTABLE} --proto_path=${PROTO_PATH} ${PROTOBUF_INCLUDE_FLAGS} --cpp_out=${GENERATED_PROTOBUF_PATH} --grpc_out=generate_mock_code=true:${GENERATED_PROTOBUF_PATH} --plugin=protoc-gen-grpc=${gRPC_CPP_PLUGIN_EXECUTABLE} ${proto_file}
+      ${PROTOBUF_PROTOC_EXECUTABLE} ${arg}
       COMMAND_ECHO STDOUT
       COMMAND_ERROR_IS_FATAL ANY
     )
