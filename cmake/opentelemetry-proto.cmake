@@ -129,9 +129,9 @@ if(WITH_OTLP_GRPC)
 endif()
 
 if(WITH_OTLP_GRPC)
-  foreach(proto_file 
-    ${COMMON_PROTO} ${RESOURCE_PROTO} ${TRACE_PROTO} ${LOGS_PROTO} 
-    ${METRICS_PROTO} ${TRACE_SERVICE_PROTO} ${LOGS_SERVICE_PROTO} ${METRICS_SERVICE_PROTO}
+  foreach(proto_file ${COMMON_PROTO}
+    ${RESOURCE_PROTO} ${TRACE_PROTO} ${LOGS_PROTO} ${METRICS_PROTO}
+    ${TRACE_SERVICE_PROTO} ${LOGS_SERVICE_PROTO} ${METRICS_SERVICE_PROTO}
   )
     if(EXISTS ${proto_file})
       message("${proto_file} exists")
