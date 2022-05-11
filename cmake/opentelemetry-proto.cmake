@@ -172,7 +172,7 @@ if(WITH_OTLP_GRPC)
     ${PROTOBUF_INCLUDE_FLAGS} 
     "--cpp_out=${GENERATED_PROTOBUF_PATH}"
     "--grpc_out=generate_mock_code=true:${GENERATED_PROTOBUF_PATH}"
-    --plugin=protoc-gen-grpc="/usr/local/./bin/grpc_cpp_plugin"
+    --plugin=protoc-gen-grpc="${gRPC_CPP_PLUGIN_EXECUTABLE}"
     ${proto_file}
     # --proto_path=${PROTO_PATH} --cpp_out=${GENERATED_PROTOBUF_PATH} ${proto_file}
             ${PROTOBUF_OUTPUT_DIRECTORY}
