@@ -275,7 +275,6 @@ else()
            ${METRICS_SERVICE_PB_CPP_FILE} PROPERTIES GENERATED TRUE)
 endif()
 
-add_dependencies(opentelemetry_proto generated-files)
 if(needs_proto_download)
   add_dependencies(opentelemetry_proto opentelemetry-proto)
 endif()
