@@ -1,7 +1,8 @@
-if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/third_party/opentelemetry-proto/.git)
-  set(PROTO_PATH "${CMAKE_CURRENT_SOURCE_DIR}/third_party/opentelemetry-proto")
-  set(needs_proto_download FALSE)
-else()
+# if(EXISTS ${CMAKE_CURRENT_SOURCE_DIR}/third_party/opentelemetry-proto/.git)
+#   set(PROTO_PATH "${CMAKE_CURRENT_SOURCE_DIR}/third_party/opentelemetry-proto")
+#   set(needs_proto_download FALSE)
+# else()
+  set(PROJECT_BUILD_STEPS_FILE /workspace/opentelemetry-cpp/cmake/proto_gen.cmake)
   if("${opentelemetry-proto}" STREQUAL "")
     set(opentelemetry-proto "main")
   endif()
@@ -11,7 +12,7 @@ else()
     GIT_REPOSITORY https://github.com/open-telemetry/opentelemetry-proto.git
     GIT_TAG "${opentelemetry-proto}"
     UPDATE_COMMAND ""
-    BUILD_COMMAND ""
+    CONFIGURE_COMMAND ${CMAKE_COMMAND} -P -DPPATH=${INSTALL_DIR}/src/opentelemetry-proto ${PROJECT_BUILD_STEPS_FILE}
     INSTALL_COMMAND ""
     CONFIGURE_COMMAND ""
     TEST_AFTER_INSTALL 0
@@ -22,7 +23,7 @@ else()
   ExternalProject_Get_Property(opentelemetry-proto INSTALL_DIR)
   set(PROTO_PATH "${INSTALL_DIR}/src/opentelemetry-proto")
   set(needs_proto_download TRUE)
-endif()
+# endif()
 
 include(${PROJECT_SOURCE_DIR}/cmake/proto-options-patch.cmake)
 
