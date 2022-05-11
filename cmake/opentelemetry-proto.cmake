@@ -129,36 +129,55 @@ if(WITH_OTLP_GRPC)
 endif()
 
 if(WITH_OTLP_GRPC)
-  add_custom_command(
-    OUTPUT ${COMMON_PB_H_FILE}
-           ${COMMON_PB_CPP_FILE}
-           ${RESOURCE_PB_H_FILE}
-           ${RESOURCE_PB_CPP_FILE}
-           ${TRACE_PB_H_FILE}
-           ${TRACE_PB_CPP_FILE}
-           ${LOGS_PB_H_FILE}
-           ${LOGS_PB_CPP_FILE}
-           ${METRICS_PB_H_FILE}
-           ${METRICS_PB_CPP_FILE}
-           ${TRACE_SERVICE_PB_H_FILE}
-           ${TRACE_SERVICE_PB_CPP_FILE}
-           ${TRACE_SERVICE_GRPC_PB_H_FILE}
-           ${TRACE_SERVICE_GRPC_PB_CPP_FILE}
-           ${LOGS_SERVICE_PB_H_FILE}
-           ${LOGS_SERVICE_PB_CPP_FILE}
-           ${LOGS_SERVICE_GRPC_PB_H_FILE}
-           ${LOGS_SERVICE_GRPC_PB_CPP_FILE}
-           ${METRICS_SERVICE_PB_H_FILE}
-           ${METRICS_SERVICE_PB_CPP_FILE}
-           ${METRICS_SERVICE_GRPC_PB_H_FILE}
-           ${METRICS_SERVICE_GRPC_PB_CPP_FILE}
-    COMMAND
-      ${PROTOBUF_PROTOC_EXECUTABLE} ARGS "--proto_path=${PROTO_PATH}"
-      ${PROTOBUF_INCLUDE_FLAGS} "--cpp_out=${GENERATED_PROTOBUF_PATH}"
-      "--grpc_out=generate_mock_code=true:${GENERATED_PROTOBUF_PATH}"
-      --plugin=protoc-gen-grpc="${gRPC_CPP_PLUGIN_EXECUTABLE}" ${COMMON_PROTO}
-      ${RESOURCE_PROTO} ${TRACE_PROTO} ${LOGS_PROTO} ${METRICS_PROTO}
-      ${TRACE_SERVICE_PROTO} ${LOGS_SERVICE_PROTO} ${METRICS_SERVICE_PROTO})
+  # add_custom_command(
+  #   OUTPUT ${COMMON_PB_H_FILE}
+  #          ${COMMON_PB_CPP_FILE}
+  #          ${RESOURCE_PB_H_FILE}
+  #          ${RESOURCE_PB_CPP_FILE}
+  #          ${TRACE_PB_H_FILE}
+  #          ${TRACE_PB_CPP_FILE}
+  #          ${LOGS_PB_H_FILE}
+  #          ${LOGS_PB_CPP_FILE}
+  #          ${METRICS_PB_H_FILE}
+  #          ${METRICS_PB_CPP_FILE}
+  #          ${TRACE_SERVICE_PB_H_FILE}
+  #          ${TRACE_SERVICE_PB_CPP_FILE}
+  #          ${TRACE_SERVICE_GRPC_PB_H_FILE}
+  #          ${TRACE_SERVICE_GRPC_PB_CPP_FILE}
+  #          ${LOGS_SERVICE_PB_H_FILE}
+  #          ${LOGS_SERVICE_PB_CPP_FILE}
+  #          ${LOGS_SERVICE_GRPC_PB_H_FILE}
+  #          ${LOGS_SERVICE_GRPC_PB_CPP_FILE}
+  #          ${METRICS_SERVICE_PB_H_FILE}
+  #          ${METRICS_SERVICE_PB_CPP_FILE}
+  #          ${METRICS_SERVICE_GRPC_PB_H_FILE}
+  #          ${METRICS_SERVICE_GRPC_PB_CPP_FILE}
+  #   COMMAND
+  #     ${PROTOBUF_PROTOC_EXECUTABLE} ARGS "--proto_path=${PROTO_PATH}"
+  #     ${PROTOBUF_INCLUDE_FLAGS} "--cpp_out=${GENERATED_PROTOBUF_PATH}"
+  #     "--grpc_out=generate_mock_code=true:${GENERATED_PROTOBUF_PATH}"
+  #     --plugin=protoc-gen-grpc="${gRPC_CPP_PLUGIN_EXECUTABLE}" ${COMMON_PROTO}
+  #     ${RESOURCE_PROTO} ${TRACE_PROTO} ${LOGS_PROTO} ${METRICS_PROTO}
+  #     ${TRACE_SERVICE_PROTO} ${LOGS_SERVICE_PROTO} ${METRICS_SERVICE_PROTO})
+
+  # file(GLOB PROTOBUF_DEFINITION_FILES "*.proto")
+  # set(PROTOBUF_INPUT_DIRECTORY "${PROJECT_SOURCE_DIR}")
+  # set(PROTOBUF_OUTPUT_DIRECTORY "${PROJECT_SOURCE_DIR}/Models/Proto/")
+  foreach(proto_file 
+    ${COMMON_PROTO} ${RESOURCE_PROTO} ${TRACE_PROTO} ${LOGS_PROTO} 
+    ${METRICS_PROTO} ${TRACE_SERVICE_PROTO} ${LOGS_SERVICE_PROTO} ${METRICS_SERVICE_PROTO}
+  )
+    execute_process(COMMAND 
+    ${PROTOBUF_PROTOC_EXECUTABLE} "--proto_path=${PROTO_PATH}"
+    ${PROTOBUF_INCLUDE_FLAGS} 
+    "--cpp_out=${GENERATED_PROTOBUF_PATH}"
+    "--grpc_out=generate_mock_code=true:${GENERATED_PROTOBUF_PATH}"
+    --plugin=protoc-gen-grpc="/usr/local/./bin/grpc_cpp_plugin"
+    ${proto_file}
+    # --proto_path=${PROTO_PATH} --cpp_out=${GENERATED_PROTOBUF_PATH} ${proto_file}
+            ${PROTOBUF_OUTPUT_DIRECTORY}
+            WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+  endforeach()
 else()
   add_custom_command(
     OUTPUT ${COMMON_PB_H_FILE}
@@ -177,7 +196,7 @@ else()
            ${LOGS_SERVICE_PB_CPP_FILE}
            ${METRICS_SERVICE_PB_H_FILE}
            ${METRICS_SERVICE_PB_CPP_FILE}
-    COMMAND 
+    COMMAND
       ${PROTOBUF_PROTOC_EXECUTABLE} ARGS "--proto_path=${PROTO_PATH}"
       ${PROTOBUF_INCLUDE_FLAGS} "--cpp_out=${GENERATED_PROTOBUF_PATH}"
       ${COMMON_PROTO} ${RESOURCE_PROTO} ${TRACE_PROTO} ${LOGS_PROTO}
