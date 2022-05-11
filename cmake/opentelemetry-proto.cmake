@@ -41,8 +41,9 @@ set(METRICS_SERVICE_PROTO
     "${PROTO_PATH}/opentelemetry/proto/collector/metrics/v1/metrics_service.proto"
 )
 
-set(GENERATED_PROTOBUF_PATH
-    "${CMAKE_BINARY_DIR}/generated/third_party/opentelemetry-proto")
+set(GENERATED_PROTOBUF_PATH ${PROTO_PATH})
+# set(GENERATED_PROTOBUF_PATH
+#     "${CMAKE_BINARY_DIR}/generated/third_party/opentelemetry-proto")
 
 file(MAKE_DIRECTORY "${GENERATED_PROTOBUF_PATH}")
 
