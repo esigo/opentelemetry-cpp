@@ -133,6 +133,11 @@ if(WITH_OTLP_GRPC)
     ${COMMON_PROTO} ${RESOURCE_PROTO} ${TRACE_PROTO} ${LOGS_PROTO} 
     ${METRICS_PROTO} ${TRACE_SERVICE_PROTO} ${LOGS_SERVICE_PROTO} ${METRICS_SERVICE_PROTO}
   )
+    if(EXISTS ${proto_file})
+      message("${proto_file} exists")
+    else()
+      message("NO ${proto_file} found")
+    endif()
     set("ENV{LD_LIBRARY_PATH}" "/workspace/grpc/build/stage/lib")
     set("ENV{PATH}" "/workspace/grpc/build/stage/bin")
     execute_process(COMMAND 
