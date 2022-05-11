@@ -135,34 +135,30 @@ set(PROTOS ${COMMON_PROTO}
     ${TRACE_SERVICE_PROTO} ${LOGS_SERVICE_PROTO} ${METRICS_SERVICE_PROTO}
 )
 
-set(PROTO_SRC_DIR ${CMAKE_CURRENT_BINARY_DIR}/proto-src)
-file(MAKE_DIRECTORY ${PROTO_SRC_DIR})
-include_directories(${PROTO_SRC_DIR})
-
-protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ${PROTO_SRC_DIR} ${PROTOS})
-grpc_generate_cpp(GRPC_SRCS GRPC_HDRS ${PROTO_SRC_DIR} ${PROTOS})
-
+find_package(GRPC MODULE)
+protobuf_generate_cpp(PROTO_SRCS PROTO_HDRS ${GENERATED_PROTOBUF_PATH} ${PROTOS})
+grpc_generate_cpp(GRPC_SRCS GRPC_HDRS ${GENERATED_PROTOBUF_PATH} ${PROTOS})
+message("######${GRPC_SRCS}")
 if(WITH_OTLP_GRPC)
-  foreach(proto_file ${COMMON_PROTO}
-    ${RESOURCE_PROTO} ${TRACE_PROTO} ${LOGS_PROTO} ${METRICS_PROTO}
-    ${TRACE_SERVICE_PROTO} ${LOGS_SERVICE_PROTO} ${METRICS_SERVICE_PROTO}
-  )
-
-    if(EXISTS ${proto_file})
-      message("${proto_file} exists")
-    else()
-      message("NO ${proto_file} found")
-    endif()
-    set("ENV{LD_LIBRARY_PATH}" "/workspace/grpc/build/stage/lib")
-    set("ENV{PATH}" "/workspace/grpc/build/stage/bin")
-    set(arg --proto_path=${PROTO_PATH} ${PROTOBUF_INCLUDE_FLAGS} --cpp_out=${GENERATED_PROTOBUF_PATH} --grpc_out=generate_mock_code=true:${GENERATED_PROTOBUF_PATH} --plugin=protoc-gen-grpc=${gRPC_CPP_PLUGIN_EXECUTABLE} ${proto_file})
-    execute_process(COMMAND 
-      ${PROTOBUF_PROTOC_EXECUTABLE} ${arg}
-      COMMAND_ECHO STDOUT
-      COMMAND_ERROR_IS_FATAL ANY
-      WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-    )
-  endforeach()
+  # foreach(proto_file ${COMMON_PROTO}
+  #   ${RESOURCE_PROTO} ${TRACE_PROTO} ${LOGS_PROTO} ${METRICS_PROTO}
+  #   ${TRACE_SERVICE_PROTO} ${LOGS_SERVICE_PROTO} ${METRICS_SERVICE_PROTO}
+  # )
+  #   if(EXISTS ${proto_file})
+  #     message("${proto_file} exists")
+  #   else()
+  #     message("NO ${proto_file} found")
+  #   endif()
+  #   set("ENV{LD_LIBRARY_PATH}" "/workspace/grpc/build/stage/lib")
+  #   set("ENV{PATH}" "/workspace/grpc/build/stage/bin")
+  #   set(arg --proto_path=${PROTO_PATH} ${PROTOBUF_INCLUDE_FLAGS} --cpp_out=${GENERATED_PROTOBUF_PATH} --grpc_out=generate_mock_code=true:${GENERATED_PROTOBUF_PATH} --plugin=protoc-gen-grpc=${gRPC_CPP_PLUGIN_EXECUTABLE} ${proto_file})
+  #   execute_process(COMMAND 
+  #     ${PROTOBUF_PROTOC_EXECUTABLE} ${arg}
+  #     COMMAND_ECHO STDOUT
+  #     COMMAND_ERROR_IS_FATAL ANY
+  #     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+  #   )
+  # endforeach()
 else()
   add_custom_command(
     OUTPUT ${COMMON_PB_H_FILE}
