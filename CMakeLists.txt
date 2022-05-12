@@ -293,6 +293,40 @@ endif()
 if(WITH_OTLP)
   set(protobuf_MODULE_COMPATIBLE ON)
   find_package(Protobuf)
+  # For old cmake versions
+  foreach(NEW_VAR_NAME
+    Protobuf_INCLUDE_DIR
+    Protobuf_LIBRARY
+    Protobuf_PROTOC_LIBRARIES
+    Protobuf_LIBRARY_DEBUG
+    Protobuf_PROTOC_LIBRARY_DEBUG
+  )
+    string(TOUPPER OLD_VAR_NAME "${NEW_VAR_NAME}")
+    if (NOT ${NEW_VAR_NAME} AND ${OLD_VAR_NAME})
+      set(${NEW_VAR_NAME} "${${OLD_VAR_NAME}}")
+    endif()
+  endforeach()
+
+  if(NOT TARGET protobuf::libprotobuf)
+    add_library(protobuf::libprotobuf IMPORTED)
+
+    set_target_properties(protobuf::libprotobuf PROPERTIES
+      INTERFACE_INCLUDE_DIRECTORIES "${Protobuf_INCLUDE_DIR}"
+      IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX;RC"
+      IMPORTED_LOCATION "${Protobuf_LIBRARY$<<CONFIG:Debug>:_DEBUG}"
+    )
+  endif()
+
+  if(NOT TARGET protobuf::libprotoc)
+    add_library(protobuf::libprotoc IMPORTED)
+
+    set_target_properties(protobuf::libprotoc PROPERTIES
+      INTERFACE_INCLUDE_DIRECTORIES "${Protobuf_INCLUDE_DIR}"
+      INTERFACE_LINK_LIBRARIES "protobuf::libprotobuf"
+      IMPORTED_LINK_INTERFACE_LANGUAGES_RELEASE "CXX;RC"
+      IMPORTED_LOCATION "${Protobuf_PROTOC_LIBRARIES$<<CONFIG:Debug>:_DEBUG}}"
+    )
+  endif()
   if(WITH_OTLP_GRPC OR (NOT DEFINED WITH_OTLP_GRPC AND NOT DEFINED
                                                        CACHE{WITH_OTLP_GRPC}))
     find_package(gRPC)
