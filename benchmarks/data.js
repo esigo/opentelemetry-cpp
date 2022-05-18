@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1652910383462,
+  "lastUpdate": 1652910384704,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -15276,6 +15276,54 @@ window.BENCHMARK_DATA = {
             "value": 1124825.140442511,
             "unit": "ns/iter",
             "extra": "iterations: 495\ncpu: 273711.1111111112 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "71217171+esigo@users.noreply.github.com",
+            "name": "Ehsan Saei",
+            "username": "esigo"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "a847d0ce42209e458f8f98a5751626a33adfad95",
+          "message": "Document Getting Started with Prometheus and Grafana (#1396)\n\nCo-authored-by: Lalit Kumar Bhasin <lalit_fin@yahoo.com>",
+          "timestamp": "2022-05-18T21:29:22Z",
+          "tree_id": "2ec4fd0dffd4777b0190a01cbd4c248330eeb42b",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/a847d0ce42209e458f8f98a5751626a33adfad95"
+        },
+        "date": 1652910382798,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 152.52668632231348,
+            "unit": "ns/iter",
+            "extra": "iterations: 857000\ncpu: 152.34772462077015 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 217.25572565550445,
+            "unit": "ns/iter",
+            "extra": "iterations: 651000\ncpu: 217.25913978494629 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 1022.4127769470215,
+            "unit": "ns/iter",
+            "extra": "iterations: 100000\ncpu: 1022.3130000000003 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 1686064.4663533857,
+            "unit": "ns/iter",
+            "extra": "iterations: 248\ncpu: 547396.3709677422 ns\nthreads: 1"
           }
         ]
       }
