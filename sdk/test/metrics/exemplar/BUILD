@@ -45,3 +45,19 @@ cc_test(
         "@com_google_googletest//:gtest_main",
     ],
 )
+
+cc_test(
+    name = "reservoir_cell_test",
+    srcs = [
+        "reservoir_cell_test.cc",
+    ],
+    tags = [
+        "metrics",
+        "test",
+    ],
+    deps = [
+        "//api",
+        "//sdk:headers",
+        "@com_google_googletest//:gtest_main",
+    ],
+)
