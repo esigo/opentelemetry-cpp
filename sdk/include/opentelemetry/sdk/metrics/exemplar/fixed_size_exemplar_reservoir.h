@@ -6,10 +6,13 @@
 #  include <memory>
 #  include <vector>
 #  include "opentelemetry/context/context.h"
+#  include "opentelemetry/nostd/function_ref.h"
 #  include "opentelemetry/nostd/shared_ptr.h"
 #  include "opentelemetry/sdk/common/attribute_utils.h"
 #  include "opentelemetry/sdk/metrics/exemplar/filter.h"
 #  include "opentelemetry/sdk/metrics/exemplar/reservoir.h"
+#  include "opentelemetry/sdk/metrics/exemplar/reservoir_cell.h"
+#  include "opentelemetry/sdk/metrics/exemplar/reservoir_cell_selector.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
@@ -17,16 +20,16 @@ namespace sdk
 namespace metrics
 {
 
-template <type_name T>
+template <typename T>
 class FixedSizeExemplarReservoir : public ExemplarReservoir
 {
 
 public:
-  FixedSizeExemplarReservoir(size_t size,
-                             std::shared_ptr<ReservoirCellSelector> reservoir_cell_selector,
-                             nostd::function_ref < T(const ReservoirCell &reservoir_cell,
-                                                     const MetricAttributes &attributes)
-                                                       map_and_reset_cell)
+  FixedSizeExemplarReservoir(
+      size_t size,
+      std::shared_ptr<ReservoirCellSelector> reservoir_cell_selector,
+      nostd::function_ref<T(const ReservoirCell &reservoir_cell,
+                            const MetricAttributes &attributes)> map_and_reset_cell)
       : reservoir_cell_selector_(reservoir_cell_selector), map_and_reset_cell_(map_and_reset_cell)
   {}
 
@@ -43,7 +46,7 @@ public:
                         const opentelemetry::common::SystemTimestamp &timestamp) noexcept override
   {
     auto idx =
-        reservoir_cell_selector_->reservoirCellIndexFor(storage_, value, attributes, context);
+        reservoir_cell_selector_->ReservoirCellIndexFor(storage_, value, attributes, context);
     if (idx != -1)
     {
       storage_[idx].RecordDoubleMeasurement(value, attributes, context);
@@ -56,7 +59,7 @@ public:
                         const opentelemetry::common::SystemTimestamp &timestamp) noexcept override
   {
     auto idx =
-        reservoir_cell_selector_->reservoirCellIndexFor(storage_, value, attributes, context);
+        reservoir_cell_selector_->ReservoirCellIndexFor(storage_, value, attributes, context);
     if (idx != -1)
     {
       storage_[idx].RecordDoubleMeasurement(value, attributes, context);
@@ -76,15 +79,15 @@ public:
       }
     }
     reservoir_cell_selector_.reset();
-    return results
+    return results;
   }
 
 private:
   explicit FixedSizeExemplarReservoir() = default;
   std::vector<ReservoirCell> storage_;
   std::shared_ptr<ReservoirCellSelector> reservoir_cell_selector_;
-  nostd::function_ref < T(const ReservoirCell &reservoir_cell,
-                          const MetricAttributes &attributes) map_and_reset_cell_;
+  nostd::function_ref<T(const ReservoirCell &reservoir_cell, const MetricAttributes &attributes)>
+      map_and_reset_cell_;
 };
 
 }  // namespace metrics

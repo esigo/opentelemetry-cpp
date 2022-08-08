@@ -36,9 +36,9 @@ public:
                                     const MetricAttributes &attributes,
                                     const opentelemetry::context::Context &context) = 0;
 
-  /** Called when {@link FixedSizeExemplarReservoir#collectAndReset(Attributes)}. */
+  /** Called when {@link FixedSizeExemplarReservoir#CollectAndReset(Attributes)}. */
   virtual void reset() = 0;
-}
+};
 
 }  // namespace metrics
 }  // namespace sdk
