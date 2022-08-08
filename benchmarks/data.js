@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1659982282939,
+  "lastUpdate": 1659982285786,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -19890,6 +19890,54 @@ window.BENCHMARK_DATA = {
             "value": 2567576.1810397217,
             "unit": "ns/iter",
             "extra": "iterations: 323\ncpu: 418744.8916408669 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "labhas@microsoft.com",
+            "name": "Lalit Kumar Bhasin",
+            "username": "lalitb"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "319d85436598039f877162d9fd613153b55227ca",
+          "message": "[METRICS SDK] Fix OTLP gRPC Metrics env variables (#1543)",
+          "timestamp": "2022-08-08T10:52:21-07:00",
+          "tree_id": "c851a80513077920fe3dc342a1e7be91968e3a98",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/319d85436598039f877162d9fd613153b55227ca"
+        },
+        "date": 1659982283191,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 126.94320208589795,
+            "unit": "ns/iter",
+            "extra": "iterations: 1136000\ncpu: 123.41294014084507 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 172.46680569035917,
+            "unit": "ns/iter",
+            "extra": "iterations: 817000\ncpu: 171.96658506731947 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 633.0846685223875,
+            "unit": "ns/iter",
+            "extra": "iterations: 226000\ncpu: 626.0097345132746 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 2113163.1490346547,
+            "unit": "ns/iter",
+            "extra": "iterations: 370\ncpu: 363699.7297297297 ns\nthreads: 1"
           }
         ]
       }
