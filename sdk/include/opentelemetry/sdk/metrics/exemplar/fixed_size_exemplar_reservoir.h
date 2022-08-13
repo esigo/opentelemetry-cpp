@@ -30,7 +30,9 @@ public:
       std::shared_ptr<ReservoirCellSelector> reservoir_cell_selector,
       nostd::function_ref<T(const ReservoirCell &reservoir_cell,
                             const MetricAttributes &attributes)> map_and_reset_cell)
-      : reservoir_cell_selector_(reservoir_cell_selector), map_and_reset_cell_(map_and_reset_cell)
+      : storage_(size),
+        reservoir_cell_selector_(reservoir_cell_selector),
+        map_and_reset_cell_(map_and_reset_cell)
   {}
 
   static nostd::shared_ptr<ExemplarReservoir> GetFixedSizeExemplarReservoir(
@@ -70,13 +72,15 @@ public:
       const MetricAttributes &pointAttributes) noexcept override
   {
     std::vector<ExemplarData> results;
+    if (!map_and_reset_cell_)
+    {
+      reservoir_cell_selector_.reset();
+      return results;
+    }
     for (auto reservoirCell : storage_)
     {
       auto result = map_and_reset_cell_(reservoirCell, pointAttributes);
-      if (result)
-      {
-        results.push_back(result);
-      }
+      results.push_back(result);
     }
     reservoir_cell_selector_.reset();
     return results;

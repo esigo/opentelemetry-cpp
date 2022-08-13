@@ -24,6 +24,17 @@ class HistogramExemplarReservoir : public FixedSizeExemplarReservoir<ExemplarDat
 {
 
 public:
+  static nostd::shared_ptr<ExemplarReservoir> GetHistogramExemplarReservoir(
+      size_t size,
+      std::shared_ptr<ReservoirCellSelector> reservoir_cell_selector,
+      nostd::function_ref<ExemplarData(const ReservoirCell &reservoir_cell,
+                                       const MetricAttributes &attributes)> map_and_reset_cell)
+
+  {
+    return nostd::shared_ptr<ExemplarReservoir>{
+        new HistogramExemplarReservoir{size, reservoir_cell_selector, map_and_reset_cell}};
+  }
+
   HistogramExemplarReservoir(
       size_t size,
       std::shared_ptr<ReservoirCellSelector> reservoir_cell_selector,
@@ -34,7 +45,8 @@ public:
 
   class HistogramCellSelector : public ReservoirCellSelector
   {
-    HistogramCellSelector(std::vector<double> boundaries) : boundaries_(boundaries) {}
+  public:
+    HistogramCellSelector(const std::vector<double> &boundaries) : boundaries_(boundaries) {}
 
     int ReservoirCellIndexFor(const std::vector<ReservoirCell> &cells,
                               long value,
@@ -49,7 +61,7 @@ public:
                               const MetricAttributes &attributes,
                               const opentelemetry::context::Context &context) override
     {
-      for (int i = 0; i < boundaries_.size(); ++i)
+      for (size_t i = 0; i < boundaries_.size(); ++i)
       {
         if (value <= boundaries_[i])
         {
