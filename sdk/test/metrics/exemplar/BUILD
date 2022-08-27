@@ -10,6 +10,7 @@ cc_test(
     deps = [
         "//api",
         "//sdk:headers",
+        "//sdk/src/metrics",
         "@com_google_googletest//:gtest_main",
     ],
 )
@@ -26,6 +27,7 @@ cc_test(
     deps = [
         "//api",
         "//sdk:headers",
+        "//sdk/src/metrics",
         "@com_google_googletest//:gtest_main",
     ],
 )
@@ -42,6 +44,7 @@ cc_test(
     deps = [
         "//api",
         "//sdk:headers",
+        "//sdk/src/metrics",
         "@com_google_googletest//:gtest_main",
     ],
 )
@@ -58,6 +61,7 @@ cc_test(
     deps = [
         "//api",
         "//sdk:headers",
+        "//sdk/src/metrics",
         "@com_google_googletest//:gtest_main",
     ],
 )
@@ -74,6 +78,7 @@ cc_test(
     deps = [
         "//api",
         "//sdk:headers",
+        "//sdk/src/metrics",
         "@com_google_googletest//:gtest_main",
     ],
 )
@@ -90,6 +95,7 @@ cc_test(
     deps = [
         "//api",
         "//sdk:headers",
+        "//sdk/src/metrics",
         "@com_google_googletest//:gtest_main",
     ],
 )
