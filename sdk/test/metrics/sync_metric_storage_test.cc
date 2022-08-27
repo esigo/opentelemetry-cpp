@@ -50,7 +50,7 @@ TEST_P(WritableMetricStorageTestFixture, LongSumAggregation)
       new DefaultAttributesProcessor{}};
   opentelemetry::sdk::metrics::SyncMetricStorage storage(
       instr_desc, AggregationType::kSum, default_attributes_processor.get(),
-      HistogramExemplarReservoir::GetHistogramExemplarReservoir(
+      ExemplarReservoir::GetHistogramExemplarReservoir(
           5, HistogramExemplarReservoir::GetHistogramCellSelector(), nullptr),
       std::shared_ptr<opentelemetry::sdk::metrics::AggregationConfig>{});
 
@@ -156,7 +156,7 @@ TEST_P(WritableMetricStorageTestFixture, DoubleSumAggregation)
       new DefaultAttributesProcessor{}};
   opentelemetry::sdk::metrics::SyncMetricStorage storage(
       instr_desc, AggregationType::kSum, default_attributes_processor.get(),
-      HistogramExemplarReservoir::GetHistogramExemplarReservoir(
+      ExemplarReservoir::GetHistogramExemplarReservoir(
           5, HistogramExemplarReservoir::GetHistogramCellSelector(), nullptr),
       std::shared_ptr<opentelemetry::sdk::metrics::AggregationConfig>{});
 

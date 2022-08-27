@@ -25,13 +25,6 @@ public:
       : filter_(filter), reservoir_(reservoir)
   {}
 
-  static nostd::shared_ptr<ExemplarReservoir> GetFilteredExemplarReservoir(
-      std::shared_ptr<ExemplarFilter> filter,
-      std::shared_ptr<ExemplarReservoir> reservoir)
-  {
-    return nostd::shared_ptr<ExemplarReservoir>{new FilteredExemplarReservoir{filter, reservoir}};
-  }
-
   void OfferMeasurement(long value,
                         const MetricAttributes &attributes,
                         const opentelemetry::context::Context &context,

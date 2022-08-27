@@ -5,6 +5,8 @@
 #ifndef ENABLE_METRICS_PREVIEW
 #  include <vector>
 #  include "opentelemetry/sdk/metrics/exemplar/data.h"
+#  include "opentelemetry/sdk/metrics/exemplar/filter.h"
+#  include "opentelemetry/sdk/metrics/exemplar/reservoir_cell_selector.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE
 namespace sdk
@@ -47,6 +49,17 @@ public:
    */
   virtual std::vector<ExemplarData> CollectAndReset(
       const MetricAttributes &pointAttributes) noexcept = 0;
+
+  static nostd::shared_ptr<ExemplarReservoir> GetFilteredExemplarReservoir(
+      std::shared_ptr<ExemplarFilter> filter,
+      std::shared_ptr<ExemplarReservoir> reservoir);
+
+  static nostd::shared_ptr<ExemplarReservoir> GetHistogramExemplarReservoir(
+      size_t size,
+      std::shared_ptr<ReservoirCellSelector> reservoir_cell_selector,
+      nostd::function_ref<ExemplarData(const ReservoirCell &reservoir_cell,
+                                       const MetricAttributes &attributes)> map_and_reset_cell);
+  static nostd::shared_ptr<ExemplarReservoir> GetNoExemplarReservoir();
 };
 
 }  // namespace metrics

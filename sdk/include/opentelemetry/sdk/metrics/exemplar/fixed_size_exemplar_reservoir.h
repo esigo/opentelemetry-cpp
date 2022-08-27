@@ -34,13 +34,6 @@ public:
         map_and_reset_cell_(map_and_reset_cell)
   {}
 
-  static nostd::shared_ptr<ExemplarReservoir> GetFixedSizeExemplarReservoir(
-      std::shared_ptr<ExemplarFilter> filter,
-      std::shared_ptr<ExemplarReservoir> reservoir)
-  {
-    return nostd::shared_ptr<ExemplarReservoir>{new FixedSizeExemplarReservoir{filter, reservoir}};
-  }
-
   void OfferMeasurement(long value,
                         const MetricAttributes &attributes,
                         const opentelemetry::context::Context &context,

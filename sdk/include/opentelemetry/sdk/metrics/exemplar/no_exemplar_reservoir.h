@@ -18,11 +18,6 @@ class NoExemplarReservoir final : public ExemplarReservoir
 {
 
 public:
-  static nostd::shared_ptr<ExemplarReservoir> GetNoExemplarReservoir()
-  {
-    return nostd::shared_ptr<ExemplarReservoir>{new NoExemplarReservoir{}};
-  }
-
   void OfferMeasurement(long value,
                         const MetricAttributes &attributes,
                         const opentelemetry::context::Context &context,
@@ -45,7 +40,6 @@ public:
     return std::vector<ExemplarData>{};
   }
 
-private:
   explicit NoExemplarReservoir() = default;
 };
 

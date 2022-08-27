@@ -24,17 +24,6 @@ class HistogramExemplarReservoir : public FixedSizeExemplarReservoir<ExemplarDat
 {
 
 public:
-  static nostd::shared_ptr<ExemplarReservoir> GetHistogramExemplarReservoir(
-      size_t size,
-      std::shared_ptr<ReservoirCellSelector> reservoir_cell_selector,
-      nostd::function_ref<ExemplarData(const ReservoirCell &reservoir_cell,
-                                       const MetricAttributes &attributes)> map_and_reset_cell)
-
-  {
-    return nostd::shared_ptr<ExemplarReservoir>{
-        new HistogramExemplarReservoir{size, reservoir_cell_selector, map_and_reset_cell}};
-  }
-
   static std::shared_ptr<ReservoirCellSelector> GetHistogramCellSelector(
       const std::vector<double> &boundaries = std::vector<double>{1.0, 2.0, 3.0, 4.0, 5.0})
   {

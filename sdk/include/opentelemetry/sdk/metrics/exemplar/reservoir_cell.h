@@ -10,8 +10,8 @@
 #  include "opentelemetry/context/context.h"
 #  include "opentelemetry/nostd/shared_ptr.h"
 #  include "opentelemetry/sdk/common/attribute_utils.h"
+#  include "opentelemetry/sdk/metrics/exemplar/data.h"
 #  include "opentelemetry/sdk/metrics/exemplar/filter.h"
-#  include "opentelemetry/sdk/metrics/exemplar/reservoir.h"
 #  include "opentelemetry/trace/context.h"
 
 OPENTELEMETRY_BEGIN_NAMESPACE

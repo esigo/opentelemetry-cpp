@@ -233,7 +233,7 @@ std::unique_ptr<SyncWritableMetricStorage> Meter::RegisterSyncMetricStorage(
 
         auto storage = std::shared_ptr<SyncMetricStorage>(new SyncMetricStorage(
             view_instr_desc, view.GetAggregationType(), &view.GetAttributesProcessor(),
-            HistogramExemplarReservoir::GetHistogramExemplarReservoir(
+            ExemplarReservoir::GetHistogramExemplarReservoir(
                 5, HistogramExemplarReservoir::GetHistogramCellSelector(), nullptr),
             view.GetAggregationConfig()));
         storage_registry_[instrument_descriptor.name_] = storage;
