@@ -9,7 +9,6 @@
 #  include "opentelemetry/nostd/function_ref.h"
 #  include "opentelemetry/nostd/shared_ptr.h"
 #  include "opentelemetry/sdk/common/attribute_utils.h"
-#  include "opentelemetry/sdk/metrics/exemplar/filter.h"
 #  include "opentelemetry/sdk/metrics/exemplar/reservoir.h"
 #  include "opentelemetry/sdk/metrics/exemplar/reservoir_cell.h"
 #  include "opentelemetry/sdk/metrics/exemplar/reservoir_cell_selector.h"
@@ -47,6 +46,10 @@ public:
                         const opentelemetry::context::Context &context,
                         const opentelemetry::common::SystemTimestamp &timestamp) noexcept override
   {
+    if (!reservoir_cell_selector_)
+    {
+      return;
+    }
     auto idx =
         reservoir_cell_selector_->ReservoirCellIndexFor(storage_, value, attributes, context);
     if (idx != -1)
@@ -60,6 +63,10 @@ public:
                         const opentelemetry::context::Context &context,
                         const opentelemetry::common::SystemTimestamp &timestamp) noexcept override
   {
+    if (!reservoir_cell_selector_)
+    {
+      return;
+    }
     auto idx =
         reservoir_cell_selector_->ReservoirCellIndexFor(storage_, value, attributes, context);
     if (idx != -1)
@@ -72,6 +79,10 @@ public:
       const MetricAttributes &pointAttributes) noexcept override
   {
     std::vector<ExemplarData> results;
+    if (!reservoir_cell_selector_)
+    {
+      return results;
+    }
     if (!map_and_reset_cell_)
     {
       reservoir_cell_selector_.reset();

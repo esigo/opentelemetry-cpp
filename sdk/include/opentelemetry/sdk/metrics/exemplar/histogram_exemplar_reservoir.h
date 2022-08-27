@@ -35,6 +35,12 @@ public:
         new HistogramExemplarReservoir{size, reservoir_cell_selector, map_and_reset_cell}};
   }
 
+  static std::shared_ptr<ReservoirCellSelector> GetHistogramCellSelector(
+      const std::vector<double> &boundaries = std::vector<double>{1.0, 2.0, 3.0, 4.0, 5.0})
+  {
+    return std::shared_ptr<ReservoirCellSelector>{new HistogramCellSelector(boundaries)};
+  }
+
   HistogramExemplarReservoir(
       size_t size,
       std::shared_ptr<ReservoirCellSelector> reservoir_cell_selector,
@@ -68,7 +74,7 @@ public:
           return i;
         }
       }
-      return boundaries_.size();
+      return -1;
     }
 
   private:

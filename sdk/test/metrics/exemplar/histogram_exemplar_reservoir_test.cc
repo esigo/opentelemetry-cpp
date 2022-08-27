@@ -20,10 +20,7 @@ TEST_F(HistogramExemplarReservoirTestPeer, OfferMeasurement)
 {
   std::vector<double> boundaries{1, 5.0, 10, 15, 20};
   auto histogram_exemplar_reservoir = HistogramExemplarReservoir::GetHistogramExemplarReservoir(
-      boundaries.size(),
-      std::shared_ptr<ReservoirCellSelector>{
-          new HistogramExemplarReservoir::HistogramCellSelector(boundaries)},
-      nullptr);
+      boundaries.size(), HistogramExemplarReservoir::GetHistogramCellSelector(boundaries), nullptr);
   histogram_exemplar_reservoir->OfferMeasurement(
       1.0, MetricAttributes{}, opentelemetry::context::Context{}, std::chrono::system_clock::now());
   histogram_exemplar_reservoir->OfferMeasurement(
