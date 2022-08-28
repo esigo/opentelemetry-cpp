@@ -47,7 +47,7 @@ public:
     }
   }
 
-  std::vector<ExemplarData> CollectAndReset(
+  std::vector<std::shared_ptr<ExemplarData>> CollectAndReset(
       const MetricAttributes &pointAttributes) noexcept override
   {
     return reservoir_->CollectAndReset(pointAttributes);
