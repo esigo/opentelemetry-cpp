@@ -15,6 +15,7 @@ namespace sdk
 {
 namespace metrics
 {
+
 nostd::shared_ptr<ExemplarReservoir> ExemplarReservoir::GetFilteredExemplarReservoir(
     std::shared_ptr<ExemplarFilter> filter,
     std::shared_ptr<ExemplarReservoir> reservoir)
@@ -25,8 +26,8 @@ nostd::shared_ptr<ExemplarReservoir> ExemplarReservoir::GetFilteredExemplarReser
 nostd::shared_ptr<ExemplarReservoir> ExemplarReservoir::GetHistogramExemplarReservoir(
     size_t size,
     std::shared_ptr<ReservoirCellSelector> reservoir_cell_selector,
-    nostd::function_ref<ExemplarData(const ReservoirCell &reservoir_cell,
-                                     const MetricAttributes &attributes)> map_and_reset_cell)
+    std::shared_ptr<ExemplarData> (ReservoirCell::*map_and_reset_cell)(
+        const common::OrderedAttributeMap &attributes))
 {
   return nostd::shared_ptr<ExemplarReservoir>{
       new HistogramExemplarReservoir{size, reservoir_cell_selector, map_and_reset_cell}};

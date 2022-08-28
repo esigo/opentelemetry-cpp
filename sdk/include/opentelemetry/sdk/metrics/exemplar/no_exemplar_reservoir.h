@@ -34,10 +34,10 @@ public:
     // Stores nothing.
   }
 
-  std::vector<ExemplarData> CollectAndReset(
+  std::vector<std::shared_ptr<ExemplarData>> CollectAndReset(
       const MetricAttributes &pointAttributes) noexcept override
   {
-    return std::vector<ExemplarData>{};
+    return std::vector<std::shared_ptr<ExemplarData>>{};
   }
 
   explicit NoExemplarReservoir() = default;

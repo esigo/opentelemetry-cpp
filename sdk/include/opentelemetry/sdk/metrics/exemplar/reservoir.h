@@ -4,7 +4,7 @@
 #pragma once
 #ifndef ENABLE_METRICS_PREVIEW
 #  include <vector>
-#  include "opentelemetry/sdk/metrics/exemplar/data.h"
+#  include "opentelemetry/sdk/metrics/data/exemplar_data.h"
 #  include "opentelemetry/sdk/metrics/exemplar/filter.h"
 #  include "opentelemetry/sdk/metrics/exemplar/reservoir_cell_selector.h"
 
@@ -47,7 +47,7 @@ public:
    * @return A vector of sampled exemplars for this point. Implementers are expected to
    *     filter out pointAttributes from the original recorded attributes.
    */
-  virtual std::vector<ExemplarData> CollectAndReset(
+  virtual std::vector<std::shared_ptr<ExemplarData>> CollectAndReset(
       const MetricAttributes &pointAttributes) noexcept = 0;
 
   static nostd::shared_ptr<ExemplarReservoir> GetFilteredExemplarReservoir(
@@ -57,8 +57,9 @@ public:
   static nostd::shared_ptr<ExemplarReservoir> GetHistogramExemplarReservoir(
       size_t size,
       std::shared_ptr<ReservoirCellSelector> reservoir_cell_selector,
-      nostd::function_ref<ExemplarData(const ReservoirCell &reservoir_cell,
-                                       const MetricAttributes &attributes)> map_and_reset_cell);
+      std::shared_ptr<ExemplarData> (ReservoirCell::*map_and_reset_cell)(
+          const common::OrderedAttributeMap &attributes));
+
   static nostd::shared_ptr<ExemplarReservoir> GetNoExemplarReservoir();
 };
 

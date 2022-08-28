@@ -8,7 +8,7 @@
 #  include "opentelemetry/context/context.h"
 #  include "opentelemetry/nostd/shared_ptr.h"
 #  include "opentelemetry/sdk/common/attribute_utils.h"
-#  include "opentelemetry/sdk/metrics/exemplar/data.h"
+#  include "opentelemetry/sdk/metrics/data/exemplar_data.h"
 #  include "opentelemetry/sdk/metrics/exemplar/filter.h"
 #  include "opentelemetry/sdk/metrics/exemplar/fixed_size_exemplar_reservoir.h"
 #  include "opentelemetry/sdk/metrics/exemplar/reservoir.h"
@@ -30,11 +30,10 @@ public:
     return std::shared_ptr<ReservoirCellSelector>{new HistogramCellSelector(boundaries)};
   }
 
-  HistogramExemplarReservoir(
-      size_t size,
-      std::shared_ptr<ReservoirCellSelector> reservoir_cell_selector,
-      nostd::function_ref<ExemplarData(const ReservoirCell &reservoir_cell,
-                                       const MetricAttributes &attributes)> map_and_reset_cell)
+  HistogramExemplarReservoir(size_t size,
+                             std::shared_ptr<ReservoirCellSelector> reservoir_cell_selector,
+                             std::shared_ptr<ExemplarData> (ReservoirCell::*map_and_reset_cell)(
+                                 const common::OrderedAttributeMap &attributes))
       : FixedSizeExemplarReservoir<ExemplarData>(size, reservoir_cell_selector, map_and_reset_cell)
   {}
 
