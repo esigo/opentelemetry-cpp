@@ -7,6 +7,7 @@ set -e
 export DEBIAN_FRONTEND=noninteractive
 old_grpc_version='v1.33.2'
 new_grpc_version='v1.48.1'
+std_version='14'
 gcc_version_for_new_grpc='5.1'
 install_grpc_version=${new_grpc_version}
 grpc_version='v1.39.0'
@@ -32,6 +33,7 @@ fi
 if [[ "${gcc_version}" < "${gcc_version_for_new_grpc}" ]]; then
     echo "less"
     install_grpc_version=${old_grpc_version}
+    std_version=11
 fi
 if ! type cmake > /dev/null; then
     #cmake not installed, exiting
@@ -52,7 +54,7 @@ cmake -DCMAKE_BUILD_TYPE=Release  \
 make -j${nproc} install && popd
 mkdir -p build && pushd build
 cmake -DgRPC_INSTALL=ON \
-    -DCMAKE_CXX_STANDARD=11 \
+    -DCMAKE_CXX_STANDARD=${std_version} \
     -DgRPC_BUILD_TESTS=OFF \
     -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR \
     -DCMAKE_PREFIX_PATH=$INSTALL_DIR \
