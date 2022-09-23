@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1663270535442,
+  "lastUpdate": 1663968786058,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -23046,6 +23046,54 @@ window.BENCHMARK_DATA = {
             "value": 3044707.193812717,
             "unit": "ns/iter",
             "extra": "iterations: 283\ncpu: 514850.5300353359 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "Tom.Tan@microsoft.com",
+            "name": "Tom Tan",
+            "username": "ThomsonTan"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "5c180a16886a354787fd0e6547e0147206f26d1e",
+          "message": "Prepare v1.6.1 release (#1630)",
+          "timestamp": "2022-09-22T20:19:36-07:00",
+          "tree_id": "d5f51516f8d2f2e162a2dd649bff260d36269cc5",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/5c180a16886a354787fd0e6547e0147206f26d1e"
+        },
+        "date": 1663968784778,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 111.92352665580718,
+            "unit": "ns/iter",
+            "extra": "iterations: 1235000\ncpu: 111.7054251012146 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 169.26369035100362,
+            "unit": "ns/iter",
+            "extra": "iterations: 830000\ncpu: 169.0650602409639 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 611.3236554190836,
+            "unit": "ns/iter",
+            "extra": "iterations: 233000\ncpu: 610.626180257511 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 1877087.1935663996,
+            "unit": "ns/iter",
+            "extra": "iterations: 444\ncpu: 305977.4774774776 ns\nthreads: 1"
           }
         ]
       }
