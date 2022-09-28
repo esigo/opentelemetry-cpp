@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1663968815898,
+  "lastUpdate": 1664369069975,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -23268,6 +23268,54 @@ window.BENCHMARK_DATA = {
             "value": 1877087.1935663996,
             "unit": "ns/iter",
             "extra": "iterations: 444\ncpu: 305977.4774774776 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "davidmandle@gmail.com",
+            "name": "davidmandle",
+            "username": "davidmandle"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": false,
+          "id": "7278d83ef15d9df121167730436a4959c574e5b5",
+          "message": "Fix typo in package name in documentation. (#1636)\n\nThis is a minor fix of a typo in the dependencies documentation.`@io_opentelemetry_cpp/api:with_abseil` is not a valid Bazel target name, it should instead be @io_opentelemetry_cpp//api:with_abseil.",
+          "timestamp": "2022-09-27T18:24:54-07:00",
+          "tree_id": "cd3f3a31d717a8a3f40dcd5bb8a1e6bcc72a303b",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/7278d83ef15d9df121167730436a4959c574e5b5"
+        },
+        "date": 1664369068450,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 144.30914873852154,
+            "unit": "ns/iter",
+            "extra": "iterations: 955000\ncpu: 143.9882722513089 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 241.7155776045184,
+            "unit": "ns/iter",
+            "extra": "iterations: 671000\ncpu: 208.93830104321904 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 777.0490394067511,
+            "unit": "ns/iter",
+            "extra": "iterations: 189000\ncpu: 753.9629629629629 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 1936364.540686974,
+            "unit": "ns/iter",
+            "extra": "iterations: 325\ncpu: 374311.38461538486 ns\nthreads: 1"
           }
         ]
       }
