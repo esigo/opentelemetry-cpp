@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1665157112773,
+  "lastUpdate": 1665592276382,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -24378,6 +24378,54 @@ window.BENCHMARK_DATA = {
             "value": 1973813.133580344,
             "unit": "ns/iter",
             "extra": "iterations: 448\ncpu: 360582.3660714286 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "lalit_fin@yahoo.com",
+            "name": "Lalit Kumar Bhasin",
+            "username": "lalitb"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": false,
+          "id": "99f2ba4e34ed497f5117711fad11168382051e18",
+          "message": "Fix #1663 Threading issue between Meter::RegisterSyncMetricStorage and Meter::Collect (#1666)",
+          "timestamp": "2022-10-11T10:58:07-07:00",
+          "tree_id": "221bf77335e679627c391053fe21842223962ad5",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/99f2ba4e34ed497f5117711fad11168382051e18"
+        },
+        "date": 1665592274249,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 140.00061836658548,
+            "unit": "ns/iter",
+            "extra": "iterations: 1009000\ncpu: 139.66164519326065 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 208.22657256567177,
+            "unit": "ns/iter",
+            "extra": "iterations: 714000\ncpu: 206.77633053221294 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 751.336415608724,
+            "unit": "ns/iter",
+            "extra": "iterations: 192000\ncpu: 746.5630208333334 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 2458540.1508170115,
+            "unit": "ns/iter",
+            "extra": "iterations: 355\ncpu: 417370.42253521155 ns\nthreads: 1"
           }
         ]
       }
