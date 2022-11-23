@@ -162,7 +162,6 @@ jobs:
     - name: run otlp exporter tests
       run: |
         sudo ./ci/setup_grpc.sh
-      run: |
         ci/run_docker.sh ./ci/do_ci.sh cmake.exporter.otprotocol.test
         docker rmi $(docker images -a -q)
 
