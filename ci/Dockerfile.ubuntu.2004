@@ -27,4 +27,4 @@ RUN bash -c "if [[ "$GRPC" == "ON" ]]; then /setup-ci/setup_grpc.sh; fi"
 
 RUN rm -rf /tmp/*
 
-ENV HOME=/tmp
+ENV HOME="/tmp"
