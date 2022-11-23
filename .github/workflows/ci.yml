@@ -16,7 +16,7 @@ jobs:
         submodules: 'recursive'
     - name: run cmake tests (without otlp-exporter)
       run: |
-        ci/run_docker.sh ./ci/do_ci.sh cmake.test
+        THRIFT=ON ci/run_docker.sh ./ci/do_ci.sh cmake.test
         docker rmi --force opentelemetry-cpp-build-2004
 
   cmake_gcc_maintainer_test:
@@ -90,7 +90,7 @@ jobs:
         submodules: 'recursive'
     - name: run cmake tests (enable abseil-cpp)
       run: |
-        ci/run_docker.sh ./ci/do_ci.sh cmake.abseil.test
+        ABSEIL=ON ci/run_docker.sh ./ci/do_ci.sh cmake.abseil.test
         docker rmi --force opentelemetry-cpp-build-2004
 
   cmake_gcc_48_test:
@@ -161,8 +161,7 @@ jobs:
         submodules: 'recursive'
     - name: run otlp exporter tests
       run: |
-        sudo ./ci/setup_grpc.sh
-        ci/run_docker.sh ./ci/do_ci.sh cmake.exporter.otprotocol.test
+        GRPC=ON ci/run_docker.sh ./ci/do_ci.sh cmake.exporter.otprotocol.test
         docker rmi --force opentelemetry-cpp-build-2004
 
   plugin_test:
@@ -405,7 +404,7 @@ jobs:
     - uses: actions/checkout@v3
     - name: run tests
       run: |
-        ci/run_docker.sh ./ci/do_ci.sh format
+        FORMAT=ON ci/run_docker.sh ./ci/do_ci.sh format
         docker rmi --force opentelemetry-cpp-build-2004
 
 

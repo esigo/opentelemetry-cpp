@@ -244,7 +244,7 @@ EOF
   cp examples/plugin/plugin/libexample_plugin.so ${PLUGIN_DIR}
 
   # Verify we can load the plugin
-  # cd "${BUILD_DIR}"
+  cd "${BUILD_DIR}"
   rm -rf *
   cmake -DCMAKE_BUILD_TYPE=Debug  \
         -DCMAKE_CXX_FLAGS="-Werror" \
