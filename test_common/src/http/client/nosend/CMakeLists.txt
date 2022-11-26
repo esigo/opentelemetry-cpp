@@ -1,9 +1,9 @@
 if(${BUILD_TESTING})
-  add_library(http_client_nosend http_client_factory_nosend.cc
-                                 http_client_nosend.cc)
+  add_library(opentelemetry_http_client_nosend http_client_factory_nosend.cc
+                                               http_client_nosend.cc)
 
-  set_target_properties(http_client_nosend PROPERTIES EXPORT_NAME
-                                                      http_client_nosend)
+  set_target_properties(opentelemetry_http_client_nosend
+                        PROPERTIES EXPORT_NAME opentelemetry_http_client_nosend)
 
   if(MSVC)
     # Explicitly specify that we consume GTest from shared library. The rest of
@@ -24,7 +24,8 @@ if(${BUILD_TESTING})
     find_library(GMOCK_LIB gmock PATH_SUFFIXES lib)
   endif()
 
-  target_link_libraries(http_client_nosend ${GTEST_BOTH_LIBRARIES} ${GMOCK_LIB}
-                        opentelemetry_ext opentelemetry_teset_common)
+  target_link_libraries(
+    opentelemetry_http_client_nosend ${GTEST_BOTH_LIBRARIES} ${GMOCK_LIB}
+    opentelemetry_ext opentelemetry_teset_common)
 
 endif()
