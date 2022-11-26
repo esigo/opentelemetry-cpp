@@ -25,6 +25,6 @@ if(${BUILD_TESTING})
   endif()
 
   target_link_libraries(http_client_nosend ${GTEST_BOTH_LIBRARIES} ${GMOCK_LIB}
-                        opentelemetry_ext)
+                        opentelemetry_ext opentelemetry_teset_common)
 
 endif()
