@@ -27,8 +27,8 @@ BAZEL_CACHE="/home/runner/.cache/bazel"
 
 docker run \
   --privileged \
-  -v "$PWD":/src:Z \
-  -v ${BAZEL_CACHE}:${BAZEL_CACHE}:Z \
+  -v "$PWD":/src:z \
+  -v ${BAZEL_CACHE}:${BAZEL_CACHE}:z \
   -w /src \
   "$BUILD_IMAGE" "$@"
 
