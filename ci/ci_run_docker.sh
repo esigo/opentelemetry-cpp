@@ -26,7 +26,7 @@ docker image inspect "$BUILD_IMAGE" &> /dev/null || {
 BAZEL_CACHE="/home/runner/.cache/bazel"
 
 docker run \
-  --privileged=true \
+  --user "$(id -u):$(id -g)" \
   -v "$PWD":/src:z \
   -v ${BAZEL_CACHE}:${BAZEL_CACHE}:z \
   -w /src \
