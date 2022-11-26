@@ -7,8 +7,6 @@ cc_library(
         "http_client_nosend.cc",
     ],
     include_prefix = "src/http/client/nosend",
-    # include_prefix = "include/opentelemetry/test_common/ext/http/client/nosend",
-    # strip_include_prefix = "test_common/include",
     tags = [
         "test",
     ],
