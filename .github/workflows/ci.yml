@@ -187,7 +187,6 @@ jobs:
       with:
         path: /home/runner/.cache/bazel
         key: bazel_test
-    - name: setup
     - name: run tests
       run: |
         BAZEL=ON bash ci/ci_run_docker.sh ./ci/do_ci.sh bazel.test
