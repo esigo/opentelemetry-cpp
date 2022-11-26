@@ -189,7 +189,7 @@ jobs:
         key: bazel_test
     - name: run tests
       run: |
-        sudo chcon -Rt svirt_sandbox_file_t /home/runner/
+        su -c "setenforce 0"
         BAZEL=ON bash ci/ci_run_docker.sh ./ci/do_ci.sh bazel.test
 
   bazel_test_async:
