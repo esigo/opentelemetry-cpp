@@ -205,13 +205,9 @@ jobs:
       with:
         path: /home/runner/.cache/bazel
         key: bazel_test
-    - name: setup
-      run: |
-        sudo ./ci/setup_thrift.sh dependencies_only
-        sudo ./ci/setup_ci_environment.sh
-        sudo ./ci/install_bazelisk.sh
     - name: run tests
-      run: ./ci/do_ci.sh bazel.with_async_export.test
+      run: |
+        BAZEL=ON bash ci/ci_run_docker.sh ./ci/do_ci.sh bazel.with_async_export.test
 
   bazel_with_abseil:
     name: Bazel with external abseil
@@ -227,13 +223,9 @@ jobs:
       with:
         path: /home/runner/.cache/bazel
         key: bazel_test
-    - name: setup
-      run: |
-        sudo ./ci/setup_thrift.sh dependencies_only
-        sudo ./ci/setup_ci_environment.sh
-        sudo ./ci/install_bazelisk.sh
     - name: run tests
-      run: ./ci/do_ci.sh bazel.with_abseil
+      run: |
+        BAZEL=ON bash ci/ci_run_docker.sh ./ci/do_ci.sh bazel.with_abseil
 
   bazel_valgrind:
     name: Bazel valgrind
@@ -249,13 +241,9 @@ jobs:
       with:
         path: /home/runner/.cache/bazel
         key: bazel_valgrind
-    - name: setup
-      run: |
-        sudo ./ci/setup_thrift.sh dependencies_only
-        sudo ./ci/setup_ci_environment.sh
-        sudo ./ci/install_bazelisk.sh
     - name: run tests
-      run: ./ci/do_ci.sh bazel.valgrind
+      run: |
+        BAZEL=ON bash ci/ci_run_docker.sh ./ci/do_ci.sh bazel.valgrind
 
   bazel_noexcept:
     name: Bazel noexcept
@@ -271,13 +259,9 @@ jobs:
       with:
         path: /home/runner/.cache/bazel
         key: bazel_noexcept
-    - name: setup
-      run: |
-        sudo ./ci/setup_thrift.sh dependencies_only
-        sudo ./ci/setup_ci_environment.sh
-        sudo ./ci/install_bazelisk.sh
     - name: run tests
-      run: ./ci/do_ci.sh bazel.noexcept
+      run: |
+        BAZEL=ON bash ci/ci_run_docker.sh ./ci/do_ci.sh bazel.noexcept
 
   bazel_nortti:
     name: Bazel nortti
@@ -293,13 +277,9 @@ jobs:
       with:
         path: /home/runner/.cache/bazel
         key: bazel_nortti
-    - name: setup
-      run: |
-        sudo ./ci/setup_thrift.sh dependencies_only
-        sudo ./ci/setup_ci_environment.sh
-        sudo ./ci/install_bazelisk.sh
     - name: run tests
-      run: ./ci/do_ci.sh bazel.nortti
+      run: |
+        BAZEL=ON bash ci/ci_run_docker.sh ./ci/do_ci.sh bazel.nortti
 
   bazel_asan:
     name: Bazel asan config
@@ -315,13 +295,9 @@ jobs:
       with:
         path: /home/runner/.cache/bazel
         key: bazel_asan
-    - name: setup
-      run: |
-        sudo ./ci/setup_thrift.sh dependencies_only
-        sudo ./ci/setup_ci_environment.sh
-        sudo ./ci/install_bazelisk.sh
     - name: run tests
-      run: ./ci/do_ci.sh bazel.asan
+      run: |
+        BAZEL=ON bash ci/ci_run_docker.sh ./ci/do_ci.sh bazel.asan
 
   bazel_tsan:
     name: Bazel tsan config
@@ -337,13 +313,9 @@ jobs:
       with:
         path: /home/runner/.cache/bazel
         key: bazel_tsan
-    - name: setup
-      run: |
-        sudo ./ci/setup_thrift.sh dependencies_only
-        sudo ./ci/setup_ci_environment.sh
-        sudo ./ci/install_bazelisk.sh
     - name: run tests
-      run: ./ci/do_ci.sh bazel.tsan
+      run: |
+        BAZEL=ON bash ci/ci_run_docker.sh ./ci/do_ci.sh bazel.tsan
 
   bazel_osx:
     name: Bazel on MacOS
