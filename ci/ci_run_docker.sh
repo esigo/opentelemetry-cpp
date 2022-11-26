@@ -26,8 +26,8 @@ docker image inspect "$BUILD_IMAGE" &> /dev/null || {
 BAZEL_CACHE="/home/runner/.cache/bazel"
 
 docker run \
-  -v "$PWD":/src \
-  -v ${BAZEL_CACHE}:${BAZEL_CACHE} \
+  -v "$PWD":/src:Z \
+  -v ${BAZEL_CACHE}:${BAZEL_CACHE}:Z \
   -w /src \
   "$BUILD_IMAGE" "$@"
 
