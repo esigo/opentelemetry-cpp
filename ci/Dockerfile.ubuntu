@@ -39,3 +39,5 @@ RUN bash -c "if [[ "$GRPC" == "ON" ]]; then /setup-ci/setup_grpc.sh; fi"
 RUN rm -rf /tmp/*
 
 ENV HOME="/home/runner"
+
+ENV PATH="/usr/bin"
