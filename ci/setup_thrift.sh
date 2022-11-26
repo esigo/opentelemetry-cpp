@@ -24,7 +24,7 @@ fi
 export BUILD_DIR=/tmp/
 export INSTALL_DIR=${install_dir}
 
-apt install -y --no-install-recommends \
+apt  -qq install -y --no-install-recommends \
       libboost-locale-dev \
       libevent-dev \
       libssl-dev \
