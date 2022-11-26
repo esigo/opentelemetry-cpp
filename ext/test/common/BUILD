@@ -6,7 +6,10 @@ cc_library(
         "http_client_factory_nosend.cc",
         "http_client_nosend.cc",
     ],
-    include_prefix = "src/http/client/nosend",
+    hdrs = [
+        "http_client_nosend.h",
+    ],
+    # include_prefix = "test/include/opentelemetry/ext/http/client",
     tags = [
         "test",
     ],
