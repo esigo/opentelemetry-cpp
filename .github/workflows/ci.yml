@@ -315,6 +315,7 @@ jobs:
         key: bazel_tsan
     - name: run tests
       run: |
+        ls -la /home/runner/.cache/bazel/*
         BAZEL=ON bash ci/ci_run_docker.sh ./ci/do_ci.sh bazel.tsan
 
   bazel_osx:
