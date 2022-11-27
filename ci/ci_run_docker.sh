@@ -29,23 +29,36 @@ command=$@
 backup="/backup/backup.tar"
 container_name="otel-run"
 
-  # --user "$(id -u):$(id -g)" \
-docker run \
-  -v $(pwd):/src \
-  -v /home/runner \
-  -v $(pwd):/backup \
-  -w /src \
-  --name ${container_name} \
-  "$BUILD_IMAGE" bash -c \
-    "cd /home/runner/ \
-    && tar xf ${backup} --strip 1 &> /dev/null || { \
-    echo 'no bazel cache'
-    } \
-    && cd /src && ${command}"
+if [[ ${bazel} == "ON" ]];
+then
+  docker run \
+    -v $(pwd):/src \
+    -v /home/runner \
+    -v $(pwd):/backup \
+    --tty \
+    -w /src \
+    --name ${container_name} \
+    "$BUILD_IMAGE" bash -c \
+      "cd /home/runner/ \
+      && tar xf ${backup} --strip 1 &> /dev/null || { \
+        echo 'no bazel cache'
+      } \
+      && cd /src && ${command}"
 
+  docker run --rm --volumes-from ${container_name} \
+    -v /home/runner/.cache/bazel:/backup ubuntu tar cf ${backup} /home/runner
 
-docker run --rm --volumes-from ${container_name} -v /home/runner/.cache/bazel:/backup ubuntu tar cf ${backup} /home/runner
+  docker rm -f ${container_name}
+else
+  docker run \
+    --user "$(id -u):$(id -g)" \
+    -v $(pwd):/src \
+    --tty \
+    --rm \
+    -w /src \
+    --name ${container_name} \
+    "$BUILD_IMAGE" bash -c "${command}"
+fi
 
-docker rm -f ${container_name}
 
 docker rmi --force ${BUILD_IMAGE}
