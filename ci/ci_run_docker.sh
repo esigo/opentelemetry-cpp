@@ -29,8 +29,8 @@ command=$@
 backup="/backup/backup.tar"
 container_name="otel-run"
 
+  # --user "$(id -u):$(id -g)" \
 docker run \
-  --user "$(id -u):$(id -g)" \
   -v $(pwd):/src \
   -v /home/runner \
   -v $(pwd):/backup \
@@ -44,7 +44,7 @@ docker run \
     && cd /src && ${command}"
 
 
-docker run --rm --volumes-from ${container_name} -v $(pwd):/backup ubuntu tar cf ${backup} /home/runner
+docker run --rm --volumes-from ${container_name} -v /home/runner/.cache/bazel:/backup ubuntu tar cf ${backup} /home/runner
 
 docker rm -f ${container_name}
 
