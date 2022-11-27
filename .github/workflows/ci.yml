@@ -189,7 +189,7 @@ jobs:
         key: bazel_test
     - name: run tests
       run: |
-        BAZEL=ON sudo bash ci/ci_run_docker.sh ./ci/do_ci.sh bazel.test
+        BAZEL=ON bash ci/ci_run_docker.sh ./ci/do_ci.sh bazel.test
 
   bazel_test_async:
     name: Bazel with async export
