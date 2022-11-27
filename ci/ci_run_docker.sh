@@ -25,11 +25,27 @@ docker image inspect "$BUILD_IMAGE" &> /dev/null || {
 
 BAZEL_CACHE="/home/runner/.cache/bazel"
 
+command=$@
+backup="/backup/backup.tar"
+container_name="otel-run"
+
 docker run \
   --user "$(id -u):$(id -g)" \
-  -v "$PWD":/src:z \
-  -v ${BAZEL_CACHE}:${BAZEL_CACHE}:z \
+  -v $(pwd):/src \
+  -v /home/runner \
+  -v $(pwd):/backup \
   -w /src \
-  "$BUILD_IMAGE" "$@"
+  --name ${container_name} \
+  "$BUILD_IMAGE" bash -c \
+    "cd /home/runner/ \
+    && tar xf ${backup} --strip 1 &> /dev/null || { \
+    echo 'no bazel cache'
+    } \
+    && cd /src && ${command}"
+
+
+docker run --rm --volumes-from ${container_name} -v $(pwd):/backup ubuntu tar cf ${backup} /home/runner
+
+docker rm -f ${container_name}
 
 docker rmi --force ${BUILD_IMAGE}

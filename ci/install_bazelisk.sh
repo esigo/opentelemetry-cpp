@@ -7,5 +7,5 @@ set -e
 
 BAZELISK_VERSION=v1.10.1
 
-wget -O /usr/bin/bazel https://github.com/bazelbuild/bazelisk/releases/download/$BAZELISK_VERSION/bazelisk-linux-amd64
-chmod +x /usr/bin/bazel
+wget -O /usr/local/bin/bazel https://github.com/bazelbuild/bazelisk/releases/download/$BAZELISK_VERSION/bazelisk-linux-amd64
+chmod +x /usr/local/bin/bazel

@@ -38,6 +38,7 @@ RUN bash -c "if [[ "$GRPC" == "ON" ]]; then /setup-ci/setup_grpc.sh; fi"
 
 RUN rm -rf /tmp/*
 
+RUN mkdir -p /home/runner/.cache && chmod -R 777 /home/runner/
+
 ENV HOME="/home/runner"
 
-ENV PATH="/usr/bin"
