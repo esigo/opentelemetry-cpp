@@ -24,7 +24,7 @@ jobs:
       id: buildx
       uses: docker/setup-buildx-action@v2
     -
-      name: Build Image
+      name: Build gRPC Image
       uses: docker/build-push-action@v3
       with:
         builder: ${{ steps.buildx.outputs.name }}
@@ -33,20 +33,21 @@ jobs:
         build-args: |
           "BASE_IMAGE=ubuntu:latest"
           "GRPC_GIT_TAG=v1.48.1"
+          "CORES=3"
         platforms: linux/amd64
         # platforms: linux/amd64,linux/arm64
         push: false
-        tags: otel-cpp-deps
+        tags: otel-cpp-grpc
         load: true
     -
       name: Save Image
       run: |
         docker images
-        docker save -o /opt/otel-cpp-deps-debian.tar otel-cpp-deps
+        docker save -o /opt/otel-cpp-grpc-debian.tar otel-cpp-grpc
     -
       name: Upload Image
       uses: actions/upload-artifact@v3
       with:
-        name: otel-cpp-deps
-        path: /opt/otel-cpp-deps-debian.tar
+        name: otel-cpp-grpc
+        path: /opt/otel-cpp-grpc-debian.tar
         retention-days: 14
