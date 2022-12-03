@@ -29,8 +29,10 @@ jobs:
       with:
         builder: ${{ steps.buildx.outputs.name }}
         context: ci/
-        file: ./docker/Dockerfile
-        build-args: BASE_IMAGE=ubuntu:latest
+        file: ./docker/grpc/Dockerfile
+        build-args: |
+          BASE_IMAGE=ubuntu:latest
+          GRPC_GIT_TAG="1.45.2"
         platforms: linux/amd64
         # platforms: linux/amd64,linux/arm64
         push: false
