@@ -1,0 +1,32 @@
+name: OpenTelemetry-cpp dependencies download
+on:
+  push:
+    branches:
+      - artifacts
+jobs:
+  download_artifact:
+    name: download artifact
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dawidd6/action-download-artifact@v2.19.0
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          run_id: 3609494423
+          # https://github.com/dawidd6/action-download-artifact/issues/147
+          workflow: dependencies_image.yml
+          workflow_conclusion: success
+          commit: ${{github.event.pull_request.head.sha}}
+          branch: artifacts
+          event: push
+          name: otel-cpp-deps
+          path: /opt/
+      - name: Load deps image
+        run: |
+          docker load -i /opt/otel-cpp-deps.tar
+      - uses: actions/checkout@v3
+        with:
+          submodules: 'recursive'
+      - name: cmake test
+        run: |
+          docker images
+          # docker run -i --rm -v $(pwd):/work otel-cpp /work/ci/do_ci.sh cmake.test

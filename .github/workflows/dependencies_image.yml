@@ -4,8 +4,8 @@ on:
     - cron: "0 3 * * 6"
   push:
     branches: [ main, bzl ]
-  pull_request:
-    branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
 
 jobs:
   docker_image:
