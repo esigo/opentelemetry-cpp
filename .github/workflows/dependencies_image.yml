@@ -28,7 +28,7 @@ jobs:
       uses: docker/build-push-action@v3
       with:
         builder: ${{ steps.buildx.outputs.name }}
-        context: ci/
+        context: docker/grpc
         file: ./docker/grpc/Dockerfile
         build-args: |
           "BASE_IMAGE=ubuntu:latest"
