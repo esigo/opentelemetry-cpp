@@ -8,7 +8,7 @@ jobs:
     name: download artifact
     runs-on: ubuntu-latest
     steps:
-      - uses: dawidd6/action-download-artifact@v2.19.0
+      - uses: dawidd6/action-download-artifact@v2.24.2
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
           run_id: 3609494423
