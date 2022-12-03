@@ -1,0 +1,30 @@
+name: "Setup"
+description: "Downloads and loads build image"
+
+inputs:
+  image_name:
+    description: “Build image name”
+    required: false
+
+
+runs:
+  using: "composite"
+  steps:
+    - uses: dawidd6/action-download-artifact@v2.24.2
+      with:
+        github_token: ${{secrets.GITHUB_TOKEN}}
+        workflow: dependencies_image.yml
+        workflow_conclusion: success
+        commit: ${{github.event.pull_request.head.sha}}
+        event: push
+        name: otel-cpp-deps
+        path: /opt/
+        skip_unpack: true
+        if_no_artifact_found: warn
+
+    - name: Load deps image
+      run: |
+        cd /opt
+        unzip otel-cpp-deps.zip
+        rm -rf otel-cpp-deps.zip
+        docker load -i /opt/otel-cpp-deps-debian.tar

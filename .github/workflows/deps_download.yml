@@ -3,30 +3,17 @@ on:
   push:
     branches:
       - bzl
+
 jobs:
-  download_artifact:
-    name: download artifact
-    runs-on: ubuntu-latest
+  cmake_otlp:
+    name: CMake test (with otlp-exporter)
+    runs-on: ubuntu-20.04
     steps:
-      - uses: dawidd6/action-download-artifact@v2.24.2
-        with:
-          github_token: ${{secrets.GITHUB_TOKEN}}
-          workflow: dependencies_image.yml
-          workflow_conclusion: success
-          commit: ${{github.event.pull_request.head.sha}}
-          event: push
-          name: otel-cpp-deps
-          path: /opt/
-          skip_unpack: true
-      - name: Load deps image
-        run: |
-          cd /opt
-          unzip otel-cpp-deps.zip
-          rm -rf otel-cpp-deps.zip
-          docker load -i /opt/otel-cpp-deps-debian.tar
       - uses: actions/checkout@v3
         with:
           submodules: 'recursive'
+      -  id: setup
+        uses: ./.github/actions/setup
       - name: cmake test
         run: |
           docker images
