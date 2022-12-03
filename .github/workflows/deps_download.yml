@@ -11,12 +11,9 @@ jobs:
       - uses: dawidd6/action-download-artifact@v2.24.2
         with:
           github_token: ${{secrets.GITHUB_TOKEN}}
-          #run_id: 3609494423
-          # https://github.com/dawidd6/action-download-artifact/issues/147
           workflow: dependencies_image.yml
           workflow_conclusion: success
           commit: ${{github.event.pull_request.head.sha}}
-          branch: bzl
           event: push
           name: otel-cpp-deps
           path: /opt/
