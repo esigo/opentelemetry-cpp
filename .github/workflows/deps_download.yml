@@ -20,8 +20,10 @@ jobs:
           event: push
           name: otel-cpp-deps
           path: /opt/
+          skip_unpack: true
       - name: Load deps image
         run: |
+          ls -la /opt
           docker load -i /opt/otel-cpp-deps.tar
       - uses: actions/checkout@v3
         with:
