@@ -23,7 +23,8 @@ jobs:
           skip_unpack: true
       - name: Load deps image
         run: |
-          ls -la /opt
+          cd /opt
+          unzip otel-cpp-deps.zip
           docker load -i /opt/otel-cpp-deps.tar
       - uses: actions/checkout@v3
         with:
