@@ -33,4 +33,4 @@ jobs:
       - name: cmake test
         run: |
           docker images
-          bash ci/ci_run_docker.sh ci/do_ci.sh cmake.test
+          bash ci/ci_run_docker.sh ci/do_ci.sh cmake.exporter.otprotocol.test
