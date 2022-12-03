@@ -11,7 +11,6 @@ inputs:
     required: true
 
 runs:
-  runs-on: ubuntu-20.04
   using: "composite"
   steps:
     - uses: dawidd6/action-download-artifact@v2.24.2
