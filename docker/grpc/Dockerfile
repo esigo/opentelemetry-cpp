@@ -1,6 +1,10 @@
 ARG BASE_IMAGE=ubuntu:latest
 FROM ${BASE_IMAGE} AS grpc
 
+RUN apt-get update && apt-get install -y build-essential autoconf \
+    libtool pkg-config cmake git libssl-dev curl \
+	libcurl4-openssl-dev libgtest-dev libgmock-dev libbenchmark-dev
+
 ARG CORES=${nproc}
 ARG GRPC_GIT_TAG=v1.45.2
 
