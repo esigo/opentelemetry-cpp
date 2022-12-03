@@ -3,7 +3,7 @@ on:
   schedule:
     - cron: "0 3 * * 6"
   push:
-    branches: [ main, docker ]
+    branches: [ main, bzl ]
   pull_request:
     branches: [ main ]
 
