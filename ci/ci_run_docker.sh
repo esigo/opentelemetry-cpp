@@ -13,7 +13,6 @@ abseil="${ABSEIL:=OFF}"
 gRPC="${GRPC:=OFF}"
 bazel="${BAZEL:=OFF}"
 BUILD_IMAGE=opentelemetry-cpp-build-2004
-docker rmi --force ${BUILD_IMAGE}
 
 Help()
 {
