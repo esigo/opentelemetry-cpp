@@ -27,7 +27,6 @@ jobs:
       name: Build Image
       run: |
         bash ci/ci_run_docker.sh -tag -i
-      uses: docker/build-push-action@v3
     -
       name: Save Image
       run: |
