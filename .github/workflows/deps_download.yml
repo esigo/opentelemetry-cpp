@@ -9,12 +9,12 @@ jobs:
     name: CMake test (with otlp-exporter)
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v3
-        with:
-          submodules: 'recursive'
-      -  id: setup
-        uses: ./.github/actions/setup
-      - name: cmake test
-        run: |
-          docker images
-          bash ci/ci_run_docker.sh ci/do_ci.sh cmake.exporter.otprotocol.test
+    - uses: actions/checkout@v3
+      with:
+        submodules: 'recursive'
+    -  id: setup
+      uses: ./.github/actions/setup
+    - name: cmake test
+      run: |
+        docker images
+        bash ci/ci_run_docker.sh ci/do_ci.sh cmake.exporter.otprotocol.test
