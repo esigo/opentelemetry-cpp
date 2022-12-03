@@ -15,10 +15,10 @@ runs:
   steps:
     - uses: dawidd6/action-download-artifact@v2.24.2
       with:
-        github_token: ${{secrets.GITHUB_TOKEN}}
+        github_token: ${{inputs.github_token}}
         workflow: dependencies_image.yml
         workflow_conclusion: success
-        commit: ${{github.event.pull_request.head.sha}}
+        commit: ${{inputs.pull_sha}}
         event: push
         name: otel-cpp-deps
         path: /opt/
