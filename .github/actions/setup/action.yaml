@@ -11,6 +11,7 @@ inputs:
     required: true
 
 runs:
+  runs-on: ubuntu-20.04
   using: "composite"
   steps:
     - uses: dawidd6/action-download-artifact@v2.24.2
@@ -26,6 +27,7 @@ runs:
         if_no_artifact_found: warn
 
     - name: Load deps image
+      shell: bash
       run: |
         cd /opt
         unzip otel-cpp-deps.zip
