@@ -15,6 +15,9 @@ jobs:
         submodules: 'recursive'
     - id: setup
       uses: ./.github/actions/setup
+        with:
+          github_token: ${{secrets.GITHUB_TOKEN}}
+          pull_sha: ${{github.event.pull_request.head.sha}}
     - name: cmake test
       run: |
         docker images
