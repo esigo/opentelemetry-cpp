@@ -26,8 +26,9 @@ jobs:
           ls -la -h
           cd /opt
           unzip otel-cpp-deps.zip
+          rm -rf otel-cpp-deps.zip
           ls -la -h
-          docker load -i /opt/otel-cpp-deps.tar
+          docker load -i /opt/otel-cpp-deps-debian.tar
       - uses: actions/checkout@v3
         with:
           submodules: 'recursive'
