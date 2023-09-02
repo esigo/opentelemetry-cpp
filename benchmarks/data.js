@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1693065111644,
+  "lastUpdate": 1693676484093,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -32123,6 +32123,54 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/esigo/opentelemetry-cpp/commit/7196ec3fdae13865c43b76d35c5900fc9fdbc7d4"
         },
         "date": 1693065097251,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 143.04596861810907,
+            "unit": "ns/iter",
+            "extra": "iterations: 1243000\ncpu: 110.67892196299276 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 176.26911401748657,
+            "unit": "ns/iter",
+            "extra": "iterations: 800000\ncpu: 174.988875 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 657.4039106015806,
+            "unit": "ns/iter",
+            "extra": "iterations: 216000\ncpu: 657.0740740740744 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 1805689.3415105708,
+            "unit": "ns/iter",
+            "extra": "iterations: 359\ncpu: 356311.9777158775 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "marc.alff@oracle.com",
+            "name": "Marc Alff",
+            "username": "marcalff"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": false,
+          "id": "01e65810b9267df34487ce6bd4ed175be6b9d51e",
+          "message": "[SEMANTIC CONVENTION] Deprecated semconv (in the spec) not deprecated (in C++) (#2285)",
+          "timestamp": "2023-09-02T12:09:47+02:00",
+          "tree_id": "e8a37a69b2ba7efbb426b559675f11f33d410f9c",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/01e65810b9267df34487ce6bd4ed175be6b9d51e"
+        },
+        "date": 1693676482317,
         "tool": "googlecpp",
         "benches": [
           {
