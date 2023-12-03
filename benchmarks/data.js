@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1701602291474,
+  "lastUpdate": 1701602299433,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -33282,6 +33282,54 @@ window.BENCHMARK_DATA = {
             "value": 2419182.362447258,
             "unit": "ns/iter",
             "extra": "iterations: 262\ncpu: 506561.8320610688 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "Tom.Tan@microsoft.com",
+            "name": "Tom Tan",
+            "username": "ThomsonTan"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "abad83d03ea5d936be166faf069d1d91002236e7",
+          "message": "[BUILD] Remove defining NOMINMAX from api (#2420)",
+          "timestamp": "2023-12-02T03:46:18-08:00",
+          "tree_id": "cb1fb10732cd83105bd4a3f371d8af3b5d42b296",
+          "url": "https://github.com/esigo/opentelemetry-cpp/commit/abad83d03ea5d936be166faf069d1d91002236e7"
+        },
+        "date": 1701602298019,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 52.12920801958117,
+            "unit": "ns/iter",
+            "extra": "iterations: 3091000\ncpu: 46.27968295050147 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 176.5819370444051,
+            "unit": "ns/iter",
+            "extra": "iterations: 788000\ncpu: 176.48236040609137 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 1163.3057748117756,
+            "unit": "ns/iter",
+            "extra": "iterations: 124000\ncpu: 1162.0741935483868 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 2159222.379907385,
+            "unit": "ns/iter",
+            "extra": "iterations: 308\ncpu: 472402.5974025976 ns\nthreads: 1"
           }
         ]
       }
