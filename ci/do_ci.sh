@@ -546,7 +546,7 @@ elif [[ "$1" == "code.coverage" ]]; then
   cp tmp_coverage.info coverage.info
   exit 0
 elif [[ "$1" == "third_party.tags" ]]; then
-  echo "gRPC=v1.49.2" > third_party_release
+  echo "gRPC=v1.67.1" > third_party_release
   echo "abseil=20240116.1" >> third_party_release
   git submodule foreach --quiet 'echo "$name=$(git describe --tags HEAD)"' | sed 's:.*/::' >> third_party_release
   exit 0
