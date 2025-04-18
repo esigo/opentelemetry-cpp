@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1745009525817,
+  "lastUpdate": 1745009576395,
   "repoUrl": "https://github.com/esigo/opentelemetry-cpp",
   "entries": {
     "OpenTelemetry-cpp api Benchmark": [
@@ -36689,6 +36689,50 @@ window.BENCHMARK_DATA = {
           "url": "https://github.com/esigo/opentelemetry-cpp/pull/33/commits/b7ba5179d718cf75537a7d3eeb16ed0be6c5fd14"
         },
         "date": 1745008118554,
+        "tool": "googlecpp",
+        "benches": [
+          {
+            "name": "BM_OtlpExporterEmptySpans",
+            "value": 17.597223997474025,
+            "unit": "ns/iter",
+            "extra": "iterations: 7327000\ncpu: 17.597047359082843 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterSparseSpans",
+            "value": 131.28656221395124,
+            "unit": "ns/iter",
+            "extra": "iterations: 1069000\ncpu: 129.35739382600565 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_OtlpExporterDenseSpans",
+            "value": 944.2859927550057,
+            "unit": "ns/iter",
+            "extra": "iterations: 151000\ncpu: 942.0518145695366 ns\nthreads: 1"
+          },
+          {
+            "name": "BM_otlp_grpc_with_collector",
+            "value": 1721475.2080147727,
+            "unit": "ns/iter",
+            "extra": "iterations: 228\ncpu: 617519.6885964914 ns\nthreads: 1"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "name": "esigo",
+            "username": "esigo"
+          },
+          "committer": {
+            "name": "esigo",
+            "username": "esigo"
+          },
+          "id": "529d13052574992904b1b9d921e5c8539ffc70fa",
+          "message": "[CI] Benchmark upload broken after action link hardening",
+          "timestamp": "2025-04-18T19:51:22Z",
+          "url": "https://github.com/esigo/opentelemetry-cpp/pull/33/commits/529d13052574992904b1b9d921e5c8539ffc70fa"
+        },
+        "date": 1745009573953,
         "tool": "googlecpp",
         "benches": [
           {
