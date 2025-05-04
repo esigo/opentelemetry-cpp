@@ -13,7 +13,7 @@
 #   git submodule status
 #
 
-gRPC=v1.49.2
+gRPC=v1.67.1
 abseil=20240116.1
 benchmark=v1.8.3
 googletest=1.14.0
